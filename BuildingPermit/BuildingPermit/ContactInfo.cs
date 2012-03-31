@@ -24,6 +24,7 @@ namespace BuildingPermit
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //string xml; 
            Contact contact = new Contact();
 
@@ -47,6 +48,30 @@ namespace BuildingPermit
             System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(contact.GetType());
             x.Serialize(file, contact);
             file.Close();
+=======
+            string xml; 
+            Contact Contact = new Contact();
+            Contact.companyName = txtCompany.Text;
+            Contact.firstName = txtFName.Text;
+            Contact.middleName = txtMName.Text;
+            Contact.lastName = txtLName.Text;
+            Contact.liscence = txtLicense.Text;
+            Contact.phone = txtPhone.Text;
+            Contact.cell = txtCell.Text;
+            Contact.email = txtEmail.Text;
+            Contact.buildingLiscence = txtBuildingLicense.Text;
+            Contact.streetNumber = txtStreetNumber.Text; 
+            Contact.streetName = txtStreetName.Text;
+            Contact.type = txtType.Text;
+            Contact.streetName2 = txtStreetName2.Text;
+            Contact.city = txtCity.Text;
+            Contact.state = txtState.Text;
+            Contact.zip = txtZip.Text;
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\xml.txt");
+            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(Contact.GetType());
+            x.Serialize(file, Contact); 
+            
+>>>>>>> 2f7005ec1fdd658cb40aa6de19e4dbb6d798924c
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
