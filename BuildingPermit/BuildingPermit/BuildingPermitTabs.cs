@@ -2,20 +2,34 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace BuildingPermit
 {
+    
+     
+
     public partial class BuildingPermitTabs : Form
     {
+        public const string conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
+         
 
+        public static SqlDataReader queryDatabase(string queryString, string connectionString)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(queryString, con);
+            con.Open();
+            return cmd.ExecuteReader();
+        }
 
         Building building = new Building();
         Utilities utilities = new Utilities();
-
+        Boolean holdTab = false;
 
         public BuildingPermitTabs()
         {
@@ -27,23 +41,6 @@ namespace BuildingPermit
         {
 
             tabControl1.SelectedIndex = 1;
-
-        }
-
-        private void btnNext2_Click(object sender, EventArgs e)
-        {
-
-
-
-            System.IO.StreamWriter file = new System.IO.StreamWriter(@"Building.xml");
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(building.GetType());
-            x.Serialize(file, building);
-            file.Close();
-
-
-
-            tabControl1.SelectedIndex = 2;
-
 
         }
 
@@ -79,6 +76,12 @@ namespace BuildingPermit
 
         private void BuildingPermitTabs_Load(object sender, EventArgs e)
         {
+           
+
+           
+
+            FillComboBox(conStr);
+
         }
 
         private void txtSquareFeet_Leave(object sender, EventArgs e)
@@ -89,6 +92,7 @@ namespace BuildingPermit
             {
                 txtSquareFeet.Focus();
                 txtSquareFeet.BackColor = Color.Red;
+                holdTab = true;
             }
         }
 
@@ -100,6 +104,7 @@ namespace BuildingPermit
             {
                 txtEstimatedCost.Focus();
                 txtEstimatedCost.BackColor = Color.Red;
+                holdTab = true;
             }
         }
 
@@ -111,6 +116,7 @@ namespace BuildingPermit
             {
                 txtNumStories.Focus();
                 txtNumStories.BackColor = Color.Red;
+                holdTab = true;
 
             }
 
@@ -124,6 +130,7 @@ namespace BuildingPermit
             {
                 txtHeatedSF.Focus();
                 txtHeatedSF.BackColor = Color.Red;
+                holdTab = true;
             }
 
         }
@@ -153,24 +160,129 @@ namespace BuildingPermit
         private void txtSquareFeet_KeyDown(object sender, KeyEventArgs e)
         {
             txtSquareFeet.BackColor = Color.White;
+            holdTab = false;
         }
 
         private void txtEstimatedCost_KeyDown(object sender, KeyEventArgs e)
         {
             txtEstimatedCost.BackColor = Color.White;
+            holdTab = false;
         }
 
         private void txtNumStories_KeyDown(object sender, KeyEventArgs e)
         {
             txtNumStories.BackColor = Color.White;
+            holdTab = false;
         }
 
         private void txtHeatedSF_KeyDown(object sender, KeyEventArgs e)
         {
             txtHeatedSF.BackColor = Color.White;
+            holdTab = false;
         }
 
-      
+        private void cmboConstructionType_Leave(object sender, EventArgs e)
+        {
+            building.buildingType = cmboConstructionType.Text;
+        }
+
+        private void txtNumSystems_Leave(object sender, EventArgs e)
+        {
+            utilities.setNumSys = txtNumSystems.Text;
+        }
+
+        private void txtNumBathrooms_Leave(object sender, EventArgs e)
+        {
+            utilities.numBathrooms = txtNumBathrooms.Text;
+        }
+
+        private void txtNumWaterClosets_Leave(object sender, EventArgs e)
+        {
+            utilities.numWaterClosets = txtNumWaterClosets.Text;
+        }
+
+        private void txtNumDishwashers_Leave(object sender, EventArgs e)
+        {
+            utilities.numDishWasher = txtNumDishwashers.Text;
+        }
+
+        private void txtNumWaterHeaters_Leave(object sender, EventArgs e)
+        {
+            utilities.numWaterHeater = txtNumWaterHeaters.Text;
+        }
+
+        private void txtNumFixtures_Leave(object sender, EventArgs e)
+        {
+            utilities.numFixtures = txtNumFixtures.Text;
+        }
+
+        private void txtNumShowers_Leave(object sender, EventArgs e)
+        {
+            utilities.numShowers = txtNumShowers.Text;
+        }
+
+        private void txtNumTubs_Leave(object sender, EventArgs e)
+        {
+            utilities.numTub = txtNumTubs.Text;
+        }
+
+        private void txtNumWetBars_Leave(object sender, EventArgs e)
+        {
+            utilities.numWetBar = txtNumWetBars.Text;
+        }
+
+        private void txtNumSinks_Leave(object sender, EventArgs e)
+        {
+            utilities.numSinks = txtNumSinks.Text;
+        }
+
+        private void txtNumClothesWashers_Leave(object sender, EventArgs e)
+        {
+            utilities.numClothesWasher = txtNumClothesWashers.Text;
+        }
+
+        private void txtNumSpas_Leave(object sender, EventArgs e)
+        {
+            utilities.numSpa = txtNumSpas.Text;
+        }
+
+        private void cmboNumAmps_Leave(object sender, EventArgs e)
+        {
+            utilities.numAmps = cmboNumAmps.Text;
+        }
+
+        private void txtProperty_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FillComboBox(string conStr)
+        {
+            string query = "select FeeName FROM fees WHERE (FeeName LIKE 'Electrical%');";
+            using (SqlConnection connection = new SqlConnection(conStr))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader sqlReader = command.ExecuteReader();
+                try
+                {
+                    foreach (var item in sqlReader)
+                    {
+                        cmboNumAmps.Items.Add(item);
+                    }
+
+                    cmboNumAmps.Text = "--Choose Number of Amps--";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    sqlReader.Close();
+                }
+            }
+        }
 
     }
 }
