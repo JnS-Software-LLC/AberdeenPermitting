@@ -30,302 +30,129 @@ namespace BuildingPermit
 
         private void btnLookUp_Click(object sender, EventArgs e)
         {
-            
+
             cmbPropertyResults.Items.Clear();
 
-            if (txtLRK.Text != null && txtLRK.Text != "")
-            {
-                
-
-                using (SqlConnection con = new SqlConnection(conStr))
-                {
-
-
-
-                    try
-                    {
-
-                        con.Open();
-                        SqlCommand spCmd;
-
-                        spCmd = new SqlCommand("getParcelBasedonLRK", con);
-                        spCmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter parm1 = spCmd.Parameters.Add("@in_LRK", SqlDbType.VarChar);
-                        spCmd.Prepare();
-
-                        parm1.Value =txtLRK.Text;
-
-                        SqlDataReader RDR = spCmd.ExecuteReader();
-
-                        cmbPropertyResults.Items.Clear();
-
-                        int i = 0;
-
-                        if (RDR.HasRows)
-                        {
-                            while (RDR.Read())
-                            {
-<<<<<<< HEAD
-                                cmbPropertyResults.Items.Add(RDR[i].ToString());
-=======
-                                cmbPropertyResults.Items.Add((string)RDR[i]);
->>>>>>> fbeb69f11614a5f7f8d610f46c60bde0b57280ba
-                                i++;
-                               
-                            }
-
-                           
-
-                            cmbPropertyResults.Text = "PLease pick the parcel you are looking for.";
-                        }
-                        else
-                        {
-                            cmbPropertyResults.Text = " No results found.";
-                        }
-
-
-
-
-
-                        RDR.Close();
-                        con.Close();
-                    }
-                    catch (SqlException MyException)
-                    {
-
-                        MessageBox.Show("Connection Error: " + MyException.Number);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-
-
-
-                }
-            }
-            else if (txtPropertyDescription.Text != null && txtPropertyDescription.Text != "")
-            {
-                
-
-                using (SqlConnection con = new SqlConnection(conStr))
-                {
-
-
-
-                    try
-                    {
-
-                        con.Open();
-                        SqlCommand spCmd;
-
-                        spCmd = new SqlCommand("getParcelBPropertyDescription", con);
-                        spCmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter parm1 = spCmd.Parameters.Add(@"@in_PropertyDescription", SqlDbType.VarChar);
-                        spCmd.Prepare();
-
-                        parm1.Value = txtPropertyDescription.Text;
-
-                        SqlDataReader RDR = spCmd.ExecuteReader();
-
-                        cmbPropertyResults.Items.Clear();
-
-                       
-
-                        if (RDR.HasRows)
-                        {
-                            while (RDR.Read())
-                            {
-                                cmbPropertyResults.Items.Add(RDR.GetString(0));
-                                RDR.NextResult();
-                               
-
-                            }
-
-                         
-                            cmbPropertyResults.Text = "PLease pick the parcel you are looking for.";
-                        }
-                        else
-                        {
-                            cmbPropertyResults.Text = " No results found.";
-                        }
-
-
-
-
-
-                        RDR.Close();
-                        con.Close();
-                    }
-                    catch (SqlException MyException)
-                    {
-
-                        MessageBox.Show("Connection Error: " + MyException.Number);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-
-
-
-                }
-
-
-
-            }
-            else if (txtPropertyOwner.Text != null && txtPropertyOwner.Text != "")
-            {
-                
-                using (SqlConnection con = new SqlConnection(conStr))
-                {
-
-
-
-                    try
-                    {
-
-                        con.Open();
-                        SqlCommand spCmd;
-
-                        spCmd = new SqlCommand("getParcelBOwner", con);
-                        spCmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter parm1 = spCmd.Parameters.Add("@in_Name", SqlDbType.VarChar);
-                        spCmd.Prepare();
-
-                        parm1.Value = txtPropertyOwner.Text;
-
-                        SqlDataReader RDR = spCmd.ExecuteReader();
-
-                        cmbPropertyResults.Items.Clear();
-
-                      
-
-                        if (RDR.HasRows)
-                        {
-                            while (RDR.Read())
-                            {
-                                cmbPropertyResults.Items.Add(RDR.GetString(0));
-                                RDR.NextResult();
-                               
-
-                            }
-
-                           
-                            cmbPropertyResults.Text = "PLease pick the parcel you are looking for.";
-                        }
-                        else
-                        {
-                            cmbPropertyResults.Text = " No results found.";
-                        }
-
-
-
-
-
-                        RDR.Close();
-                        con.Close();
-                    }
-                    catch (SqlException MyException)
-                    {
-
-                        MessageBox.Show("Connection Error: " + MyException.Number);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-
-
-
-
-
-
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Please fill in the LRK number, Parcel Description or the Owner Company//personal name.");
-            }
-
-            
-        }
-
-
-        private void FillComboBox(string conStr, string parameter, string procedure)
-        {
 
             using (SqlConnection con = new SqlConnection(conStr))
             {
-
-
-
-                try
+                if (txtLRK.Text != null && txtLRK.Text != "")
                 {
+                    String procedure = "getParcelBasedonLRK";
 
-                    con.Open();
-                    SqlCommand spCmd;
-
-                    spCmd = new SqlCommand(procedure, con);
-                    spCmd.CommandType = CommandType.StoredProcedure;
-                    SqlParameter parm1 = spCmd.Parameters.Add(parameter, SqlDbType.VarChar);
-                    spCmd.Prepare();
-
-                    parm1.Value = txtLRK.Text;
-
-                    SqlDataReader RDR = spCmd.ExecuteReader();
-
-                    cmbPropertyResults.Items.Clear();
-
-                    int i = 0;
-
-                    if (RDR.HasRows)
+                    try
                     {
+
+                        con.Open();
+                        SqlCommand spCmd;
+                        spCmd = new SqlCommand(procedure, con);
+                        spCmd.CommandType = CommandType.StoredProcedure;
+                        spCmd.Parameters.Add("@in_LRK", SqlDbType.VarChar);
+                        spCmd.Prepare();
+                        spCmd.Parameters["@in_LRK"].Value = txtLRK.Text;
+
+
+                        SqlDataReader RDR = spCmd.ExecuteReader();
+
                         while (RDR.Read())
                         {
-                            cmbPropertyResults.Items.Add(RDR.GetString(i));
-                            i++;
-
+                        cmbPropertyResults.Items.Add((string)RDR["address"]);
                         }
 
-                       
-                        cmbPropertyResults.Text = "PLease pick the parcel you are looking for.";
+                      
+                            cmbPropertyResults.Text = "--Choose a parcel--"; 
+                      
+
+                        RDR.Close();
+                        con.Close();
+
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        cmbPropertyResults.Text = " No results found.";
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
 
-
-
-
-                    RDR.Close();
-                    con.Close();
                 }
-                catch (SqlException MyException)
+                else if (txtPropertyDescription.Text != null & txtPropertyDescription.Text != "")
+                {
+                    String procedure = "getParcelBPropertyDescription";
+
+                    try
+                    {
+
+                        con.Open();
+                        SqlCommand spCmd;
+                        spCmd = new SqlCommand(procedure, con);
+                        spCmd.CommandType = CommandType.StoredProcedure;
+                        spCmd.Parameters.Add("@in_PropertyDescription", SqlDbType.VarChar);
+                        spCmd.Prepare();
+                        spCmd.Parameters["@in_PropertyDescription"].Value = txtPropertyOwner.Text;
+
+
+                        SqlDataReader RDR = spCmd.ExecuteReader();
+
+                        while (RDR.Read())
+                        {
+                            cmbPropertyResults.Items.Add((string)RDR["address"]);
+                        }
+
+
+                        cmbPropertyResults.Text = "--Choose a parcel--";
+
+
+                        RDR.Close();
+                        con.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (txtPropertyOwner.Text != null & txtPropertyOwner.Text != "")
+                {
+                    String procedure = "getParcelBOwner";
+
+                    try
+                    {
+
+                        con.Open();
+                        SqlCommand spCmd;
+                        spCmd = new SqlCommand(procedure, con);
+                        spCmd.CommandType = CommandType.StoredProcedure;
+                        spCmd.Parameters.Add("@in_Name", SqlDbType.VarChar);
+                        spCmd.Prepare();
+                        spCmd.Parameters["@in_Name"].Value = txtPropertyOwner.Text;
+
+
+                        SqlDataReader RDR = spCmd.ExecuteReader();
+
+                        while (RDR.Read())
+                        {
+                            cmbPropertyResults.Items.Add((string)RDR["address"]);
+                        }
+
+
+                        cmbPropertyResults.Text = "--Choose a parcel--";
+
+
+                        RDR.Close();
+                        con.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
                 {
 
-                    MessageBox.Show("Connection Error: " + MyException.Number);
                 }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-
 
 
             }
-
 
         }
 
