@@ -65,7 +65,11 @@ namespace BuildingPermit
                         {
                             while (RDR.Read())
                             {
+<<<<<<< HEAD
                                 cmbPropertyResults.Items.Add(RDR[i].ToString());
+=======
+                                cmbPropertyResults.Items.Add((string)RDR[i]);
+>>>>>>> fbeb69f11614a5f7f8d610f46c60bde0b57280ba
                                 i++;
                                
                             }
