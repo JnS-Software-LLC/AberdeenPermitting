@@ -51,8 +51,6 @@
             // cmbPropertyResults
             // 
             this.cmbPropertyResults.FormattingEnabled = true;
-            this.cmbPropertyResults.Items.AddRange(new object[] {
-            "*pull from query"});
             this.cmbPropertyResults.Location = new System.Drawing.Point(15, 94);
             this.cmbPropertyResults.Name = "cmbPropertyResults";
             this.cmbPropertyResults.Size = new System.Drawing.Size(399, 21);

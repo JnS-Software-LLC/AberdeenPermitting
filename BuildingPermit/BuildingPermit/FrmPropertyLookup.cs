@@ -33,7 +33,7 @@ namespace BuildingPermit
             
             cmbPropertyResults.Items.Clear();
 
-            if (txtLRK.Text != null || txtLRK.Text != " ")
+            if (txtLRK.Text != null && txtLRK.Text != "")
             {
                 
 
@@ -50,10 +50,10 @@ namespace BuildingPermit
 
                         spCmd = new SqlCommand("getParcelBasedonLRK", con);
                         spCmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter parm1 = spCmd.Parameters.Add("@%in_LRK%", SqlDbType.VarChar);
+                        SqlParameter parm1 = spCmd.Parameters.Add("@in_LRK", SqlDbType.VarChar);
                         spCmd.Prepare();
 
-                        parm1.Value = txtLRK.Text;
+                        parm1.Value =txtLRK.Text;
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
 
@@ -65,9 +65,9 @@ namespace BuildingPermit
                         {
                             while (RDR.Read())
                             {
-                                cmbPropertyResults.Items.Add(RDR.GetString(i));
+                                cmbPropertyResults.Items.Add(RDR[i].ToString());
                                 i++;
-
+                               
                             }
 
                            
@@ -102,7 +102,7 @@ namespace BuildingPermit
 
                 }
             }
-            else if (txtPropertyDescription.Text != null || txtPropertyDescription.Text != " ")
+            else if (txtPropertyDescription.Text != null && txtPropertyDescription.Text != "")
             {
                 
 
@@ -119,23 +119,24 @@ namespace BuildingPermit
 
                         spCmd = new SqlCommand("getParcelBPropertyDescription", con);
                         spCmd.CommandType = CommandType.StoredProcedure;
-                        SqlParameter parm1 = spCmd.Parameters.Add("@in_PropertyDescription", SqlDbType.VarChar);
+                        SqlParameter parm1 = spCmd.Parameters.Add(@"@in_PropertyDescription", SqlDbType.VarChar);
                         spCmd.Prepare();
 
-                        parm1.Value = txtLRK.Text;
+                        parm1.Value = txtPropertyDescription.Text;
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
 
                         cmbPropertyResults.Items.Clear();
 
-                        int i = 0;
+                       
 
                         if (RDR.HasRows)
                         {
                             while (RDR.Read())
                             {
-                                cmbPropertyResults.Items.Add(RDR.GetString(i));
-                                i++;
+                                cmbPropertyResults.Items.Add(RDR.GetString(0));
+                                RDR.NextResult();
+                               
 
                             }
 
@@ -173,7 +174,7 @@ namespace BuildingPermit
 
 
             }
-            else if (txtPropertyOwner.Text != null || txtPropertyOwner.Text != " ")
+            else if (txtPropertyOwner.Text != null && txtPropertyOwner.Text != "")
             {
                 
                 using (SqlConnection con = new SqlConnection(conStr))
@@ -192,20 +193,21 @@ namespace BuildingPermit
                         SqlParameter parm1 = spCmd.Parameters.Add("@in_Name", SqlDbType.VarChar);
                         spCmd.Prepare();
 
-                        parm1.Value = txtLRK.Text;
+                        parm1.Value = txtPropertyOwner.Text;
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
 
                         cmbPropertyResults.Items.Clear();
 
-                        int i = 0;
+                      
 
                         if (RDR.HasRows)
                         {
                             while (RDR.Read())
                             {
-                                cmbPropertyResults.Items.Add(RDR.GetString(i));
-                                i++;
+                                cmbPropertyResults.Items.Add(RDR.GetString(0));
+                                RDR.NextResult();
+                               
 
                             }
 
