@@ -148,7 +148,7 @@ namespace BuildingPermit
                 }
                 else
                 {
-
+                    MessageBox.Show("Please input the LRK number, Property Description or the Owner name.");
                 }
 
 
