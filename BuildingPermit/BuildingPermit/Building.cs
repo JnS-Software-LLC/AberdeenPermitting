@@ -103,7 +103,7 @@ public class Building
     }
 
     /// <summary>
-    /// Dech Sf Property
+    /// Deck Sf Property
     /// </summary>
     public string deckSF
     {
@@ -288,7 +288,7 @@ public class Building
     }
 
     /// <summary>
-    /// valadation for input int's
+    /// validation for input int's
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
@@ -299,7 +299,7 @@ public class Building
         return int.TryParse(value, out Num);
     }
     /// <summary>
-    /// valadation for input double's
+    /// validation for input double's
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>

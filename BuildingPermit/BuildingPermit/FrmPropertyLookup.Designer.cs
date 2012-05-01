@@ -47,6 +47,7 @@
             this.btnPropertyAccept.TabIndex = 221;
             this.btnPropertyAccept.Text = "Accept";
             this.btnPropertyAccept.UseVisualStyleBackColor = true;
+            this.btnPropertyAccept.Click += new System.EventHandler(this.btnPropertyAccept_Click);
             // 
             // cmbPropertyResults
             // 

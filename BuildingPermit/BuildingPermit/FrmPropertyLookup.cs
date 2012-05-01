@@ -156,5 +156,10 @@ namespace BuildingPermit
 
         }
 
+        private void btnPropertyAccept_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
