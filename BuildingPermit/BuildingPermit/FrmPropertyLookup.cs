@@ -14,15 +14,6 @@ namespace BuildingPermit
     {
         private string conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
-
-        public static SqlDataReader queryDatabase(string queryString, string connectionString)
-        {
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(queryString, con);
-            con.Open();
-            return cmd.ExecuteReader();
-        }
-
         public frmPropertyLookup()
         {
             InitializeComponent();
@@ -215,28 +206,9 @@ namespace BuildingPermit
             //Contact contact = new Contact();
 
             //contact.load(conStr, "address = " + cmbPropertyResults.SelectedText);
+
             BuildingPermitTabs parentForm = (BuildingPermitTabs)Application.OpenForms[1];
-
-           
-
-            //for (int i = 0; i < Application.OpenForms.Count; i++)
-            //{
-            //    if ( Application.OpenForms[i].Name == "BuildingPermitTabs")
-            //    {
-            //         parentForm = (BuildingPermitTabs)Application.OpenForms[i];
-            //         break;
-            //    }
-
-               
-            //}
-
-            //foreach (TextBox item in parentForm.tabControl1.Controls.OfType<TextBox>() )
-            //{
-            //    if (item.Controls.)
-            //    {
-            //        item.Text = "text";
-            //    }
-            //}
+                  
 
             parentForm._txtOwner = "text";
 

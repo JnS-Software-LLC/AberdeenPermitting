@@ -448,17 +448,28 @@ namespace BuildingPermit
             Utilities utilities = new Utilities();
 
 
-            building.load(conStr, "PermitID =" + txtPermitNumber.Text);
+            if (txtPermitNumber.Text != null && txtPermitNumber.Text != "")
+            {
+                building.load(conStr, "PermitID =" + txtPermitNumber.Text);
+                //contact.load(conStr, "PermitID =" + txtPermitNumber.Text);
+                utilities.load(conStr, "PermitID =" + txtPermitNumber.Text);
 
-            txtSquareFeet.Text = building.totalSF;
-            txtHeatedSF.Text = building.heatedSF;
-            txtEstimatedCost.Text = building.estimatedCost;
-            cmboConstructionType.Text = building.buildingType;
-            txtPorchSF.Text = building.porchSF;
-            txtNumStories.Text = building.numStories;
-            txtDeck.Text = building.deckSF;
-            txtGarageSF.Text = building.garageSF;
-            txtBasement.Text = building.basementSF;
+                txtSquareFeet.Text = building.totalSF;
+                txtHeatedSF.Text = building.heatedSF;
+                txtEstimatedCost.Text = building.estimatedCost;
+                cmboConstructionType.Text = building.buildingType;
+                txtPorchSF.Text = building.porchSF;
+                txtNumStories.Text = building.numStories;
+                txtDeck.Text = building.deckSF;
+                txtGarageSF.Text = building.garageSF;
+                txtBasement.Text = building.basementSF;
+                txtOwner.Text = contact.companyName;
+
+            }
+            else
+            {
+                MessageBox.Show("Please input the Permit number");
+            }
 
 
 

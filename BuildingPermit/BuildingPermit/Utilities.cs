@@ -282,6 +282,10 @@ public class Utilities
     {
 
     }
+    public void load(string conStr, string where)
+    {
+
+    }
     public void save(string conStr)
     {
          string query = String.Format("Insert Into plumbing " +
