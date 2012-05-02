@@ -136,9 +136,9 @@ public class Contact
                         //This is not complete, please include corresponding variables from the db. 
                         this.myCompanyName = (string)RDR["CompanyName"];
                         this.myCompanyName2 = (string)RDR["CompanyName2"];
-                        this.myFirstName = (string)RDR["TypeOfConst"];
+                        this.myFirstName = (string)RDR["Fname"];
                         this.myMiddleName = (string)RDR["TypeOfConst"];
-                        this.myLastName = (string)RDR["TypeOfConst"];
+                        this.myLastName = (string)RDR["Lname"];
                         this.myLicense = (string)RDR["TypeOfConst"];
                         this.myPhone = (string)RDR["TypeOfConst"];
                         this.myPhone2 = (string)RDR["TypeOfConst"];

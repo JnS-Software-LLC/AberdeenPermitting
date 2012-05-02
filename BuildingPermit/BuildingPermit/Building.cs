@@ -351,36 +351,7 @@ public class Building
 
     public void save(string conStr)
     {
-        /*
-         *TypeOfConst         nvarchar(50)
-         * XXXXProposedUse       nvarchar(50)
-         * Dimensions        nvarchar(75)
-         * heatedsf          int
-         * numberOfstories   int
-         * garageSF          int
-         * Basement          bit
-         * PorchSF           int
-         * DeckSF              int
-         * installinsulation bit
-         * estCostOfConst    money
-         * privateWell       bit
-         * townSewer         bit
-         * Townwater         bit
-         * septicImprovePemit bit
-         * 
-         *     
-         * 
-    private string myBuildingType; TypeOfConst
-    private string myEstimatedCost; estCostOfConst
-    private string myDimensions; Dimensions
-    private string myTotalSF; TotalSF
-    private string myHeatedSF; heatedsf
-    private string myPorchSF; PorchSF
-    private string myNumStories; numberOfstories
-    private string myDeckSF; DeckSF
-    private string myGarageSF; garageSF
-    private string myBasementSF; Basement
-         */
+     
         string query = String.Format("Insert Into Building " +
             " (TypeOfConst, estCostOfConst, Dimensions, TotalSF," +
             " heatedsf, PorchSF, numberOfstories, DeckSF, garageSF, BasementSF,basement, permitID)" +

@@ -56,12 +56,30 @@ namespace BuildingPermit
 
                         while (RDR.Read())
                         {
-                        cmbPropertyResults.Items.Add((string)RDR["address"]);
+                            if (RDR.HasRows)
+                            {
+                                if (!RDR.IsDBNull(0))
+                                {
+                                    cmbPropertyResults.Items.Add((string)RDR["address"]);
+                                }
+                            }
+                            else
+                            {
+                                cmbPropertyResults.Items.Add("No record found");
+                            }
                         }
 
-                      
+
+
+                        if (cmbPropertyResults.Items.Count > 1)
+                        {
                             cmbPropertyResults.Text = "--Choose a parcel--"; 
-                      
+                        }
+                        else
+                        {
+                            cmbPropertyResults.SelectedIndex = 0;
+                        }
+
 
                         RDR.Close();
                         con.Close();
@@ -91,14 +109,32 @@ namespace BuildingPermit
 
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
-
                         while (RDR.Read())
                         {
-                            cmbPropertyResults.Items.Add((string)RDR["address"]);
+                            if (RDR.HasRows)
+                            {
+                                if (!RDR.IsDBNull(0))
+                                {
+                                    cmbPropertyResults.Items.Add((string)RDR["address"]);
+                                }
+                            }
+                            else
+                            {
+                                cmbPropertyResults.Items.Add("No record found");
+                            }
                         }
 
 
-                        cmbPropertyResults.Text = "--Choose a parcel--";
+
+
+                        if (cmbPropertyResults.Items.Count > 1)
+                        {
+                            cmbPropertyResults.Text = "--Choose a parcel--";
+                        }
+                        else
+                        {
+                            cmbPropertyResults.SelectedIndex = 0;
+                        }
 
 
                         RDR.Close();
@@ -130,11 +166,29 @@ namespace BuildingPermit
 
                         while (RDR.Read())
                         {
-                            cmbPropertyResults.Items.Add((string)RDR["address"]);
+                            if (RDR.HasRows )
+                            {
+                                if (!RDR.IsDBNull(0))
+                                {
+                                    cmbPropertyResults.Items.Add((string)RDR["address"]); 
+                                }
+                            }
+                            else
+                            {
+                                cmbPropertyResults.Items.Add("No record found");
+                            }
                         }
 
 
-                        cmbPropertyResults.Text = "--Choose a parcel--";
+
+                        if (cmbPropertyResults.Items.Count > 1)
+                        {
+                            cmbPropertyResults.Text = "--Choose a parcel--";
+                        }
+                        else
+                        {
+                            cmbPropertyResults.SelectedIndex = 0;
+                        }
 
 
                         RDR.Close();

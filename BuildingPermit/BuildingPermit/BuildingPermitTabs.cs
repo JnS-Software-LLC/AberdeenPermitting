@@ -444,6 +444,9 @@ namespace BuildingPermit
         private void btnSearchPermitNum_Click(object sender, EventArgs e)
         {
             Building building = new Building();
+            Contact contact = new Contact();
+            Utilities utilities = new Utilities();
+
 
             building.load(conStr, "PermitID =" + txtPermitNumber.Text);
 
