@@ -50,8 +50,6 @@
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.btnFees = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.btnSearchOwner = new System.Windows.Forms.Button();
-            this.btnAddOwner = new System.Windows.Forms.Button();
             this.txtOwnerCell = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtOwnerPhone = new System.Windows.Forms.MaskedTextBox();
@@ -440,8 +438,6 @@
             // 
             // groupBox14
             // 
-            this.groupBox14.Controls.Add(this.btnSearchOwner);
-            this.groupBox14.Controls.Add(this.btnAddOwner);
             this.groupBox14.Controls.Add(this.txtOwnerCell);
             this.groupBox14.Controls.Add(this.label1);
             this.groupBox14.Controls.Add(this.txtOwnerPhone);
@@ -454,30 +450,6 @@
             this.groupBox14.TabIndex = 199;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Owner Information";
-            // 
-            // btnSearchOwner
-            // 
-            this.btnSearchOwner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchOwner.BackgroundImage")));
-            this.btnSearchOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSearchOwner.Location = new System.Drawing.Point(454, 18);
-            this.btnSearchOwner.Name = "btnSearchOwner";
-            this.btnSearchOwner.Size = new System.Drawing.Size(27, 28);
-            this.btnSearchOwner.TabIndex = 202;
-            this.btnSearchOwner.Text = "...";
-            this.btnSearchOwner.UseVisualStyleBackColor = true;
-            this.btnSearchOwner.Click += new System.EventHandler(this.btnSearchOwner_Click);
-            // 
-            // btnAddOwner
-            // 
-            this.btnAddOwner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddOwner.BackgroundImage")));
-            this.btnAddOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddOwner.Location = new System.Drawing.Point(454, 55);
-            this.btnAddOwner.Name = "btnAddOwner";
-            this.btnAddOwner.Size = new System.Drawing.Size(27, 28);
-            this.btnAddOwner.TabIndex = 201;
-            this.btnAddOwner.Text = "...";
-            this.btnAddOwner.UseVisualStyleBackColor = true;
-            this.btnAddOwner.Click += new System.EventHandler(this.btnAddOwner_Click);
             // 
             // txtOwnerCell
             // 
@@ -2113,7 +2085,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage Contractors;
@@ -2197,7 +2168,6 @@
         internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox txtOwnerPhone;
         internal System.Windows.Forms.Label label12;
-        internal System.Windows.Forms.TextBox txtOwner;
         internal System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox6;
         internal System.Windows.Forms.Label label16;
@@ -2267,8 +2237,6 @@
         private System.Windows.Forms.Button btnSearchApplicant;
         private System.Windows.Forms.Button btnSearchAppNum;
         private System.Windows.Forms.Button btnSearchPermitNum;
-        private System.Windows.Forms.Button btnSearchOwner;
-        private System.Windows.Forms.Button btnAddOwner;
         private System.Windows.Forms.Button btnSearchProperty;
         private System.Windows.Forms.Button btnAddProperty;
         private System.Windows.Forms.Button btnIrriSubSearch;
@@ -2295,6 +2263,8 @@
         private System.Windows.Forms.Label label75;
         internal System.Windows.Forms.TextBox txtNumSystems;
         internal System.Windows.Forms.Label label78;
+        public System.Windows.Forms.TabControl tabControl1;
+        protected System.Windows.Forms.TextBox txtOwner;
 
     }
 }

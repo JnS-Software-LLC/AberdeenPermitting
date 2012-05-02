@@ -464,7 +464,7 @@ namespace BuildingPermit
 
         }
 
-
+        public string _txtOwner { set {txtOwner.Text = value; } }
 
 
     }

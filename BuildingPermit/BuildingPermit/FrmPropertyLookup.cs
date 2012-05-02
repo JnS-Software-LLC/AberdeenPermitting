@@ -212,6 +212,33 @@ namespace BuildingPermit
 
         private void btnPropertyAccept_Click(object sender, EventArgs e)
         {
+            //Contact contact = new Contact();
+
+            //contact.load(conStr, "address = " + cmbPropertyResults.SelectedText);
+            BuildingPermitTabs parentForm = (BuildingPermitTabs)Application.OpenForms[1];
+
+           
+
+            //for (int i = 0; i < Application.OpenForms.Count; i++)
+            //{
+            //    if ( Application.OpenForms[i].Name == "BuildingPermitTabs")
+            //    {
+            //         parentForm = (BuildingPermitTabs)Application.OpenForms[i];
+            //         break;
+            //    }
+
+               
+            //}
+
+            //foreach (TextBox item in parentForm.tabControl1.Controls.OfType<TextBox>() )
+            //{
+            //    if (item.Controls.)
+            //    {
+            //        item.Text = "text";
+            //    }
+            //}
+
+            parentForm._txtOwner = "text";
 
         }
 
