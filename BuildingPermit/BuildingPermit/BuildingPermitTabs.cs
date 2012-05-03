@@ -25,7 +25,7 @@ namespace BuildingPermit
 
         Building building = new Building();
         Utilities utilities = new Utilities();
-      
+
 
         public BuildingPermitTabs()
         {
@@ -90,7 +90,7 @@ namespace BuildingPermit
             {
                 txtSquareFeet.Focus();
                 txtSquareFeet.BackColor = Color.Red;
-               
+
             }
         }
 
@@ -102,7 +102,7 @@ namespace BuildingPermit
             {
                 txtEstimatedCost.Focus();
                 txtEstimatedCost.BackColor = Color.Red;
-             
+
             }
         }
 
@@ -114,7 +114,7 @@ namespace BuildingPermit
             {
                 txtNumStories.Focus();
                 txtNumStories.BackColor = Color.Red;
-              
+
 
             }
 
@@ -128,7 +128,7 @@ namespace BuildingPermit
             {
                 txtHeatedSF.Focus();
                 txtHeatedSF.BackColor = Color.Red;
-              
+
             }
 
         }
@@ -158,25 +158,25 @@ namespace BuildingPermit
         private void txtSquareFeet_KeyDown(object sender, KeyEventArgs e)
         {
             txtSquareFeet.BackColor = Color.White;
-      
+
         }
 
         private void txtEstimatedCost_KeyDown(object sender, KeyEventArgs e)
         {
             txtEstimatedCost.BackColor = Color.White;
-          
+
         }
 
         private void txtNumStories_KeyDown(object sender, KeyEventArgs e)
         {
             txtNumStories.BackColor = Color.White;
-       
+
         }
 
         private void txtHeatedSF_KeyDown(object sender, KeyEventArgs e)
         {
             txtHeatedSF.BackColor = Color.White;
-          
+
         }
 
         private void cmboConstructionType_Leave(object sender, EventArgs e)
@@ -443,39 +443,76 @@ namespace BuildingPermit
 
         private void btnSearchPermitNum_Click(object sender, EventArgs e)
         {
-            Building building = new Building();
-            Contact contact = new Contact();
-            Utilities utilities = new Utilities();
-
-
-            if (txtPermitNumber.Text != null && txtPermitNumber.Text != "")
+            using (SqlConnection con = new SqlConnection(conStr))
             {
-                building.load(conStr, "PermitID =" + txtPermitNumber.Text);
-                //contact.load(conStr, "PermitID =" + txtPermitNumber.Text);
-                utilities.load(conStr, "PermitID =" + txtPermitNumber.Text);
+                String procedure = "SearchForPermit";
 
-                txtSquareFeet.Text = building.totalSF;
-                txtHeatedSF.Text = building.heatedSF;
-                txtEstimatedCost.Text = building.estimatedCost;
-                cmboConstructionType.Text = building.buildingType;
-                txtPorchSF.Text = building.porchSF;
-                txtNumStories.Text = building.numStories;
-                txtDeck.Text = building.deckSF;
-                txtGarageSF.Text = building.garageSF;
-                txtBasement.Text = building.basementSF;
-                txtOwner.Text = contact.companyName;
+                try
+                {
 
-            }
-            else
-            {
-                MessageBox.Show("Please input the Permit number");
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand(procedure, con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    while (RDR.NextResult())
+                    {
+                        while (RDR.Read())
+                        {
+                            if (RDR.HasRows)
+                            {
+
+
+                                for (int i = 0; i < RDR.FieldCount; i++)
+                                {
+                                    Console.WriteLine(RDR.GetName(i));
+
+                                    if (RDR.GetName(i) == "CompName")
+                                    {
+                                        //txtOwner.Text = (string)RDR.GetValue(i);
+                                        txtOwner.Text = (string)RDR["CompName"];
+
+                                    }
+                                    if (RDR.GetName(i) == "FirstPhone")
+                                    {
+                                        txtOwnerPhone.Text = (string)RDR["FirstPhone"];
+                                    }
+                                    if (RDR.GetName(i) == "SecondPhone")
+                                    {
+                                       txtOwnerCell.Text = (string)RDR["SecondPhone"];
+                                    }
+                                }
+
+
+                            }
+                        }
+
+                        RDR.NextResult();
+
+                    }
+
+
+                    RDR.Close();
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
 
 
         }
 
-        public string _txtOwner { set {txtOwner.Text = value; } }
+        public string _txtOwner { set { txtOwner.Text = value; } }
 
 
     }
