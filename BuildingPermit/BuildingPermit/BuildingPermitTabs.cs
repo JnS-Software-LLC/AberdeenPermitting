@@ -15,7 +15,7 @@ namespace BuildingPermit
     {
         public string conStr;
         public Boolean flagPermitNum = false;
-
+        public string buildingID = "0";
 
         public static SqlDataReader queryDatabase(string queryString, string connectionString)
         {
@@ -465,7 +465,6 @@ namespace BuildingPermit
                     spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
 
 
-
                     SqlDataReader RDR = spCmd.ExecuteReader(CommandBehavior.KeyInfo);
 
 
@@ -510,6 +509,7 @@ namespace BuildingPermit
                                         if (RDR.GetName(i) == "LRK")
                                         {
                                             txtLRKNumber.Text = (string)RDR["LRK"];
+                                            buildingID = (string)RDR["LRK"];
                                         }
                                         if (RDR.GetName(i) == "ZoningDist")
                                         {
@@ -831,7 +831,7 @@ namespace BuildingPermit
         {
              conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
-            building.save(conStr);
+            building.update(conStr, buildingID);
             //utilities.save(conStr);
 
         }
