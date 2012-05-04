@@ -216,7 +216,7 @@ namespace BuildingPermit
                         spCmd.CommandType = CommandType.StoredProcedure;
                         spCmd.Parameters.Add("@in_address", SqlDbType.VarChar);
                         spCmd.Prepare();
-                        spCmd.Parameters["@in_address"].Value =cmbPropertyResults.SelectedText;
+                        spCmd.Parameters["@in_address"].Value =cmbPropertyResults.SelectedItem.ToString();
 
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
@@ -225,11 +225,12 @@ namespace BuildingPermit
                         {
                             if (RDR.HasRows )
                             {
-                                if (!RDR.IsDBNull(0))
-                                {
+                                
                                     for (int i = 0; i < RDR.FieldCount; i++)
                                     {
-                                      
+
+                                        if (!RDR.IsDBNull(i))
+                                        {
                                             if (RDR.GetName(i) == "CompName")
                                             {
                                                 pf._txtOwner = (string)RDR["CompName"];
@@ -256,9 +257,10 @@ namespace BuildingPermit
                                             if (RDR.GetName(i) == "LRK")
                                             {
                                                 pf._txtLRKNumber = (string)RDR["LRK"];
-                                            }  
-                                        
-                                    }
+                                            }
+                                            
+                                        }
+                                    
                                   
                                 }
                             }
@@ -290,10 +292,10 @@ namespace BuildingPermit
                     }
             }
 
-            
-                  
 
-          
+
+
+            this.Close();
 
         }
 

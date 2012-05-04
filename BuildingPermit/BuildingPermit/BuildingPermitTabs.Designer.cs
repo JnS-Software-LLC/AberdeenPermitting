@@ -32,7 +32,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.btnSearchAppNum = new System.Windows.Forms.Button();
             this.btnSearchPermitNum = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.dtIssueDate = new System.Windows.Forms.DateTimePicker();
@@ -57,8 +56,6 @@
             this.txtOwner = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.btnSearchApplicant = new System.Windows.Forms.Button();
-            this.btnAddApplicant = new System.Windows.Forms.Button();
             this.txtCell = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtApplicantPhone = new System.Windows.Forms.MaskedTextBox();
@@ -265,7 +262,6 @@
             // 
             // groupBox19
             // 
-            this.groupBox19.Controls.Add(this.btnSearchAppNum);
             this.groupBox19.Controls.Add(this.btnSearchPermitNum);
             this.groupBox19.Controls.Add(this.label24);
             this.groupBox19.Controls.Add(this.dtIssueDate);
@@ -284,17 +280,6 @@
             this.groupBox19.Size = new System.Drawing.Size(202, 212);
             this.groupBox19.TabIndex = 203;
             this.groupBox19.TabStop = false;
-            // 
-            // btnSearchAppNum
-            // 
-            this.btnSearchAppNum.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchAppNum.BackgroundImage")));
-            this.btnSearchAppNum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSearchAppNum.Location = new System.Drawing.Point(169, 52);
-            this.btnSearchAppNum.Name = "btnSearchAppNum";
-            this.btnSearchAppNum.Size = new System.Drawing.Size(27, 28);
-            this.btnSearchAppNum.TabIndex = 202;
-            this.btnSearchAppNum.Text = "...";
-            this.btnSearchAppNum.UseVisualStyleBackColor = true;
             // 
             // btnSearchPermitNum
             // 
@@ -504,8 +489,6 @@
             // 
             // groupBox13
             // 
-            this.groupBox13.Controls.Add(this.btnSearchApplicant);
-            this.groupBox13.Controls.Add(this.btnAddApplicant);
             this.groupBox13.Controls.Add(this.txtCell);
             this.groupBox13.Controls.Add(this.label11);
             this.groupBox13.Controls.Add(this.txtApplicantPhone);
@@ -518,30 +501,6 @@
             this.groupBox13.TabIndex = 192;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Applicant Information";
-            // 
-            // btnSearchApplicant
-            // 
-            this.btnSearchApplicant.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchApplicant.BackgroundImage")));
-            this.btnSearchApplicant.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSearchApplicant.Location = new System.Drawing.Point(454, 19);
-            this.btnSearchApplicant.Name = "btnSearchApplicant";
-            this.btnSearchApplicant.Size = new System.Drawing.Size(27, 28);
-            this.btnSearchApplicant.TabIndex = 200;
-            this.btnSearchApplicant.Text = "...";
-            this.btnSearchApplicant.UseVisualStyleBackColor = true;
-            this.btnSearchApplicant.Click += new System.EventHandler(this.btnSearchApplicant_Click);
-            // 
-            // btnAddApplicant
-            // 
-            this.btnAddApplicant.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddApplicant.BackgroundImage")));
-            this.btnAddApplicant.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddApplicant.Location = new System.Drawing.Point(454, 56);
-            this.btnAddApplicant.Name = "btnAddApplicant";
-            this.btnAddApplicant.Size = new System.Drawing.Size(27, 28);
-            this.btnAddApplicant.TabIndex = 199;
-            this.btnAddApplicant.Text = "...";
-            this.btnAddApplicant.UseVisualStyleBackColor = true;
-            this.btnAddApplicant.Click += new System.EventHandler(this.btnAddApplicant_Click);
             // 
             // txtCell
             // 
@@ -2233,9 +2192,6 @@
         private System.Windows.Forms.Button btnFees;
         private System.Windows.Forms.ComboBox cmboNumAmps;
         private System.Windows.Forms.CheckBox cboxTempPole;
-        private System.Windows.Forms.Button btnAddApplicant;
-        private System.Windows.Forms.Button btnSearchApplicant;
-        private System.Windows.Forms.Button btnSearchAppNum;
         private System.Windows.Forms.Button btnSearchPermitNum;
         private System.Windows.Forms.Button btnSearchProperty;
         private System.Windows.Forms.Button btnAddProperty;
