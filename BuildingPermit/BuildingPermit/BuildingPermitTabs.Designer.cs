@@ -1948,6 +1948,7 @@
             this.btnCancelNotes.TabIndex = 211;
             this.btnCancelNotes.Text = "Clear";
             this.btnCancelNotes.UseVisualStyleBackColor = true;
+            this.btnCancelNotes.Click += new System.EventHandler(this.btnCancelNotes_Click);
             // 
             // btnSubmitNotes
             // 
@@ -1966,6 +1967,7 @@
             this.btnSubmit.TabIndex = 158;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // label25
             // 

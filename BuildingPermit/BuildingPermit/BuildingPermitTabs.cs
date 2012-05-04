@@ -813,5 +813,23 @@ namespace BuildingPermit
         public string _txtOwnerPhone { set { txtOwnerPhone.Text = value; } }
         public string _txtOwnerCell { set { txtOwnerCell.Text = value; } }
         public string _txtProperty { set { txtProperty.Text = value; } }
+
+        private void btnCancelNotes_Click(object sender, EventArgs e)
+        {
+            //Clear the text field
+            txtNotes.Clear();
+
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+             conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
+
+            building.save(conStr);
+            utilities.save(conStr);
+
+        }
+
+
     }
 }
