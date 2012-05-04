@@ -832,7 +832,7 @@ namespace BuildingPermit
              conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
             building.save(conStr);
-            utilities.save(conStr);
+            //utilities.save(conStr);
 
         }
 

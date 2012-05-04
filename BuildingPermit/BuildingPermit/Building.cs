@@ -351,7 +351,9 @@ public class Building
 
     public void save(string conStr)
     {
-     
+
+        //Need to rewrite query in the AM needs to use parameters and needs to have where clause for permitID or whatever the foreignKey is...lol
+
         string query = String.Format("Insert Into Building " +
             " (TypeOfConst, estCostOfConst, Dimensions, TotalSF," +
             " heatedsf, PorchSF, numberOfstories, DeckSF, garageSF, BasementSF,basement, permitID)" +
