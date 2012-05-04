@@ -28,7 +28,7 @@ namespace BuildingPermit
         Building building = new Building();
         Utilities utilities = new Utilities();
 
-        
+
 
         public BuildingPermitTabs()
         {
@@ -446,9 +446,10 @@ namespace BuildingPermit
 
         private void btnSearchPermitNum_Click(object sender, EventArgs e)
         {
-            if (flagPermitNum == true)
-                clearAllFieldsForPermitNum();
+            //if (flagPermitNum == true)
+            //    return;
                 
+
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 String procedure = "SearchForPermit";
@@ -482,7 +483,7 @@ namespace BuildingPermit
                                 {
                                     Console.WriteLine(RDR.GetName(i));
                                     Console.WriteLine(RDR.GetValue(i));
-                                    if (RDR[RDR.GetName(i)] != null)
+                                    if (!RDR.IsDBNull(i))
                                     {
                                         if (RDR.GetName(i) == "CompName")
                                         {
@@ -555,69 +556,11 @@ namespace BuildingPermit
                                         {
                                             txtBasement.Text = (string)RDR["BasementSF"];
                                         }
-                                        if (RDR.GetName(i) == "NumSystems")
-                                        {
-                                            txtNumSystems.Text = (string)RDR["NumSystems"];
-                                        }
-                                        if (RDR.GetName(i) == "SystemType")
-                                        {
-                                            cmboSystemType.Text = (string)RDR["SystemType"];
-                                        }
-                                        if (RDR.GetName(i) == "Tons")
-                                        {
-                                            txtSystemTons.Text = (string)RDR["Tons"];
-                                        }
-                                        if (RDR.GetName(i) == "GasLine")
-                                        {
-                                            cboxGasLine.Checked = (bool)RDR["GasLIne"];
-                                        }
                                         if (RDR.GetName(i) == "NumAmps")
                                         {
-                                            if ((string)RDR["NumAmps"] == "Electrical 100 Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 0;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 200 Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 1;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 320 Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 2;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 400 Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 3;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 600 Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 4;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 600/+ Amp Service (1 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 5;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 200 Amp Service (3 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 6;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 400 Amp Service (3 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 7;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 600 Amp Service (3 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 8;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 800 Amp Service (3 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 9;
-                                            }
-                                            else if ((string)RDR["NumAmps"] == "Electrical 1000 Amp Service (3 Phase)")
-                                            {
-                                                cmboNumAmps.SelectedItem = 10;
-                                            }
-
+                                            cmboNumAmps.Items.Clear();
+                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
+                               
                                         }
                                         if (RDR.GetName(i) == "TempPole")
                                         {
@@ -670,6 +613,66 @@ namespace BuildingPermit
                                                 txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
                                             }
                                         }
+                                        if (RDR.GetName(i) == "NumSystems")
+                                        {
+                                            txtNumSystems.Text = (string)RDR["NumSystems"];
+                                        }
+                                        if (RDR.GetName(i) == "SystemType")
+                                        {
+                                            cmboSystemType.Text = (string)RDR["SystemType"];
+                                        }
+                                        if (RDR.GetName(i) == "Tons")
+                                        {
+                                            txtSystemTons.Text = (string)RDR["Tons"];
+                                        }
+                                        if (RDR.GetName(i) == "GasLine")
+                                        {
+                                            cboxGasLine.Checked = (bool)RDR["GasLIne"];
+                                        }
+                                        if (RDR.GetName(i) == "TotNumFixtures")
+                                        {
+                                            txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
+                                        }
+                                        if (RDR.GetName(i) == "TotNumBathrooms")
+                                        {
+                                            txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
+                                        }
+                                        if (RDR.GetName(i) == "NumSinks")
+                                        {
+                                            txtNumSinks.Text = (string)RDR["NumSinks"];
+                                        }
+                                        if (RDR.GetName(i) == "NumWaterCloset")
+                                        {
+                                            txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
+                                        }
+                                        if (RDR.GetName(i) == "NumShowers")
+                                        {
+                                            txtNumShowers.Text = (string)RDR["NumShowers"];
+                                        }
+                                        if (RDR.GetName(i) == "NumTubs")
+                                        {
+                                            txtNumTubs.Text = (string)RDR["NumTubs"];
+                                        }
+                                        if (RDR.GetName(i) == "NumClothesWashers")
+                                        {
+                                            txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
+                                        }
+                                        if (RDR.GetName(i) == "NumWetBars")
+                                        {
+                                            txtNumWetBars.Text = (string)RDR["NumWetBars"];
+                                        }
+                                        if (RDR.GetName(i) == "NumSpas")
+                                        {
+                                            txtNumSpas.Text = (string)RDR["NumSpas"];
+                                        }
+                                        if (RDR.GetName(i) == "NumWaterHeater")
+                                        {
+                                            txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
+                                        }
+                                        if (RDR.GetName(i) == "NumDishWashers")
+                                        {
+                                            txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
+                                        }
 
                                     }
                                 }
@@ -699,110 +702,6 @@ namespace BuildingPermit
                     MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                procedure = "getPlumbing";
-
-                try
-                {
-
-                    con.Open();
-                    SqlCommand spCmd;
-                    spCmd = new SqlCommand(procedure, con);
-                    spCmd.CommandType = CommandType.StoredProcedure;
-                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
-                    spCmd.Prepare();
-                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
-
-
-
-                    SqlDataReader RDR = spCmd.ExecuteReader(CommandBehavior.KeyInfo);
-
-
-
-                    while (RDR.Read())
-                    {
-                        if (RDR.HasRows)
-                        {
-
-
-                            for (int i = 0; i < RDR.FieldCount; i++)
-                            {
-                                Console.WriteLine(RDR.GetName(i));
-                                Console.WriteLine(RDR.GetValue(i));
-                                if (RDR[RDR.GetName(i)] != null)
-                                {
-
-                                    if (RDR.GetName(i) == "TotNumFixtures")
-                                    {
-                                        txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
-                                    }
-                                    if (RDR.GetName(i) == "TotNumBathrooms")
-                                    {
-                                        txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
-                                    }
-                                    if (RDR.GetName(i) == "NumSinks")
-                                    {
-                                        txtNumSinks.Text = (string)RDR["NumSinks"];
-                                    }
-                                    if (RDR.GetName(i) == "NumWaterCloset")
-                                    {
-                                        txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
-                                    }
-                                    if (RDR.GetName(i) == "NumShowers")
-                                    {
-                                        txtNumShowers.Text = (string)RDR["NumShowers"];
-                                    }
-                                    if (RDR.GetName(i) == "NumTubs")
-                                    {
-                                        txtNumTubs.Text = (string)RDR["NumTubs"];
-                                    }
-                                    if (RDR.GetName(i) == "NumClothesWashers")
-                                    {
-                                        txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
-                                    }
-                                    if (RDR.GetName(i) == "NumWetBars")
-                                    {
-                                        txtNumWetBars.Text = (string)RDR["NumWetBars"];
-                                    }
-                                    if (RDR.GetName(i) == "NumSpas")
-                                    {
-                                        txtNumSpas.Text = (string)RDR["NumSpas"];
-                                    }
-                                    if (RDR.GetName(i) == "NumWaterHeater")
-                                    {
-                                        txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
-                                    }
-                                    if (RDR.GetName(i) == "NumDishWashers")
-                                    {
-                                        txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
-                                    }
-
-
-                                }
-                            }
-
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("No Rows found");
-                        }
-
-
-
-                    }
-
-
-
-
-
-                    RDR.Close();
-                    con.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
 
             flagPermitNum = true;
@@ -829,7 +728,7 @@ namespace BuildingPermit
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-             conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
+            conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
             building.save(conStr);
             //utilities.save(conStr);
