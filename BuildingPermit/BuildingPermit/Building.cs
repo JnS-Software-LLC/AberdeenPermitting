@@ -364,9 +364,10 @@ public class Building
         {
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
-            SqlDataReader sqlReader = command.ExecuteReader();
+            
             try
             {
+                SqlDataReader sqlReader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
@@ -374,7 +375,7 @@ public class Building
             }
             finally
             {
-                sqlReader.Close();
+                //sqlReader.Close();
             }
         }
     }
