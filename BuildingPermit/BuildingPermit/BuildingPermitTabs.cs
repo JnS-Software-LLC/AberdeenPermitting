@@ -14,6 +14,8 @@ namespace BuildingPermit
     public partial class BuildingPermitTabs : Form
     {
         public string conStr;
+        public Boolean flagPermitNum = false;
+
 
         public static SqlDataReader queryDatabase(string queryString, string connectionString)
         {
@@ -26,6 +28,7 @@ namespace BuildingPermit
         Building building = new Building();
         Utilities utilities = new Utilities();
 
+        
 
         public BuildingPermitTabs()
         {
@@ -443,6 +446,9 @@ namespace BuildingPermit
 
         private void btnSearchPermitNum_Click(object sender, EventArgs e)
         {
+            if (flagPermitNum == true)
+                clearAllFieldsForPermitNum();
+                
             using (SqlConnection con = new SqlConnection(conStr))
             {
                 String procedure = "SearchForPermit";
@@ -799,7 +805,7 @@ namespace BuildingPermit
                 }
             }
 
-
+            flagPermitNum = true;
 
         }
 
@@ -826,7 +832,82 @@ namespace BuildingPermit
              conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
             building.save(conStr);
-            utilities.save(conStr);
+            //utilities.save(conStr);
+
+        }
+
+        private void clearAllFieldsForPermitNum()
+        {
+            //Reset all fields except the permit number for repopulating fields
+            txtApplicant.Clear();
+            txtApplicantPhone.Clear();
+            txtApplicationNumber.Clear();
+            txtBalance.Clear();
+            txtBasement.Clear();
+            txtCell.Clear();
+            txtContractorEmail.Clear();
+            txtContractorLiscence.Clear();
+            txtContractorName.Clear();
+            txtContractorPhone.Clear();
+            txtDeck.Clear();
+            txtElectricalLisenceNumber.Clear();
+            txtElectricalName.Clear();
+            txtElectricalPhone.Clear();
+            txtEstimatedCost.Clear();
+            txtFrontSetback.Clear();
+            txtGarageSF.Clear();
+            txtGasLisenceNumber.Clear();
+            txtGasName.Clear();
+            txtGasPhone.Clear();
+            txtHeatedSF.Clear();
+            txtIrrigationLisenceNumber.Clear();
+            txtIrrigationName.Clear();
+            txtIrrigationPhone.Clear();
+            txtLotNumber.Clear();
+            txtLRKNumber.Clear();
+            txtMechanicalLisenceNumber.Clear();
+            txtMechanicalName.Clear();
+            txtMechanicalPhone.Clear();
+            txtNotes.Clear();
+            txtNumBathrooms.Clear();
+            txtNumClothesWashers.Clear();
+            txtNumDishwashers.Clear();
+            txtNumFixtures.Clear();
+            txtNumShowers.Clear();
+            txtNumSinks.Clear();
+            txtNumSpas.Clear();
+            txtNumStories.Clear();
+            txtNumSystems.Clear();
+            txtNumTubs.Clear();
+            txtNumWaterClosets.Clear();
+            txtNumWetBars.Clear();
+            txtOwner.Clear();
+            txtOwnerCell.Clear();
+            txtOwnerPhone.Clear();
+            txtPlumbingLisenceNumber.Clear();
+            txtPlumbingName.Clear();
+            txtPlumbingPhone.Clear();
+            txtPorchSF.Clear();
+            txtProperty.Clear();
+            txtSiteManagerName.Clear();
+            txtSiteManagerPhone.Clear();
+            txtSquareFeet.Clear();
+            txtSystemTons.Clear();
+            txtReatSetback.Clear();
+            txtSideSetback.Clear();
+            txtZoningDistrict.Clear();
+
+            cmboConstructionType.SelectedIndex = -1;
+            cmboCurrentUse.SelectedIndex = -1;
+            cmboNumAmps.SelectedIndex = -1;
+            cmboOccupancyType.SelectedIndex = -1;
+            cmboProposedUse.SelectedIndex = -1;
+            cmboStatus.SelectedIndex = -1;
+            cmboSystemType.SelectedIndex = -1;
+
+            cboxDuctwork.Checked = false;
+            cboxGasLine.Checked = false;
+
 
         }
 
