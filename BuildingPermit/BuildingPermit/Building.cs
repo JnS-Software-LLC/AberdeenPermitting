@@ -357,7 +357,7 @@ public class Building
         string query = String.Format("Insert Into Building " +
             " (TypeOfConst, estCostOfConst, Dimensions, TotalSF," +
             " heatedsf, PorchSF, numberOfstories, DeckSF, garageSF, BasementSF,basement, permitID)" +
-            " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10},{11} ); ",
+            " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10},{11} ) WHERE permitID " +this.permitId +"; ",
             this.myBuildingType, this.myEstimatedCost, this.myDimensions, Convert.ToInt16(this.myTotalSF),
             Convert.ToInt16(this.myHeatedSF), this.myPorchSF, this.myNumStories, this.myDeckSF, this.myGarageSF,
             this.myBasementSF,this.myBasementBool, this.myPermitID);
@@ -367,6 +367,37 @@ public class Building
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
             
+            try
+            {
+                SqlDataReader sqlReader = command.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                //sqlReader.Close();
+            }
+        }
+    }
+
+    public void update(string conStr, string buildingID)
+    {
+
+        string query = String.Format("Insert Into Building " +
+            " (TypeOfConst, estCostOfConst, Dimensions, TotalSF," +
+            " heatedsf, PorchSF, numberOfstories, DeckSF, garageSF, BasementSF,basement, permitID)" +
+            " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10},{11} ) WHERE permitID " + this.permitId + "; ",
+            this.myBuildingType, this.myEstimatedCost, this.myDimensions, Convert.ToInt16(this.myTotalSF),
+            Convert.ToInt16(this.myHeatedSF), this.myPorchSF, this.myNumStories, this.myDeckSF, this.myGarageSF,
+            this.myBasementSF, this.myBasementBool, this.myPermitID);
+
+        using (SqlConnection connection = new SqlConnection(conStr))
+        {
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+
             try
             {
                 SqlDataReader sqlReader = command.ExecuteReader();
