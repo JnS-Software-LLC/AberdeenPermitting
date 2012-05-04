@@ -475,7 +475,7 @@ namespace BuildingPermit
                                 for (int i = 0; i < RDR.FieldCount; i++)
                                 {
                                     Console.WriteLine(RDR.GetName(i));
-
+                                    Console.WriteLine(RDR.GetValue(i));
                                     if (RDR[RDR.GetName(i)] != null)
                                     {
                                         if (RDR.GetName(i) == "CompName")
@@ -491,7 +491,7 @@ namespace BuildingPermit
                                         if (RDR.GetName(i) == "SecondPhone")
                                         {
                                             txtOwnerCell.Text = (string)RDR["SecondPhone"];
-                                            txtApplicant.Text = txtOwnerCell.Text;
+                                            txtCell.Text = txtOwnerCell.Text;
                                         }
                                         if (RDR.GetName(i) == "Address")
                                         {
@@ -565,57 +565,65 @@ namespace BuildingPermit
                                         {
                                             cboxGasLine.Checked = (bool)RDR["GasLIne"];
                                         }
-                                        if (RDR.GetName(i) == "TotNumFixtures")
-                                        {
-                                            txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
-                                        }
-                                        if (RDR.GetName(i) == "TotNumBothrooms")
-                                        {
-                                            txtNumBathrooms.Text = (string)RDR["TotNumBothrooms"];
-                                        }
-                                        if (RDR.GetName(i) == "NumSinks")
-                                        {
-                                            txtNumSinks.Text = (string)RDR["NumSinks"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWaterClosets")
-                                        {
-                                            txtNumWaterClosets.Text = (string)RDR["NumWaterClosets"];
-                                        }
-                                        if (RDR.GetName(i) == "NumShowers")
-                                        {
-                                            txtNumShowers.Text = (string)RDR["NumShowers"];
-                                        }
-                                        if (RDR.GetName(i) == "NumTubs")
-                                        {
-                                            txtNumTubs.Text = (string)RDR["NumTubs"];
-                                        }
-                                        if (RDR.GetName(i) == "NumClothsWashers")
-                                        {
-                                            txtNumClothesWashers.Text = (string)RDR["NumClothsWashers"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWetBars")
-                                        {
-                                            txtNumWetBars.Text = (string)RDR["NumWetBars"];
-                                        }
-                                        if (RDR.GetName(i) == "NumSpas")
-                                        {
-                                            txtNumSpas.Text = (string)RDR["NumSpas"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWaterHeater")
-                                        {
-                                            txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
-                                        }
                                         if (RDR.GetName(i) == "NumAmps")
                                         {
-                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
+                                            if ((string)RDR["NumAmps"] == "Electrical 100 Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 0;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 200 Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 1;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 320 Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 2;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 400 Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 3;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 600 Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 4;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 600/+ Amp Service (1 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 5;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 200 Amp Service (3 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 6;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 400 Amp Service (3 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 7;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 600 Amp Service (3 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 8;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 800 Amp Service (3 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 9;
+                                            }
+                                            else if ((string)RDR["NumAmps"] == "Electrical 1000 Amp Service (3 Phase)")
+                                            {
+                                                cmboNumAmps.SelectedItem = 10;
+                                            }
+
                                         }
                                         if (RDR.GetName(i) == "TempPole")
                                         {
                                             cboxTempPole.Checked = (bool)RDR["TempPole"];
                                         }
+                                        if (RDR.GetName(i) == "AberdeenLC")
+                                        {
+                                            txtApplicationNumber.Text = (string)RDR["AberdeenLC"];
+                                        }
                                         if (RDR.GetName(i) == "Notes")
                                         {
-                                            txtNotes.Text= (string)RDR["Notes"];
+                                            txtNotes.Text = (string)RDR["Notes"];
                                         }
                                         if (RDR.GetName(i) == "Type")
                                         {
@@ -651,7 +659,7 @@ namespace BuildingPermit
                                             }
                                             if ((string)RDR["Type"] == "Irrigation")
                                             {
-                                                txtIrrigationName.Text= (string)RDR["CompName"];
+                                                txtIrrigationName.Text = (string)RDR["CompName"];
                                                 txtIrrigationPhone.Text = (string)RDR["PhoneNumber"];
                                                 txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
                                             }
@@ -661,6 +669,10 @@ namespace BuildingPermit
                                 }
 
 
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Rows found");
                             }
 
 
@@ -680,6 +692,111 @@ namespace BuildingPermit
                 {
                     MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                procedure = "getPlumbing";
+
+                try
+                {
+
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand(procedure, con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+
+
+                    SqlDataReader RDR = spCmd.ExecuteReader(CommandBehavior.KeyInfo);
+
+
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+
+
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                Console.WriteLine(RDR.GetName(i));
+                                Console.WriteLine(RDR.GetValue(i));
+                                if (RDR[RDR.GetName(i)] != null)
+                                {
+
+                                    if (RDR.GetName(i) == "TotNumFixtures")
+                                    {
+                                        txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
+                                    }
+                                    if (RDR.GetName(i) == "TotNumBathrooms")
+                                    {
+                                        txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
+                                    }
+                                    if (RDR.GetName(i) == "NumSinks")
+                                    {
+                                        txtNumSinks.Text = (string)RDR["NumSinks"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWaterCloset")
+                                    {
+                                        txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
+                                    }
+                                    if (RDR.GetName(i) == "NumShowers")
+                                    {
+                                        txtNumShowers.Text = (string)RDR["NumShowers"];
+                                    }
+                                    if (RDR.GetName(i) == "NumTubs")
+                                    {
+                                        txtNumTubs.Text = (string)RDR["NumTubs"];
+                                    }
+                                    if (RDR.GetName(i) == "NumClothesWashers")
+                                    {
+                                        txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWetBars")
+                                    {
+                                        txtNumWetBars.Text = (string)RDR["NumWetBars"];
+                                    }
+                                    if (RDR.GetName(i) == "NumSpas")
+                                    {
+                                        txtNumSpas.Text = (string)RDR["NumSpas"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWaterHeater")
+                                    {
+                                        txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
+                                    }
+                                    if (RDR.GetName(i) == "NumDishWashers")
+                                    {
+                                        txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
+                                    }
+
+
+                                }
+                            }
+
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+
+
+                    }
+
+
+
+
+
+                    RDR.Close();
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
 
@@ -687,7 +804,14 @@ namespace BuildingPermit
         }
 
         public string _txtOwner { set { txtOwner.Text = value; } }
-
-
+        public string _txtLotNumber { set { txtLotNumber.Text = value; } }
+        public string _txtLRKNumber { set { txtLRKNumber.Text = value; } }
+        public string _txtZoningDistrict { set { txtZoningDistrict.Text = value; } }
+        public string _txtReatSetback { set { txtReatSetback.Text = value; } }
+        public string _txtFrontSetback { set { txtFrontSetback.Text = value; } }
+        public string _txtSideSetback { set { txtSideSetback.Text = value; } }
+        public string _txtOwnerPhone { set { txtOwnerPhone.Text = value; } }
+        public string _txtOwnerCell { set { txtOwnerCell.Text = value; } }
+        public string _txtProperty { set { txtProperty.Text = value; } }
     }
 }

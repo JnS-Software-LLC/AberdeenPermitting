@@ -203,14 +203,97 @@ namespace BuildingPermit
 
         private void btnPropertyAccept_Click(object sender, EventArgs e)
         {
-            //Contact contact = new Contact();
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                String procedure = "getOwnerandParcel";
+                BuildingPermitTabs pf = (BuildingPermitTabs)Application.OpenForms[1];
+                    try
+                    {
 
-            //contact.load(conStr, "address = " + cmbPropertyResults.SelectedText);
+                        con.Open();
+                        SqlCommand spCmd;
+                        spCmd = new SqlCommand(procedure, con);
+                        spCmd.CommandType = CommandType.StoredProcedure;
+                        spCmd.Parameters.Add("@in_address", SqlDbType.VarChar);
+                        spCmd.Prepare();
+                        spCmd.Parameters["@in_address"].Value =cmbPropertyResults.SelectedText;
 
-            BuildingPermitTabs parentForm = (BuildingPermitTabs)Application.OpenForms[1];
+
+                        SqlDataReader RDR = spCmd.ExecuteReader();
+
+                        while (RDR.Read())
+                        {
+                            if (RDR.HasRows )
+                            {
+                                if (!RDR.IsDBNull(0))
+                                {
+                                    for (int i = 0; i < RDR.FieldCount; i++)
+                                    {
+                                      
+                                            if (RDR.GetName(i) == "CompName")
+                                            {
+                                                pf._txtOwner = (string)RDR["CompName"];
+
+                                            }
+                                            if (RDR.GetName(i) == "FirstPhone")
+                                            {
+                                                pf._txtOwnerPhone = (string)RDR["FirstPhone"];
+
+                                            }
+                                            if (RDR.GetName(i) == "SecondPhone")
+                                            {
+                                                pf._txtOwnerCell = (string)RDR["SecondPhone"];
+
+                                            }
+                                            if (RDR.GetName(i) == "Address")
+                                            {
+                                                pf._txtProperty = (string)RDR["Address"];
+                                            }
+                                            if (RDR.GetName(i) == "LotNum")
+                                            {
+                                                pf._txtLotNumber = (string)RDR["LotNum"];
+                                            }
+                                            if (RDR.GetName(i) == "LRK")
+                                            {
+                                                pf._txtLRKNumber = (string)RDR["LRK"];
+                                            }  
+                                        
+                                    }
+                                  
+                                }
+                            }
+                            else
+                            {
+                                cmbPropertyResults.Items.Add("No record found");
+                            }
+                        }
+
+
+
+                        if (cmbPropertyResults.Items.Count > 1)
+                        {
+                            cmbPropertyResults.Text = "--Choose a parcel--";
+                        }
+                        else
+                        {
+                            cmbPropertyResults.SelectedIndex = 0;
+                        }
+
+
+                        RDR.Close();
+                        con.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+            }
+
+            
                   
 
-            parentForm._txtOwner = "text";
+          
 
         }
 
