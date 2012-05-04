@@ -288,6 +288,9 @@ public class Utilities
     }
     public void save(string conStr)
     {
+
+        //Need to rewrite query in the AM needs to use parameters and needs to have where clause for permitID or whatever the foreignKey is...lol
+
          string query = String.Format("Insert Into plumbing " +
             " (totnumfixtures,totnumbathrooms,numsinks,numwatercloset,numshowers" +
             "numtubs, numclotheswashers, numwetbars, numspas, numwaterheater, irrigation, buildingID" +
