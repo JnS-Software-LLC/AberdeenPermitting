@@ -712,19 +712,19 @@ namespace BuildingPermit
                             {
                                 if (!RDR.IsDBNull(i))
                                 {
-                                    if (RDR.GetName(i) == "Type")
-                                    {
+                                    
                                         if (RDR.GetName(i) == "NumAmps")
                                         {
                                             cmboNumAmps.Items.Clear();
                                             cmboNumAmps.Text = (string)RDR["NumAmps"];
+                                            
 
                                         }
                                         if (RDR.GetName(i) == "TempPole")
                                         {
                                             cboxTempPole.Checked = (bool)RDR["TempPole"];
                                         }
-                                    }
+                                   
                                 }
 
 
