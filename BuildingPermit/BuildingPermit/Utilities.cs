@@ -337,7 +337,7 @@ public class Utilities
              }
 
              query = String.Format("Insert Into mechanical " +
-              " (MechID,systemtype,  numsystems, tons, gasline,buildingid" +
+              " (MechID,systemtype,  numsystems, tons, gasline, buildingid" +
               " Values ({0}, {1}, {2}, {3}, {4}, {5} ); ", this.myMechID, this.mySystemType,
               this.myNumSys, this.tons, this.myGasLine, this.buildingID);
 

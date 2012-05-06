@@ -446,265 +446,523 @@ namespace BuildingPermit
 
         private void btnSearchPermitNum_Click(object sender, EventArgs e)
         {
-            //if (flagPermitNum == true)
-            //    return;
-                
-
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                String procedure = "SearchForPermit";
 
                 try
                 {
-
                     con.Open();
                     SqlCommand spCmd;
-                    spCmd = new SqlCommand(procedure, con);
+                    spCmd = new SqlCommand("getPermit", con);
                     spCmd.CommandType = CommandType.StoredProcedure;
                     spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
                     spCmd.Prepare();
                     spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
 
+                    SqlDataReader RDR = spCmd.ExecuteReader();
 
-
-                    SqlDataReader RDR = spCmd.ExecuteReader(CommandBehavior.KeyInfo);
-
-
-
-                    while (RDR.NextResult())
+                    while (RDR.Read())
                     {
-                        while (RDR.Read())
+                        if (RDR.HasRows)
                         {
-                            if (RDR.HasRows)
+                            for (int i = 0; i < RDR.FieldCount; i++)
                             {
-
-
-                                for (int i = 0; i < RDR.FieldCount; i++)
+                                if (!RDR.IsDBNull(i))
                                 {
-                                    Console.WriteLine(RDR.GetName(i));
-                                    Console.WriteLine(RDR.GetValue(i));
-                                    if (!RDR.IsDBNull(i))
+                                    if (RDR.GetName(i) == "PermitDate")
                                     {
-                                        if (RDR.GetName(i) == "CompName")
-                                        {
-                                            txtOwner.Text = (string)RDR["CompName"];
-                                            txtApplicant.Text = txtOwner.Text;
-                                        }
-                                        if (RDR.GetName(i) == "FirstPhone")
-                                        {
-                                            txtOwnerPhone.Text = (string)RDR["FirstPhone"];
-                                            txtApplicantPhone.Text = txtOwnerPhone.Text;
-                                        }
-                                        if (RDR.GetName(i) == "SecondPhone")
-                                        {
-                                            txtOwnerCell.Text = (string)RDR["SecondPhone"];
-                                            txtCell.Text = txtOwnerCell.Text;
-                                        }
-                                        if (RDR.GetName(i) == "Address")
-                                        {
-                                            txtProperty.Text = (string)RDR["Address"];
-                                        }
-                                        if (RDR.GetName(i) == "LotNum")
-                                        {
-                                            txtLotNumber.Text = (string)RDR["LotNum"];
-                                        }
-                                        if (RDR.GetName(i) == "LRK")
-                                        {
-                                            txtLRKNumber.Text = (string)RDR["LRK"];
-                                        }
-                                        if (RDR.GetName(i) == "ZoningDist")
-                                        {
-                                            txtZoningDistrict.Text = (string)RDR["ZoningDist"];
-                                        }
-                                        if (RDR.GetName(i) == "ProposedUse")
-                                        {
-                                            cmboProposedUse.Text = (string)RDR["ProposedUse"];
-                                        }
-                                        if (RDR.GetName(i) == "TotalSF")
-                                        {
-                                            txtSquareFeet.Text = (string)RDR["TotalSF"];
-                                        }
-                                        if (RDR.GetName(i) == "EstCostOfConst")
-                                        {
-                                            txtEstimatedCost.Text = (string)RDR["EstCostOfConst"];
-                                        }
-                                        if (RDR.GetName(i) == "TypeOfConst")
-                                        {
-                                            cmboConstructionType.Text = (string)RDR["TypeOfConst"];
-                                        }
-                                        if (RDR.GetName(i) == "HeatedSF")
-                                        {
-                                            txtHeatedSF.Text = (string)RDR["HeatedSF"];
-                                        }
-                                        if (RDR.GetName(i) == "PorchSF")
-                                        {
-                                            txtPorchSF.Text = (string)RDR["PorchSF"];
-                                        }
-                                        if (RDR.GetName(i) == "NumberOfStories")
-                                        {
-                                            txtNumStories.Text = (string)RDR["NumberOfStories"];
-                                        }
-                                        if (RDR.GetName(i) == "DeckSF")
-                                        {
-                                            txtDeck.Text = (string)RDR["DeckSF"];
-                                        }
-                                        if (RDR.GetName(i) == "GarageSF")
-                                        {
-                                            txtGarageSF.Text = (string)RDR["GarageSF"];
-                                        }
-                                        if (RDR.GetName(i) == "BasementSF")
-                                        {
-                                            txtBasement.Text = (string)RDR["BasementSF"];
-                                        }
-                                        if (RDR.GetName(i) == "NumAmps")
-                                        {
-                                            cmboNumAmps.Items.Clear();
-                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
-                               
-                                        }
-                                        if (RDR.GetName(i) == "TempPole")
-                                        {
-                                            cboxTempPole.Checked = (bool)RDR["TempPole"];
-                                        }
-                                        if (RDR.GetName(i) == "AberdeenLC")
-                                        {
-                                            txtApplicationNumber.Text = (string)RDR["AberdeenLC"];
-                                        }
-                                        if (RDR.GetName(i) == "Notes")
-                                        {
-                                            txtNotes.Text = (string)RDR["Notes"];
-                                        }
-                                        if (RDR.GetName(i) == "Type")
-                                        {
-                                            if ((string)RDR["Type"] == "HVAC")
-                                            {
-                                                txtMechanicalName.Text = (string)RDR["CompName"];
-                                                txtMechanicalPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtMechanicalLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "General Contractor")
-                                            {
-                                                txtContractorName.Text = (string)RDR["CompName"];
-                                                txtContractorPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtContractorLiscence.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Electrical")
-                                            {
-                                                txtElectricalName.Text = (string)RDR["CompName"];
-                                                txtElectricalPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtElectricalLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Plumbing")
-                                            {
-                                                txtPlumbingName.Text = (string)RDR["CompName"];
-                                                txtPlumbingPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtPlumbingLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "GAS")
-                                            {
-                                                txtGasName.Text = (string)RDR["CompName"];
-                                                txtGasPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtGasLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Irrigation")
-                                            {
-                                                txtIrrigationName.Text = (string)RDR["CompName"];
-                                                txtIrrigationPhone.Text = (string)RDR["PhoneNumber"];
-                                                txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                        }
-                                        if (RDR.GetName(i) == "NumSystems")
-                                        {
-                                            txtNumSystems.Text = (string)RDR["NumSystems"];
-                                        }
-                                        if (RDR.GetName(i) == "SystemType")
-                                        {
-                                            cmboSystemType.Text = (string)RDR["SystemType"];
-                                        }
-                                        if (RDR.GetName(i) == "Tons")
-                                        {
-                                            txtSystemTons.Text = (string)RDR["Tons"];
-                                        }
-                                        if (RDR.GetName(i) == "GasLine")
-                                        {
-                                            cboxGasLine.Checked = (bool)RDR["GasLIne"];
-                                        }
-                                        if (RDR.GetName(i) == "TotNumFixtures")
-                                        {
-                                            txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
-                                        }
-                                        if (RDR.GetName(i) == "TotNumBathrooms")
-                                        {
-                                            txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
-                                        }
-                                        if (RDR.GetName(i) == "NumSinks")
-                                        {
-                                            txtNumSinks.Text = (string)RDR["NumSinks"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWaterCloset")
-                                        {
-                                            txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
-                                        }
-                                        if (RDR.GetName(i) == "NumShowers")
-                                        {
-                                            txtNumShowers.Text = (string)RDR["NumShowers"];
-                                        }
-                                        if (RDR.GetName(i) == "NumTubs")
-                                        {
-                                            txtNumTubs.Text = (string)RDR["NumTubs"];
-                                        }
-                                        if (RDR.GetName(i) == "NumClothesWashers")
-                                        {
-                                            txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWetBars")
-                                        {
-                                            txtNumWetBars.Text = (string)RDR["NumWetBars"];
-                                        }
-                                        if (RDR.GetName(i) == "NumSpas")
-                                        {
-                                            txtNumSpas.Text = (string)RDR["NumSpas"];
-                                        }
-                                        if (RDR.GetName(i) == "NumWaterHeater")
-                                        {
-                                            txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
-                                        }
-                                        if (RDR.GetName(i) == "NumDishWashers")
-                                        {
-                                            txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
-                                        }
+                                        dtIssueDate.Text = RDR["PermitDate"].ToString();
+                                    }
+                                    if (RDR.GetName(i) == "Notes")
+                                    {
+                                        txtNotes.Text = (string)RDR["Notes"];
+                                    }
+                                }
 
+
+                            } 
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getBuilding", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "TypeOfConst")
+                                    {
+                                        cmboConstructionType.Text = (string)RDR["TypeOfConst"];
+                                    }
+                                    if (RDR.GetName(i) == "ProposedUse")
+                                    {
+                                        cmboProposedUse.Text = (string)RDR["ProposedUse"];
+                                    }
+                                    if (RDR.GetName(i) == "HeatedSF")
+                                    {
+                                        txtHeatedSF.Text = (string)RDR["HeatedSF"];
+                                    }
+                                    if (RDR.GetName(i) == "NumberOfStories")
+                                    {
+                                        txtNumStories.Text = (string)RDR["NumberOfStories"];
+                                    }
+                                    if (RDR.GetName(i) == "GarageSF")
+                                    {
+                                        txtGarageSF.Text = (string)RDR["GarageSF"];
+                                    }
+                                    if (RDR.GetName(i) == "PorchSF")
+                                    {
+                                        txtPorchSF.Text = (string)RDR["PorchSF"];
+                                    }
+
+                                    if (RDR.GetName(i) == "DeckSF")
+                                    {
+                                        txtDeck.Text = (string)RDR["DeckSF"];
+                                    }
+
+                                    if (RDR.GetName(i) == "BasementSF")
+                                    {
+                                        txtBasement.Text = (string)RDR["BasementSF"];
+                                    }
+                                    if (RDR.GetName(i) == "EstCostOfConst")
+                                    {
+                                        txtEstimatedCost.Text = (string)RDR["EstCostOfConst"];
+                                    }
+                                    if (RDR.GetName(i) == "ProposedUse")
+                                    {
+                                        cmboProposedUse.Text = (string)RDR["ProposedUse"];
+                                    }
+                                    if (RDR.GetName(i) == "InstallInsulation")
+                                    {
+                                        cboxDuctwork.Checked = (bool)RDR["InstallInsulation"];
+                                    }
+                                    if (RDR.GetName(i) == "TotalSF")
+                                    {
+                                        txtSquareFeet.Text = (string)RDR["TotalSF"];
+                                    }
+                                       
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+              
+
+                    spCmd = new SqlCommand("getContact", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "CompName")
+                                    {
+                                        txtOwner.Text = (string)RDR["CompName"];
+                                        txtApplicant.Text = txtOwner.Text;
+                                    }
+                                    if (RDR.GetName(i) == "FirstPhone")
+                                    {
+                                        txtOwnerPhone.Text = (string)RDR["FirstPhone"];
+                                        txtApplicantPhone.Text = txtOwnerPhone.Text;
+                                    }
+                                    if (RDR.GetName(i) == "SecondPhone")
+                                    {
+                                        txtOwnerCell.Text = (string)RDR["SecondPhone"];
+                                        txtCell.Text = txtOwnerCell.Text;
+                                    }
+                                    if (RDR.GetName(i) == "Address")
+                                    {
+                                        txtProperty.Text = (string)RDR["Address"];
                                     }
                                 }
 
 
                             }
-                            else
-                            {
-                                Console.WriteLine("No Rows found");
-                            }
-
-
-
                         }
-
-                        RDR.NextResult();
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
 
                     }
 
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getContractors", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "Type")
+                                        {
+                                            if ((string)RDR["Type"] == "HVAC")
+                                            {
+                                                txtMechanicalName.Text = (string)RDR["CompName"];
+                                                txtMechanicalPhone.Text = (string)RDR["FirstPhone"];
+                                                txtMechanicalLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                            if ((string)RDR["Type"] == "General Contractor")
+                                            {
+                                                txtContractorName.Text = (string)RDR["CompName"];
+                                                txtContractorPhone.Text = (string)RDR["FirstPhone"];
+                                                txtContractorLiscence.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                            if ((string)RDR["Type"] == "Electrical")
+                                            {
+                                                txtElectricalName.Text = (string)RDR["CompName"];
+                                                txtElectricalPhone.Text = (string)RDR["FirstPhone"];
+                                                txtElectricalLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                            if ((string)RDR["Type"] == "Plumbing")
+                                            {
+                                                txtPlumbingName.Text = (string)RDR["CompName"];
+                                                txtPlumbingPhone.Text = (string)RDR["FirstPhone"];
+                                                txtPlumbingLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                            if ((string)RDR["Type"] == "GAS")
+                                            {
+                                                txtGasName.Text = (string)RDR["CompName"];
+                                                txtGasPhone.Text = (string)RDR["FirstPhone"];
+                                                txtGasLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                            if ((string)RDR["Type"] == "Irrigation")
+                                            {
+                                                txtIrrigationName.Text = (string)RDR["CompName"];
+                                                txtIrrigationPhone.Text = (string)RDR["FirstPhone"];
+                                                txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                            }
+                                        }
+                                    if (RDR.GetName(i) == "AberdeenLC")
+                                    {
+                                        txtApplicationNumber.Text = (string)RDR["AberdeenLC"];
+                                    }
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
 
                     RDR.Close();
-                    con.Close();
 
+                    spCmd = new SqlCommand("getElectrical", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "Type")
+                                    {
+                                        if (RDR.GetName(i) == "NumAmps")
+                                        {
+                                            cmboNumAmps.Items.Clear();
+                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
+
+                                        }
+                                        if (RDR.GetName(i) == "TempPole")
+                                        {
+                                            cboxTempPole.Checked = (bool)RDR["TempPole"];
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getElectrical", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "Type")
+                                    {
+                                        if (RDR.GetName(i) == "NumAmps")
+                                        {
+                                            cmboNumAmps.Items.Clear();
+                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
+
+                                        }
+                                        if (RDR.GetName(i) == "TempPole")
+                                        {
+                                            cboxTempPole.Checked = (bool)RDR["TempPole"];
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getMechanical", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+
+                                    if (RDR.GetName(i) == "NumSystems")
+                                    {
+                                        txtNumSystems.Text = (string)RDR["NumSystems"];
+                                    }
+                                    if (RDR.GetName(i) == "SystemType")
+                                    {
+                                        cmboSystemType.Text = (string)RDR["SystemType"];
+                                    }
+                                    if (RDR.GetName(i) == "Tons")
+                                    {
+                                        txtSystemTons.Text = (string)RDR["Tons"];
+                                    }
+                                    if (RDR.GetName(i) == "GasLine")
+                                    {
+                                        cboxGasLine.Checked = (bool)RDR["GasLIne"];
+                                    }
+
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getParcel", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+
+                                    if (RDR.GetName(i) == "Address")
+                                    {
+                                        txtProperty.Text = (string)RDR["Address"];
+                                    }
+                                    if (RDR.GetName(i) == "LotNum")
+                                    {
+                                        txtLotNumber.Text = (string)RDR["LotNum"];
+                                    }
+                                    if (RDR.GetName(i) == "LRK")
+                                    {
+                                        txtLRKNumber.Text = (string)RDR["LRK"];
+                                    }
+                                    if (RDR.GetName(i) == "ZoningDist")
+                                    {
+                                        txtZoningDistrict.Text = (string)RDR["ZoningDist"];
+                                    }
+
+
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
+
+                    spCmd = new SqlCommand("getPlumbing", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
+
+                    RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
+                    {
+                        if (RDR.HasRows)
+                        {
+                            for (int i = 0; i < RDR.FieldCount; i++)
+                            {
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "TotNumFixtures")
+                                    {
+                                        txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
+                                    }
+                                    if (RDR.GetName(i) == "TotNumBathrooms")
+                                    {
+                                        txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
+                                    }
+                                    if (RDR.GetName(i) == "NumSinks")
+                                    {
+                                        txtNumSinks.Text = (string)RDR["NumSinks"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWaterCloset")
+                                    {
+                                        txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
+                                    }
+                                    if (RDR.GetName(i) == "NumShowers")
+                                    {
+                                        txtNumShowers.Text = (string)RDR["NumShowers"];
+                                    }
+                                    if (RDR.GetName(i) == "NumTubs")
+                                    {
+                                        txtNumTubs.Text = (string)RDR["NumTubs"];
+                                    }
+                                    if (RDR.GetName(i) == "NumClothesWashers")
+                                    {
+                                        txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWetBars")
+                                    {
+                                        txtNumWetBars.Text = (string)RDR["NumWetBars"];
+                                    }
+                                    if (RDR.GetName(i) == "NumSpas")
+                                    {
+                                        txtNumSpas.Text = (string)RDR["NumSpas"];
+                                    }
+                                    if (RDR.GetName(i) == "NumWaterHeater")
+                                    {
+                                        txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
+                                    }
+                                    if (RDR.GetName(i) == "NumDishWashers")
+                                    {
+                                        txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
+                                    }
+                                   
+
+
+                                }
+
+
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Rows found");
+                        }
+
+                    }
+
+                    RDR.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
 
-            flagPermitNum = true;
+           
 
         }
 
