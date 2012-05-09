@@ -296,7 +296,7 @@ public class Utilities
             try
             {
                 con.Open();
-                SqlCommand spCmd = new SqlCommand("AU_Contact", con);
+                SqlCommand spCmd = new SqlCommand("AU_Eletrical", con);
                 spCmd.CommandType = CommandType.StoredProcedure;
                 spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
 
@@ -306,11 +306,37 @@ public class Utilities
 
                 SqlDataReader RDR = spCmd.ExecuteReader();
                 RDR.Close();
+
+                con.Open();
+                spCmd = new SqlCommand("AU_Mechanical", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+
+                spCmd.Prepare();
+
+                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+
+                RDR = spCmd.ExecuteReader();
+                RDR.Close();
+
+                con.Open();
+               spCmd = new SqlCommand("AU_Plumbing", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+
+                spCmd.Prepare();
+
+                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+
+                RDR = spCmd.ExecuteReader();
+                RDR.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
     }
 }
