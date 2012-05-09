@@ -982,12 +982,9 @@ namespace BuildingPermit
             
             this.building.save(conStr);
             this.contact.save(conStr);
+            this.utilities.save(conStr);
 
-            
-
-
-           
-
+    
         }
 
         private void clearAllFieldsForPermitNum()

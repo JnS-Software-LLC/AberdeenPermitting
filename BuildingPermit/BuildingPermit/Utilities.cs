@@ -283,7 +283,7 @@ public class Utilities
     {
 
     }
-    public void load(string conStr, string where)
+    public void load(string conStr)
     {
 
     }
@@ -298,11 +298,17 @@ public class Utilities
                 con.Open();
                 SqlCommand spCmd = new SqlCommand("AU_Eletrical", con);
                 spCmd.CommandType = CommandType.StoredProcedure;
-                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                spCmd.Parameters.Add("@in_NumAmps", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumDiscon", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_TempPole", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_BuildingID", SqlDbType.Int);
 
                 spCmd.Prepare();
 
-                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+                spCmd.Parameters["@in_NumAmps"].Value = this.numAmps;
+                spCmd.Parameters["@in_NumDiscon"].Value = this.myNumDiscon;
+                spCmd.Parameters["@in_TempPole"].Value = this.tempPole;
+                spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
 
                 SqlDataReader RDR = spCmd.ExecuteReader();
                 RDR.Close();
@@ -310,11 +316,20 @@ public class Utilities
                 con.Open();
                 spCmd = new SqlCommand("AU_Mechanical", con);
                 spCmd.CommandType = CommandType.StoredProcedure;
-                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                spCmd.Parameters.Add("@in_SystemType", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumSystems", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_Tons", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_GasLine", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_BuildingID", SqlDbType.Text);
 
                 spCmd.Prepare();
 
-                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+                spCmd.Parameters["@in_SystemType"].Value = this.systemType;
+                spCmd.Parameters["@in_NumSystems"].Value = this.myNumSys;
+                spCmd.Parameters["@in_Tons"].Value = this.tons;
+                spCmd.Parameters["@in_GasLine"].Value = this.gasLine;
+                spCmd.Parameters["@in_BuildingID"].Value = this.myNumSys;
+
 
                 RDR = spCmd.ExecuteReader();
                 RDR.Close();
@@ -322,11 +337,36 @@ public class Utilities
                 con.Open();
                spCmd = new SqlCommand("AU_Plumbing", con);
                 spCmd.CommandType = CommandType.StoredProcedure;
-                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                spCmd.Parameters.Add("@in_TotNumFixtures", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_TotNumBathrooms", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumSinks", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumWaterCloset", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumShowers", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumTubs", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumClothesWashers", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumWetBars", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumSpas", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumWaterHeater", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_Irrigation", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_BuildingID", SqlDbType.Text);
+                spCmd.Parameters.Add("@in_NumDishWashers", SqlDbType.Text);
+
 
                 spCmd.Prepare();
 
-                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+                spCmd.Parameters["@in_TotNumFixtures"].Value = this.myTotNumFixtures;
+                spCmd.Parameters["@in_TotNumBathrooms"].Value = this.numBathrooms;
+                spCmd.Parameters["@in_NumSinks"].Value = this.numSinks;
+                spCmd.Parameters["@in_NumWaterCloset"].Value = this.numWaterClosets;
+                spCmd.Parameters["@in_NumShowers"].Value = this.numShowers;
+                spCmd.Parameters["@in_NumTubs"].Value = this.numTub;
+                spCmd.Parameters["@in_NumClothesWashers"].Value = this.numClothesWasher;
+                spCmd.Parameters["@in_NumWetBars"].Value = this.numWetBar;
+                spCmd.Parameters["@in_NumSpas"].Value = this.numSpa;
+                spCmd.Parameters["@in_NumWaterHeater"].Value = this.numWaterHeater;
+                spCmd.Parameters["@in_Irrigation"].Value = this.irrigation;
+                spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
+                spCmd.Parameters["@in_NumDishWashers"].Value = this.numDishWasher;
 
                 RDR = spCmd.ExecuteReader();
                 RDR.Close();
