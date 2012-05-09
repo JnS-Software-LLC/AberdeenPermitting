@@ -364,63 +364,161 @@ public class Building
 
 
 
-    public void save(string conStr)
+    public void save(string conStr, string LRK)
     {
 
-
+        int buildingCount = 0;
+        Boolean exist = false;
 
         using (SqlConnection con = new SqlConnection(conStr))
         {
+            string query = String.Format("SELECT count(BuildingID) as 'buildingCount' FROM building; ");
+
+            SqlCommand com = new SqlCommand(query, con);
+            con.Open();
+            SqlDataReader sqlReader = com.ExecuteReader();
             try
             {
-                con.Open();
-                SqlCommand spCmd;
-                spCmd = new SqlCommand("AU_Building", con);
-                spCmd.CommandType = CommandType.StoredProcedure;
-                spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_TypeOfConst", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_ProposedUse", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Dimensions", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_HeatedSF", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_NumberOfStories", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_GarageSF", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Basement", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_PorchSF", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_DeckSF", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_InstallINsulation", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_EstCostOfConst", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_privateWell", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_TownSewer", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_townWater", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_SeptImprovePermit", SqlDbType.Bit);
-                spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_TotalSF", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
+                buildingCount = (int)sqlReader["buildingCount"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlReader.Close();
+            }
 
-                spCmd.Prepare();
-                spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
-                spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
-                spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
-                spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
-                spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
-                spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
-                spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
-                spCmd.Parameters["@in_Basement"].Value = this.basementExist;
-                spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
-                spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
-                spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
-                spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
-                spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
-                spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
-                spCmd.Parameters["@in_townWater"].Value = this.townWater;
-                spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
-                spCmd.Parameters["@in_PermitID"].Value = this.permitId;
-                spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
-                spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+            query = String.Format("SELECT count(*) FROM building WHERE BuildingID = " + buildingID + ";");
 
-                SqlDataReader RDR = spCmd.ExecuteReader();
+            com = new SqlCommand(query, con);
+            con.Open();
+            sqlReader = com.ExecuteReader();
+            try
+            {
+                if (sqlReader.HasRows)
+                {
+                    exist = true;
+                }
+                else
+                {
+                    exist = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlReader.Close();
+            }
 
-                RDR.Close();
+            try
+            {
+                if (exist)
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Building", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_TypeOfConst", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_ProposedUse", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Dimensions", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_HeatedSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_NumberOfStories", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_GarageSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Basement", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_PorchSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_DeckSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_InstallINsulation", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_EstCostOfConst", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_privateWell", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_TownSewer", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_townWater", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_SeptImprovePermit", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_TotalSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
+
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
+                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
+                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
+                    spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
+                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
+                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
+                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
+                    spCmd.Parameters["@in_Basement"].Value = this.basementExist;
+                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
+                    spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
+                    spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
+                    spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
+                    spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
+                    spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
+                    spCmd.Parameters["@in_townWater"].Value = this.townWater;
+                    spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
+                    spCmd.Parameters["@in_PermitID"].Value = this.permitId;
+                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
+                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close(); 
+                }
+                else
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Building", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_TypeOfConst", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_ProposedUse", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Dimensions", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_HeatedSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_NumberOfStories", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_GarageSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Basement", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_PorchSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_DeckSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_InstallINsulation", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_EstCostOfConst", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_privateWell", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_TownSewer", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_townWater", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_SeptImprovePermit", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_TotalSF", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
+
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_BuildingID"].Value = (LRK + "B" + buildingCount.ToString());
+                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
+                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
+                    spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
+                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
+                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
+                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
+                    spCmd.Parameters["@in_Basement"].Value = this.basementExist;
+                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
+                    spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
+                    spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
+                    spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
+                    spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
+                    spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
+                    spCmd.Parameters["@in_townWater"].Value = this.townWater;
+                    spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
+                    spCmd.Parameters["@in_PermitID"].Value = this.permitId;
+                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
+                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close(); 
+                }
             }
             catch (Exception ex)
             {

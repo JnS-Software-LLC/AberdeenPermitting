@@ -249,7 +249,7 @@ public class Contact
                     spCmd.Parameters["@in_Lname"].Value = this.lastName;
                     spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
                     spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
-                    spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + this.streetName + this.streetName2;
+                    spCmd.Parameters["@in_Address"].Value = this.streetNumber + this.streetName + this.streetName2;
                     spCmd.Parameters["@in_City"].Value = this.city;
                     spCmd.Parameters["@in_State"].Value = this.state;
                     spCmd.Parameters["@in_Zip"].Value = this.zip;
