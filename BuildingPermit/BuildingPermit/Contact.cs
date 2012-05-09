@@ -173,81 +173,97 @@ public class Contact
 
             if (exist)
             {
-                con.Open();
-                SqlCommand spCmd;
-                spCmd = new SqlCommand("AU_Contact", con);
-                spCmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Contact", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
 
-              
-                spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
 
-                spCmd.Prepare();
+                    spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
 
-              
-                spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
-                spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
-                spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
-                spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + " " + this.streetName + " " + this.streetName2;
-                spCmd.Parameters["@in_City"].Value = this.city;
-                spCmd.Parameters["@in_State"].Value = this.state;
-                spCmd.Parameters["@in_Zip"].Value = this.zip;
-                spCmd.Parameters["@in_Email"].Value = this.email;
-                spCmd.Parameters["@in_PropOwner"].Value = this.property;
+                    spCmd.Prepare();
 
-                SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    spCmd.Parameters["@in_CompName"].Value = this.companyName;
+                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
+                    spCmd.Parameters["@in_Fname"].Value = this.firstName;
+                    spCmd.Parameters["@in_Lname"].Value = this.lastName;
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                    spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + " " + this.streetName + " " + this.streetName2;
+                    spCmd.Parameters["@in_City"].Value = this.city;
+                    spCmd.Parameters["@in_State"].Value = this.state;
+                    spCmd.Parameters["@in_Zip"].Value = this.zip;
+                    spCmd.Parameters["@in_Email"].Value = this.email;
+                    spCmd.Parameters["@in_PropOwner"].Value = this.property;
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                con.Open();
-                SqlCommand spCmd;
-                spCmd = new SqlCommand("AU_Contact", con);
-                spCmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Contact", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
 
-                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
-                spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
-                spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
+                    spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                    spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
 
-                spCmd.Prepare();
+                    spCmd.Prepare();
 
-                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
-                spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
-                spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
-                spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
-                spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + this.streetName + this.streetName2;
-                spCmd.Parameters["@in_City"].Value = this.city;
-                spCmd.Parameters["@in_State"].Value = this.state;
-                spCmd.Parameters["@in_Zip"].Value = this.zip;
-                spCmd.Parameters["@in_Email"].Value = this.email;
-                spCmd.Parameters["@in_PropOwner"].Value = this.property;
+                    spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+                    spCmd.Parameters["@in_CompName"].Value = this.companyName;
+                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
+                    spCmd.Parameters["@in_Fname"].Value = this.firstName;
+                    spCmd.Parameters["@in_Lname"].Value = this.lastName;
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                    spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + this.streetName + this.streetName2;
+                    spCmd.Parameters["@in_City"].Value = this.city;
+                    spCmd.Parameters["@in_State"].Value = this.state;
+                    spCmd.Parameters["@in_Zip"].Value = this.zip;
+                    spCmd.Parameters["@in_Email"].Value = this.email;
+                    spCmd.Parameters["@in_PropOwner"].Value = this.property;
 
-                SqlDataReader RDR = spCmd.ExecuteReader();
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

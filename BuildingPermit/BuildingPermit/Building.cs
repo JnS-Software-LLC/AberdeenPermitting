@@ -42,59 +42,61 @@ public class Building
         get { return mymySeptImprovement; }
         set { mymySeptImprovement = value; }
     }
-    
+
     public bool townWater
     {
         get { return myTownWater; }
         set { myTownWater = value; }
     }
-    
+
     public bool townSewer
     {
         get { return myTownSewer; }
         set { myTownSewer = value; }
     }
-    
+
     public bool privateWell
     {
         get { return myPrivateWell; }
         set { myPrivateWell = value; }
     }
-    
+
     public bool installInstalation
     {
         get { return myInstallInstulation; }
         set { myInstallInstulation = value; }
     }
-    
+
 
     public string proposedUse
     {
         get { return myPorpsedUse; }
         set { myPorpsedUse = value; }
     }
-    
+
     public string buildingID
     {
         get { return myBuildingID; }
         set { myBuildingID = value; }
     }
-    
+
     public Boolean basementExist
     {
         get { return myBasementBool; }
         set { myBasementBool = value; }
     }
-    
 
-    public string dimensions {
+
+    public string dimensions
+    {
         get { return myDimensions; }
-        set { myDimensions = value;  }
-    
+        set { myDimensions = value; }
+
     }
-    public int permitId {
+    public int permitId
+    {
         get { return myPermitID; }
-        set { myPermitID = value;  } 
+        set { myPermitID = value; }
     }
     /// <summary>
     /// Basement Sf Property
@@ -273,11 +275,11 @@ public class Building
             if (value == null || value == "")
             {
                 MessageBox.Show("Total Square Feet is a required field.");
-                
+
             }
             else
             {
-               
+
                 if (isInt(value))
                 {
                     myTotalSF = value;
@@ -286,9 +288,9 @@ public class Building
                 else
                 {
                     MessageBox.Show("Total Square Feet and must be a number");
-                } 
-            } 
-            
+                }
+            }
+
         }
     }
 
@@ -360,63 +362,74 @@ public class Building
         return double.TryParse(value, out Num);
     }
 
-    
+
 
     public void save(string conStr)
     {
 
-        
+
 
         using (SqlConnection con = new SqlConnection(conStr))
         {
-            con.Open();
-            SqlCommand spCmd;
-            spCmd = new SqlCommand("AU_Building", con);
-            spCmd.CommandType = CommandType.StoredProcedure;
-            spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_TypeOfConst", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_ProposedUse", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_Dimensions", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_HeatedSF", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_NumberOfStories", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_GarageSF", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_Basement", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_PorchSF", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_DeckSF", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_InstallINsulation", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_EstCostOfConst", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_privateWell", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_TownSewer", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_townWater", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_SeptImprovePermit", SqlDbType.Bit);
-            spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_TotalSF", SqlDbType.VarChar);
-            spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
+            try
+            {
+                con.Open();
+                SqlCommand spCmd;
+                spCmd = new SqlCommand("AU_Building", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+                spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_TypeOfConst", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_ProposedUse", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Dimensions", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_HeatedSF", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_NumberOfStories", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_GarageSF", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Basement", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_PorchSF", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_DeckSF", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_InstallINsulation", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_EstCostOfConst", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_privateWell", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_TownSewer", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_townWater", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_SeptImprovePermit", SqlDbType.Bit);
+                spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_TotalSF", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
 
-            spCmd.Prepare();
-            spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
-            spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
-            spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
-            spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
-            spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
-            spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
-            spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
-            spCmd.Parameters["@in_Basement"].Value = this.basementExist;
-            spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
-            spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
-            spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
-            spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
-            spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
-            spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
-            spCmd.Parameters["@in_townWater"].Value = this.townWater;
-            spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
-            spCmd.Parameters["@in_PermitID"].Value = this.permitId;
-            spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
-            spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+                spCmd.Prepare();
+                spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
+                spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
+                spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
+                spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
+                spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
+                spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
+                spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
+                spCmd.Parameters["@in_Basement"].Value = this.basementExist;
+                spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
+                spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
+                spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
+                spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
+                spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
+                spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
+                spCmd.Parameters["@in_townWater"].Value = this.townWater;
+                spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
+                spCmd.Parameters["@in_PermitID"].Value = this.permitId;
+                spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
+                spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
 
-            SqlDataReader RDR = spCmd.ExecuteReader();
+                SqlDataReader RDR = spCmd.ExecuteReader();
+
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
+    
 
 }
 

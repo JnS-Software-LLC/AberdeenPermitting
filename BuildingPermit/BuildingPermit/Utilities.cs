@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
 
 
 public class Utilities
@@ -40,49 +41,49 @@ public class Utilities
     private string mySystemType;
     private string myTons;
 
-	public string tons
-	{
-		get { return myTons;}
-		set { myTons = value;}
-	}
-	
-	public string systemType
-	{
-		get { return mySystemType;}
-		set { mySystemType = value;}
-	}
-	
-	public string mechID
-	{
-		get { return myMechID;}
-		set { myMechID = value;}
-	}
-	
-	public string eletricalID
-	{
-		get { return myEletricalID;}
-		set { myEletricalID = value;}
-	}
-	
+    public string tons
+    {
+        get { return myTons; }
+        set { myTons = value; }
+    }
 
-	public string discon
-	{
-		get { return myNumDiscon;}
-		set { myNumDiscon = value;}
-	}
-	
-	public string buildingID
-	{
-		get { return myBuildingID;}
-		set { myBuildingID = value;}
-	}
-	
-	public Boolean irrigation
-	{
-		get { return myIsIrrigated;}
-		set { myIsIrrigated = value;}
-	}
-	
+    public string systemType
+    {
+        get { return mySystemType; }
+        set { mySystemType = value; }
+    }
+
+    public string mechID
+    {
+        get { return myMechID; }
+        set { myMechID = value; }
+    }
+
+    public string eletricalID
+    {
+        get { return myEletricalID; }
+        set { myEletricalID = value; }
+    }
+
+
+    public string discon
+    {
+        get { return myNumDiscon; }
+        set { myNumDiscon = value; }
+    }
+
+    public string buildingID
+    {
+        get { return myBuildingID; }
+        set { myBuildingID = value; }
+    }
+
+    public Boolean irrigation
+    {
+        get { return myIsIrrigated; }
+        set { myIsIrrigated = value; }
+    }
+
     //  HEATING/AIR-CONDITIONING/MECHANICAL
     /// <summary>
     /// gas line variable
@@ -100,7 +101,7 @@ public class Utilities
         get { return myDuctWork; }
         set { myDuctWork = value; }
     }
-    
+
     /// <summary>
     /// number of air conditioning systems set
     /// </summary>
@@ -111,13 +112,13 @@ public class Utilities
         set
         {
 
-            if (value == null )
+            if (value == null)
             {
                 MessageBox.Show("Number of systems is needed for the permit fee calculation.");
             }
             else
             {
-                
+
                 if (isInt(value))
                 {
                     myNumSys = value;
@@ -126,8 +127,8 @@ public class Utilities
                 else
                 {
                     MessageBox.Show("Number of systems must be a number.");
-                } 
-            } 
+                }
+            }
         }
     }
 
@@ -165,7 +166,7 @@ public class Utilities
         get { return myNumWaterHeater; }
         set { myNumWaterHeater = value; }
     }
-    
+
     /// <summary>
     /// number of total fixtures used in caculation set
     /// </summary>
@@ -176,7 +177,7 @@ public class Utilities
         set
         {
 
-            if (value == null )
+            if (value == null)
             {
                 MessageBox.Show("Number of fixtures are need for the permit fee calculation.");
             }
@@ -191,8 +192,8 @@ public class Utilities
                 else
                 {
                     MessageBox.Show("Number of fixtures must be a numbe.r");
-                } 
-            } 
+                }
+            }
         }
     }
     /// <summary>
@@ -255,9 +256,9 @@ public class Utilities
     {
         get { return myNumAmps; }
         set { myNumAmps = value; }
-        
+
     }
-    
+
     /// <summary>
     /// Temppole variable
     /// </summary>
@@ -276,7 +277,7 @@ public class Utilities
         int Num;
 
         return int.TryParse(value, out Num);
-        
+
     }
     public Utilities()
     {
@@ -289,73 +290,27 @@ public class Utilities
     public void save(string conStr)
     {
 
-        //Need to rewrite query in the AM needs to use parameters and needs to have where clause for permitID or whatever the foreignKey is...lol
 
-         string query = String.Format("Insert Into plumbing " +
-            " (totnumfixtures,totnumbathrooms,numsinks,numwatercloset,numshowers" +
-            "numtubs, numclotheswashers, numwetbars, numspas, numwaterheater, irrigation, buildingID" +
-            " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10},{11}, {12} ); ", this.myTotNumFixtures,
-            this.myTotNumBathrooms, this.myNumSinks,this.myNumWaterClosets, this.myNumShowers, this.myNumTubs,
-            this.myNumClothesWasher, this.myNumWetBar,this.myNumSpa, this.myNumWaterHeater,this.myIsIrrigated, this.myBuildingID);
+        using (SqlConnection con = new SqlConnection(conStr))
+        {
+            try
+            {
+                con.Open();
+                SqlCommand spCmd = new SqlCommand("AU_Contact", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
 
-         using (SqlConnection connection = new SqlConnection(conStr))
-         {
-             SqlCommand command = new SqlCommand(query, connection);
-             connection.Open();
-             SqlDataReader sqlReader = command.ExecuteReader();
-             try
-             {
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             }
-             finally
-             {
-                 sqlReader.Close();
-             }
+                spCmd.Prepare();
 
-             query = String.Format("Insert Into electrical " +
-             " (eletricalid,numamps, numdiscon, temppole, buildingid" +
-             " Values ({0}, {1}, {2}, {3}, {4}, {5},  ); ", this.myEletricalID, this.myNumAmps,
-             this.myNumDiscon, this.myTempPole, this.myBuildingID);
+                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
 
-
-             command = new SqlCommand(query, connection);
-             connection.Open();
-             sqlReader = command.ExecuteReader();
-             try
-             {
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             }
-             finally
-             {
-                 sqlReader.Close();
-             }
-
-             query = String.Format("Insert Into mechanical " +
-              " (MechID,systemtype,  numsystems, tons, gasline, buildingid" +
-              " Values ({0}, {1}, {2}, {3}, {4}, {5} ); ", this.myMechID, this.mySystemType,
-              this.myNumSys, this.tons, this.myGasLine, this.buildingID);
-
-
-             command = new SqlCommand(query, connection);
-             connection.Open();
-             sqlReader = command.ExecuteReader();
-             try
-             {
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             }
-             finally
-             {
-                 sqlReader.Close();
-             }
-         }
+                SqlDataReader RDR = spCmd.ExecuteReader();
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
