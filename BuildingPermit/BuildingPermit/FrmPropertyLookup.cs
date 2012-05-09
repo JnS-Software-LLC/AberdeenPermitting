@@ -12,7 +12,7 @@ namespace BuildingPermit
 {
     public partial class frmPropertyLookup : Form
     {
-        private string conStr = @"Data Source=.\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
+        private string conStr = @"Data Source=johnreasor-lt\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
 
         public frmPropertyLookup()
         {
@@ -64,7 +64,7 @@ namespace BuildingPermit
 
                         if (cmbPropertyResults.Items.Count > 1)
                         {
-                            cmbPropertyResults.Text = "--Choose a parcel--"; 
+                            cmbPropertyResults.Text = "--Choose a parcel--";
                         }
                         else
                         {
@@ -96,25 +96,27 @@ namespace BuildingPermit
                         spCmd.CommandType = CommandType.StoredProcedure;
                         spCmd.Parameters.Add("@in_PropertyDescription", SqlDbType.VarChar);
                         spCmd.Prepare();
-                        spCmd.Parameters["@in_PropertyDescription"].Value = txtPropertyOwner.Text;
+                        spCmd.Parameters["@in_PropertyDescription"].Value = txtPropertyDescription.Text.Trim();
 
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
-                        while (RDR.Read())
+                        if (RDR.HasRows)
                         {
-                            if (RDR.HasRows)
+                            while (RDR.Read())
                             {
+
                                 if (!RDR.IsDBNull(0))
                                 {
                                     cmbPropertyResults.Items.Add((string)RDR["address"]);
                                 }
-                            }
-                            else
-                            {
-                                cmbPropertyResults.Items.Add("No record found");
-                            }
-                        }
 
+                            }
+
+                        }
+                        else
+                        {
+                            cmbPropertyResults.Items.Add("No record found");
+                        }
 
 
 
@@ -157,11 +159,11 @@ namespace BuildingPermit
 
                         while (RDR.Read())
                         {
-                            if (RDR.HasRows )
+                            if (RDR.HasRows)
                             {
                                 if (!RDR.IsDBNull(0))
                                 {
-                                    cmbPropertyResults.Items.Add((string)RDR["address"]); 
+                                    cmbPropertyResults.Items.Add((string)RDR["address"]);
                                 }
                             }
                             else
@@ -207,89 +209,89 @@ namespace BuildingPermit
             {
                 String procedure = "getOwnerandParcel";
                 BuildingPermitTabs pf = (BuildingPermitTabs)Application.OpenForms[1];
-                    try
+                try
+                {
+
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand(procedure, con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
+                    spCmd.Parameters.Add("@in_address", SqlDbType.VarChar);
+                    spCmd.Prepare();
+                    spCmd.Parameters["@in_address"].Value = cmbPropertyResults.SelectedItem.ToString();
+
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    while (RDR.Read())
                     {
-
-                        con.Open();
-                        SqlCommand spCmd;
-                        spCmd = new SqlCommand(procedure, con);
-                        spCmd.CommandType = CommandType.StoredProcedure;
-                        spCmd.Parameters.Add("@in_address", SqlDbType.VarChar);
-                        spCmd.Prepare();
-                        spCmd.Parameters["@in_address"].Value =cmbPropertyResults.SelectedItem.ToString();
-
-
-                        SqlDataReader RDR = spCmd.ExecuteReader();
-
-                        while (RDR.Read())
+                        if (RDR.HasRows)
                         {
-                            if (RDR.HasRows )
+
+                            for (int i = 0; i < RDR.FieldCount; i++)
                             {
-                                
-                                    for (int i = 0; i < RDR.FieldCount; i++)
+
+                                if (!RDR.IsDBNull(i))
+                                {
+                                    if (RDR.GetName(i) == "CompName")
                                     {
+                                        pf._txtOwner = (string)RDR["CompName"];
 
-                                        if (!RDR.IsDBNull(i))
-                                        {
-                                            if (RDR.GetName(i) == "CompName")
-                                            {
-                                                pf._txtOwner = (string)RDR["CompName"];
+                                    }
+                                    if (RDR.GetName(i) == "FirstPhone")
+                                    {
+                                        pf._txtOwnerPhone = (string)RDR["FirstPhone"];
 
-                                            }
-                                            if (RDR.GetName(i) == "FirstPhone")
-                                            {
-                                                pf._txtOwnerPhone = (string)RDR["FirstPhone"];
+                                    }
+                                    if (RDR.GetName(i) == "SecondPhone")
+                                    {
+                                        pf._txtOwnerCell = (string)RDR["SecondPhone"];
 
-                                            }
-                                            if (RDR.GetName(i) == "SecondPhone")
-                                            {
-                                                pf._txtOwnerCell = (string)RDR["SecondPhone"];
+                                    }
+                                    if (RDR.GetName(i) == "Address")
+                                    {
+                                        pf._txtProperty = (string)RDR["Address"];
+                                    }
+                                    if (RDR.GetName(i) == "LotNum")
+                                    {
+                                        pf._txtLotNumber = (string)RDR["LotNum"];
+                                    }
+                                    if (RDR.GetName(i) == "LRK")
+                                    {
+                                        pf._txtLRKNumber = (string)RDR["LRK"];
+                                    }
 
-                                            }
-                                            if (RDR.GetName(i) == "Address")
-                                            {
-                                                pf._txtProperty = (string)RDR["Address"];
-                                            }
-                                            if (RDR.GetName(i) == "LotNum")
-                                            {
-                                                pf._txtLotNumber = (string)RDR["LotNum"];
-                                            }
-                                            if (RDR.GetName(i) == "LRK")
-                                            {
-                                                pf._txtLRKNumber = (string)RDR["LRK"];
-                                            }
-                                            
-                                        }
-                                    
-                                  
                                 }
+
+
                             }
-                            else
-                            {
-                                cmbPropertyResults.Items.Add("No record found");
-                            }
-                        }
-
-
-
-                        if (cmbPropertyResults.Items.Count > 1)
-                        {
-                            cmbPropertyResults.Text = "--Choose a parcel--";
                         }
                         else
                         {
-                            cmbPropertyResults.SelectedIndex = 0;
+                            cmbPropertyResults.Items.Add("No record found");
                         }
-
-
-                        RDR.Close();
-                        con.Close();
-
                     }
-                    catch (Exception ex)
+
+
+
+                    if (cmbPropertyResults.Items.Count > 1)
                     {
-                        MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        cmbPropertyResults.Text = "--Choose a parcel--";
                     }
+                    else
+                    {
+                        cmbPropertyResults.SelectedIndex = 0;
+                    }
+
+
+                    RDR.Close();
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
 
