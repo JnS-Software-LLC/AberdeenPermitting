@@ -14,19 +14,12 @@ namespace BuildingPermit
     public partial class BuildingPermitTabs : Form
     {
         public string conStr;
-        public Boolean flagPermitNum = false;
-
-
-        public static SqlDataReader queryDatabase(string queryString, string connectionString)
-        {
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(queryString, con);
-            con.Open();
-            return cmd.ExecuteReader();
-        }
-
+        
         Building building = new Building();
+        Contact contact = new Contact();
+        Contractor contractor = new Contractor();
         Utilities utilities = new Utilities();
+        Parcel parcel = new Parcel();
 
 
 
@@ -988,6 +981,9 @@ namespace BuildingPermit
         {
             
             this.building.save(conStr);
+            this.contact.save(conStr);
+
+            
 
 
            
