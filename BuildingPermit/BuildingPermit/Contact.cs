@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+
+
 
 
 public class Contact
@@ -118,41 +120,46 @@ public class Contact
     {
     }
 
-
-    public void load(string conStr, string where)
+    public void save(string conStr)
     {
-        string query = "Select CompanyName, CompanyName2, Dimensions, TotalSF,  heatedsf, PorchSF, numberOfstories, DeckSF, garageSF, BasementSF, basement from Building WHERE " + where;
-        using (SqlConnection connection = new SqlConnection(conStr))
+        int contactCount = 0;
+        Boolean exist = false;
+
+        using (SqlConnection con = new SqlConnection(conStr))
         {
-            SqlCommand command = new SqlCommand(query, connection);
-            connection.Open();
-            SqlDataReader RDR = command.ExecuteReader();
+
+            string query = String.Format("SELECT count(ContactID) as 'contactCount' FROM contact; ");
+
+            SqlCommand com = new SqlCommand(query, con);
+            con.Open();
+            SqlDataReader sqlReader = com.ExecuteReader();
             try
             {
-                if (RDR.HasRows)
-                {
-                    while (RDR.Read())
-                    {
-                        //This is not complete, please include corresponding variables from the db. 
-                        this.myCompanyName = (string)RDR["CompanyName"];
-                        this.myCompanyName2 = (string)RDR["CompanyName2"];
-                        this.myFirstName = (string)RDR["Fname"];
-                        this.myMiddleName = (string)RDR["TypeOfConst"];
-                        this.myLastName = (string)RDR["Lname"];
-                        this.myLicense = (string)RDR["TypeOfConst"];
-                        this.myPhone = (string)RDR["TypeOfConst"];
-                        this.myPhone2 = (string)RDR["TypeOfConst"];
-                        this.myEmail = (string)RDR["TypeOfConst"];
-                        this.myBuildingLicense = (string)RDR["TypeOfConst"];
-                        this.myStreetNumber = (string)RDR["TypeOfConst"];
-                        this.myStreetName = (string)RDR["TypeOfConst"];
-                        this.myType = (string)RDR["TypeOfConst"]; 
-                        this.myStreetName2 = (string)RDR["TypeOfConst"]; 
-                        this.myCity = (string)RDR["TypeOfConst"];
-                        this.myState =(string)RDR["TypeOfConst"];
-                        this.myZip = (string)RDR["TypeOfConst"];
+                contactCount = (int)sqlReader["contactCount"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sqlReader.Close();
+            }
 
-                    }
+            query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + companyName + ";");
+
+            com = new SqlCommand(query, con);
+            con.Open();
+            sqlReader = com.ExecuteReader();
+            try
+            {
+                if (sqlReader.HasRows)
+                {
+                    exist = true;
+                }
+                else
+                {
+                    exist = false;
                 }
             }
             catch (Exception ex)
@@ -161,79 +168,91 @@ public class Contact
             }
             finally
             {
-                RDR.Close();
+                sqlReader.Close();
+            }
+
+            if (exist)
+            {
+                con.Open();
+                SqlCommand spCmd;
+                spCmd = new SqlCommand("AU_Contact", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+
+              
+                spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
+
+                spCmd.Prepare();
+
+              
+                spCmd.Parameters["@in_CompName"].Value = this.companyName;
+                spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
+                spCmd.Parameters["@in_Fname"].Value = this.firstName;
+                spCmd.Parameters["@in_Lname"].Value = this.lastName;
+                spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
+                spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + " " + this.streetName + " " + this.streetName2;
+                spCmd.Parameters["@in_City"].Value = this.city;
+                spCmd.Parameters["@in_State"].Value = this.state;
+                spCmd.Parameters["@in_Zip"].Value = this.zip;
+                spCmd.Parameters["@in_Email"].Value = this.email;
+                spCmd.Parameters["@in_PropOwner"].Value = this.property;
+
+                SqlDataReader RDR = spCmd.ExecuteReader();
+            }
+            else
+            {
+                con.Open();
+                SqlCommand spCmd;
+                spCmd = new SqlCommand("AU_Contact", con);
+                spCmd.CommandType = CommandType.StoredProcedure;
+
+                spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_CompName2", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_FirstPhone", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_SecondPhone", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_Email", SqlDbType.VarChar);
+                spCmd.Parameters.Add("@in_PropOwner", SqlDbType.Bit);
+
+                spCmd.Prepare();
+
+                spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
+                spCmd.Parameters["@in_CompName"].Value = this.companyName;
+                spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
+                spCmd.Parameters["@in_Fname"].Value = this.firstName;
+                spCmd.Parameters["@in_Lname"].Value = this.lastName;
+                spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
+                spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + this.streetName + this.streetName2;
+                spCmd.Parameters["@in_City"].Value = this.city;
+                spCmd.Parameters["@in_State"].Value = this.state;
+                spCmd.Parameters["@in_Zip"].Value = this.zip;
+                spCmd.Parameters["@in_Email"].Value = this.email;
+                spCmd.Parameters["@in_PropOwner"].Value = this.property;
+
+                SqlDataReader RDR = spCmd.ExecuteReader();
             }
         }
-    }
 
-    public void save(string conStr)
-    {
-        string query;
-        /* myCompanyName, 
-         * myCompanyName2,
-          myFirstName,
-         * myLastName
-         //, myLicense,
-         * myPhone,
-         * myCell, 
-         * myEmail, 
-         * myBuildingLicense,
-         * myStreetNumber,
-         * myStreetName
-         //, myType,
-         * myStreetName2, 
-         * myCity, 
-         * myState, 
-         * myZip;
-          */
-        using (SqlConnection connection = new SqlConnection(conStr))
-        {
-            SqlDataReader sqlReader;
 
-            if (this.myType == "contact")
-            {
-                query = String.Format("Insert Into Contact " +
-              " (CompName, CompName2, Fname, Lname, " +
-              " FirstPhone, SecondPhone, Email, Address, City, State, Zip, propowner )" +
-              " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11} ); ",
-              this.myCompanyName, this.myCompanyName2, this.myFirstName, this.myLastName,
-              this.myPhone, this.myPhone2, this.myEmail,
-              this.myStreetName, this.myCity, this.myState, this.myZip, this.myPropOwner);
 
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                sqlReader = command.ExecuteReader();
-            }
-            if (this.myType == "General Contractor" || this.myType == "HVAC" ||
-                this.myType == "Plumbing" || this.myType == "Electrical")
-            {
-                query = String.Format("Insert Into Contractors " +
-                   " (CompName, CompName2, Fname, Lname, " +
-                   " PhoneNumber, SecondPhone, Email, Address, City, State, Zip, type. licenseExpDate )" +
-                   " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12} ); ",
-                   this.myCompanyName, this.myCompanyName2, this.myFirstName, this.myLastName,
-                   this.myPhone, this.myPhone2, this.myEmail,
-                   this.myStreetName, this.myCity, this.myState, this.myZip, this.type, this.licenseExpDate);
-
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-                sqlReader = command.ExecuteReader();
-            }
-
-           
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
-                
-        }
-
-       
-           
 
     }
 }

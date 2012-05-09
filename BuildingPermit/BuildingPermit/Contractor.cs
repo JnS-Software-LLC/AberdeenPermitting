@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BuildingPermit
 {
-    class Contractor
+    class Contractor:Contact
     {
     }
 }

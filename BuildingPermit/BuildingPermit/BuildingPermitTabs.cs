@@ -986,10 +986,11 @@ namespace BuildingPermit
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            conStr = @"Data Source=johnreasor-lt\sqlexpress;Initial Catalog=AberdeenPermitting;User Id=Capstone;Password=Capstone2012;";
+            
+            this.building.save(conStr);
 
-            building.save(conStr);
-            //utilities.save(conStr);
+
+           
 
         }
 
