@@ -31,9 +31,9 @@ namespace BuildingPermit
             contact.firstName = txtFName.Text;
             contact.middleName = txtMName.Text;
             contact.lastName = txtLName.Text;
-            contact.liscense = txtLicense.Text;
-            contact.phone = txtPhone.Text;
-            contact.phone = txtCell.Text;
+            contact.license = txtLicense.Text;
+            contact.firstPhone = txtPhone.Text;
+            contact.firstPhone = txtCell.Text;
             contact.email = txtEmail.Text;
             contact.buildingLicense = txtBuildingLicense.Text;
             contact.streetNumber = txtStreetNumber.Text; 

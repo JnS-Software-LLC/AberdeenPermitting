@@ -11,12 +11,12 @@ using System.Data;
 public class Contact
 {
     private string myCompanyName, myCompanyName2, myFirstName, myMiddleName, myLastName
-       , myLicense, myPhone, myPhone2, myEmail, myBuildingLicense, myStreetNumber, myStreetName
+       , myLicense, myFirstPhone, mySecondPhone, myEmail, myBuildingLicense, myStreetNumber, myStreetName
        , myType, myStreetName2, myCity, myState, myZip;
 
     private Boolean myPropOwner;
     private DateTime myLicenseExpDate;
-    private string query;
+   
 
     public DateTime licenseExpDate
     {
@@ -56,20 +56,20 @@ public class Contact
         get { return myLastName; }
         set { myLastName = value; }
     }
-    public string liscense
+    public string license
     {
         get { return myLicense; }
         set { myLicense = value; }
     }
-    public string phone
+    public string firstPhone
     {
-        get { return myPhone; }
-        set { myPhone = value; }
+        get { return myFirstPhone; }
+        set { myFirstPhone = value; }
     }
-    public string phone2
+    public string secondPhone
     {
-        get { return myPhone2; }
-        set { myPhone2 = value; }
+        get { return mySecondPhone; }
+        set { mySecondPhone = value; }
     }
     public string email
     {
@@ -201,8 +201,8 @@ public class Contact
                     spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
                     spCmd.Parameters["@in_Fname"].Value = this.firstName;
                     spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                    spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
-                    spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
                     spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + " " + this.streetName + " " + this.streetName2;
                     spCmd.Parameters["@in_City"].Value = this.city;
                     spCmd.Parameters["@in_State"].Value = this.state;
@@ -247,8 +247,8 @@ public class Contact
                     spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
                     spCmd.Parameters["@in_Fname"].Value = this.firstName;
                     spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                    spCmd.Parameters["@in_FirstPhone"].Value = this.phone;
-                    spCmd.Parameters["@in_SecondPhone"].Value = this.phone2;
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
                     spCmd.Parameters["@in_Address"].Value = this.myStreetNumber + this.streetName + this.streetName2;
                     spCmd.Parameters["@in_City"].Value = this.city;
                     spCmd.Parameters["@in_State"].Value = this.state;
