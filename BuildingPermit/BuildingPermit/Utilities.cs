@@ -213,7 +213,7 @@ public class Utilities
         set { myNumTubs = value; }
     }
     /// <summary>
-    /// numbe rof wet bar small sink with frig.
+    /// number of wet bar small sink with frig.
     /// </summary>
     public string numWetBar
     {
@@ -283,10 +283,20 @@ public class Utilities
     {
 
     }
+
+    /// <summary>
+    /// load data from database to Utilities class
+    /// </summary>
+    /// <param name="conStr"></param>
     public void load(string conStr)
     {
 
     }
+
+    /// <summary>
+    /// Save data to database from Utilitities class
+    /// </summary>
+    /// <param name="conStr"></param>
     public void save(string conStr)
     {
 

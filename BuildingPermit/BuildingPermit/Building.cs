@@ -37,69 +37,98 @@ public class Building
     private bool myTownWater;
     private bool mymySeptImprovement;
 
+    /// <summary>
+    /// Septic boolean
+    /// </summary>
     public bool septImprovement
     {
         get { return mymySeptImprovement; }
         set { mymySeptImprovement = value; }
     }
 
+    /// <summary>
+    /// Town Water Boolean
+    /// </summary>
     public bool townWater
     {
         get { return myTownWater; }
         set { myTownWater = value; }
     }
 
+    /// <summary>
+    /// Town Sewer Boolean
+    /// </summary>
     public bool townSewer
     {
         get { return myTownSewer; }
         set { myTownSewer = value; }
     }
 
+    /// <summary>
+    /// Private Well Boolean
+    /// </summary>
     public bool privateWell
     {
         get { return myPrivateWell; }
         set { myPrivateWell = value; }
     }
 
+    /// <summary>
+    /// Instulation Install Boolean
+    /// </summary>
     public bool installInstalation
     {
         get { return myInstallInstulation; }
         set { myInstallInstulation = value; }
     }
 
-
+    /// <summary>
+    /// Proposed Use for building
+    /// </summary>
     public string proposedUse
     {
         get { return myPorpsedUse; }
         set { myPorpsedUse = value; }
     }
 
+    /// <summary>
+    /// Building ID based on LRK number and building number on parcel
+    /// </summary>
     public string buildingID
     {
         get { return myBuildingID; }
         set { myBuildingID = value; }
     }
 
+    /// <summary>
+    /// Basement Boolean
+    /// </summary>
     public Boolean basementExist
     {
         get { return myBasementBool; }
         set { myBasementBool = value; }
     }
 
-
+    /// <summary>
+    /// General Dimensions of Building
+    /// </summary>
     public string dimensions
     {
         get { return myDimensions; }
         set { myDimensions = value; }
 
     }
+
+    /// <summary>
+    /// Permit ID as set by User
+    /// </summary>
     public int permitId
     {
         get { return myPermitID; }
         set { myPermitID = value; }
     }
     /// <summary>
-    /// Basement Sf Property
+    /// Basement SF 
     /// </summary>
     /// 
     public string basementSF
@@ -129,7 +158,7 @@ public class Building
     }
 
     /// <summary>
-    /// Garage Sf Property
+    /// Garage Sf  
     /// </summary>
     public string garageSF
     {
@@ -155,7 +184,7 @@ public class Building
     }
 
     /// <summary>
-    /// Deck Sf Property
+    /// Deck SF
     /// </summary>
     public string deckSF
     {
@@ -209,7 +238,7 @@ public class Building
     }
 
     /// <summary>
-    /// Porch Sf Property
+    /// Porch SF
     /// </summary>
     public string porchSF
     {
@@ -237,7 +266,7 @@ public class Building
     }
 
     /// <summary>
-    /// Heated SF Property
+    /// Heated SF 
     /// </summary>
     public string heatedSF
     {
@@ -264,7 +293,7 @@ public class Building
     }
 
     /// <summary>
-    /// Total SF Property
+    /// Total SF  
     /// </summary>
     public string totalSF
     {
@@ -295,7 +324,7 @@ public class Building
     }
 
     /// <summary>
-    /// Set Estimating Cost Property
+    /// Set Estimating Cost  
     /// </summary>
     public string estimatedCost
     {
@@ -323,7 +352,7 @@ public class Building
     }
 
     /// <summary>
-    /// Building Type Property
+    /// Building Type  commercial or residential
     /// </summary>
     public string buildingType
     {
@@ -363,7 +392,11 @@ public class Building
     }
 
 
-
+    /// <summary>
+    /// Save to database method for Building Class
+    /// </summary>
+    /// <param name="conStr"></param>
+    /// <param name="LRK"></param>
     public void save(string conStr, string LRK)
     {
 
@@ -527,7 +560,15 @@ public class Building
 
         }
     }
-    
+
+    /// <summary>
+    /// Load method for Building Class
+    /// </summary>
+    /// <param name="conStr"></param>
+    public void load(string conStr)
+    {
+
+    }
 
 }
 

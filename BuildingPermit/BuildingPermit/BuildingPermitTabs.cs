@@ -980,9 +980,11 @@ namespace BuildingPermit
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             
-            this.building.save(conStr);
+            this.building.save(conStr, txtLRKNumber.Text);
             this.contact.save(conStr);
             this.utilities.save(conStr);
+            this.contractor.save(conStr);
+
 
     
         }

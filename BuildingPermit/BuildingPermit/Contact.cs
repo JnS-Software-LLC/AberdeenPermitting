@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Programmer:      Alan Ball
+ * Date:            ??-??-????
+ * Description:     Class for Contact Information
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -120,6 +127,10 @@ public class Contact
     {
     }
 
+    /// <summary>
+    /// Save Method for Contact Class
+    /// </summary>
+    /// <param name="conStr"></param>
     public void save(string conStr)
     {
         int contactCount = 0;
@@ -267,9 +278,17 @@ public class Contact
             }
         }
 
+    }
 
-
+    /// <summary>
+    /// load database to contact 
+    /// </summary>
+    /// <param name="conStr"></param>
+    public void load(string conStr)
+    {
 
     }
+
+
 }
 
