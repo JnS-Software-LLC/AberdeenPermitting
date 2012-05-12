@@ -984,6 +984,7 @@ namespace BuildingPermit
             this.contact.save(conStr);
             this.utilities.save(conStr);
             this.contractor.save(conStr);
+            this.parcel.save(conStr);
 
 
     

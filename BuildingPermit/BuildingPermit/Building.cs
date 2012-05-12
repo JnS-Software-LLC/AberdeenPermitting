@@ -36,6 +36,14 @@ public class Building
     private bool myTownSewer;
     private bool myTownWater;
     private bool mymySeptImprovement;
+    private string myLRK;
+
+    public string lrk
+    {
+        get { return myLRK; }
+        set { myLRK = value; }
+    }
+    
 
     /// <summary>
     /// Septic boolean
@@ -397,7 +405,7 @@ public class Building
     /// </summary>
     /// <param name="conStr"></param>
     /// <param name="LRK"></param>
-    public void save(string conStr, string LRK)
+    public void save(string conStr)
     {
 
         int buildingCount = 0;
@@ -528,7 +536,7 @@ public class Building
                     spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
 
                     spCmd.Prepare();
-                    spCmd.Parameters["@in_BuildingID"].Value = (LRK + "B" + buildingCount.ToString());
+                    spCmd.Parameters["@in_BuildingID"].Value = (this.lrk + "B" + (buildingCount + 1).ToString());
                     spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
                     spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
                     spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;

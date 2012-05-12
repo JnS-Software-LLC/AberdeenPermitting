@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Data;
 
 namespace BuildingPermit
 {
@@ -40,7 +43,7 @@ namespace BuildingPermit
             get { return myLRK; }
             set { myLRK = value; }
         }
-        
+
         /// <summary>
         /// Contact ID number for Parcel Owner if new will be number of existing Owners plus one
         /// </summary>
@@ -49,16 +52,16 @@ namespace BuildingPermit
             get { return myContactID; }
             set { myContactID = value; }
         }
-        
-       /// <summary>
-       /// DeedAcre
-       /// </summary>
+
+        /// <summary>
+        /// DeedAcre
+        /// </summary>
         public string deedAcre
         {
             get { return myDeedAcre; }
             set { myDeedAcre = value; }
         }
-        
+
         /// <summary>
         /// Tax Acres
         /// </summary>
@@ -67,7 +70,7 @@ namespace BuildingPermit
             get { return myTaxAcre; }
             set { myTaxAcre = value; }
         }
-        
+
 
         /// <summary>
         /// Zoining Dist
@@ -77,7 +80,7 @@ namespace BuildingPermit
             get { return myZoningDist; }
             set { myZoningDist = value; }
         }
-        
+
         /// <summary>
         /// Total value of construction
         /// </summary>
@@ -86,7 +89,7 @@ namespace BuildingPermit
             get { return myValue; }
             set { myValue = value; }
         }
-        
+
         /// <summary>
         /// general size of construction
         /// </summary>
@@ -95,7 +98,7 @@ namespace BuildingPermit
             get { return mySize; }
             set { mySize = value; }
         }
-        
+
         /// <summary>
         /// Lot Number
         /// </summary>
@@ -104,7 +107,7 @@ namespace BuildingPermit
             get { return myLotNum; }
             set { myLotNum = value; }
         }
-        
+
         /// <summary>
         /// Recorded Deed Page
         /// </summary>
@@ -113,7 +116,7 @@ namespace BuildingPermit
             get { return myDeedPage; }
             set { myDeedPage = value; }
         }
-        
+
         /// <summary>
         /// recored Deed Book
         /// </summary>
@@ -122,7 +125,7 @@ namespace BuildingPermit
             get { return myDeedBook; }
             set { myDeedBook = value; }
         }
-        
+
         /// <summary>
         /// Parcel Zip
         /// </summary>
@@ -131,7 +134,7 @@ namespace BuildingPermit
             get { return myZip; }
             set { myZip = value; }
         }
-        
+
         /// <summary>
         /// Parcel State
         /// </summary>
@@ -140,7 +143,7 @@ namespace BuildingPermit
             get { return myState; }
             set { myState = value; }
         }
-        
+
         /// <summary>
         /// Parcel City
         /// </summary>
@@ -149,7 +152,7 @@ namespace BuildingPermit
             get { return myCity; }
             set { myCity = value; }
         }
-        
+
         /// <summary>
         /// Number and Street Address or Parcel Description
         /// </summary>
@@ -158,7 +161,7 @@ namespace BuildingPermit
             get { return myAddress; }
             set { myAddress = value; }
         }
-        
+
         /// <summary>
         /// Parcel ID if new will be number of existing Parcel plus one
         /// </summary>
@@ -167,14 +170,66 @@ namespace BuildingPermit
             get { return myParcelID; }
             set { myParcelID = value; }
         }
-        
+
         /// <summary>
         /// save data fro parcel class to database
         /// </summary>
         /// <param name="conStr"></param>
         public void save(string conStr)
         {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Parcel", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
 
+                    spCmd.Parameters.Add("@in_ParcelID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Address", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_City", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_State", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Zip", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_DeedBook", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_DeedPage", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_LotNum", SqlDbType.Int);
+                    spCmd.Parameters.Add("@in_Size", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Value", SqlDbType.Decimal);
+                    spCmd.Parameters.Add("@in_ZoningDist", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_TaxAcre", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_DeedAcre", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                    spCmd.Parameters.Add("@in_LRK", SqlDbType.VarChar);
+
+                    spCmd.Prepare();
+
+                    spCmd.Parameters["@in_ParcelID"].Value = this.parcelID;
+                    spCmd.Parameters["@in_Address"].Value = this.address;
+                    spCmd.Parameters["@in_City"].Value = this.city;
+                    spCmd.Parameters["@in_State"].Value = this.state;
+                    spCmd.Parameters["@in_Zip"].Value = this.zip;
+                    spCmd.Parameters["@in_DeedBook"].Value = this.deedBook;
+                    spCmd.Parameters["@in_DeedPage"].Value = this.deedPage;
+                    spCmd.Parameters["@in_LotNum"].Value = this.lotNum;
+                    spCmd.Parameters["@in_Size"].Value = this.size;
+                    spCmd.Parameters["@in_Value"].Value = this.value;
+                    spCmd.Parameters["@in_ZoningDist"].Value = this.zoningDist;
+                    spCmd.Parameters["@in_TaxAcre"].Value = this.taxAcre;
+                    spCmd.Parameters["@in_DeedAcre"].Value = this.deedAcre;
+                    spCmd.Parameters["@in_ContactID"].Value = this.contactID;
+                    spCmd.Parameters["@in_LRK"].Value = this.lrk;
+
+
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
         /// <summary>
         /// load data from databse to parcel class
@@ -182,7 +237,9 @@ namespace BuildingPermit
         /// <param name="conStr"></param>
         public void load(string conStr)
         {
-
+            
+            }
+           
         }
     }
 }
