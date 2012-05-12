@@ -979,15 +979,36 @@ namespace BuildingPermit
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (txtBasement.Text == null && txtBasement.Text == "")
+            {
+                this.building.basementExist = false;
+            }
+            else
+            {
+                this.building.basementExist = true;
+            }
+
+            this.building.basementSF = txtBasement.Text;
+            this.building.buildingType = cmboConstructionType.Text;
+            this.building.deckSF = txtDeck.Text;
+            this.building.estimatedCost = txtEstimatedCost.Text;
+            this.building.garageSF = txtGarageSF.Text;
+            this.building.heatedSF = txtHeatedSF.Text;
+            this.building.lrk = txtLRKNumber.Text;
+            this.building.numStories = txtNumStories.Text;
+            this.building.permitId = Convert.ToInt16(txtPermitNumber.Text);
+            this.building.porchSF = txtPorchSF.Text;
+            this.building.proposedUse = cmboProposedUse.Text;
+            this.building.totalSF = txtSquareFeet.Text;
             
-            this.building.save(conStr, txtLRKNumber.Text);
+            this.building.save(conStr);
+
+
             this.contact.save(conStr);
             this.utilities.save(conStr);
             this.contractor.save(conStr);
             this.parcel.save(conStr);
 
-
-    
         }
 
         private void clearAllFieldsForPermitNum()
