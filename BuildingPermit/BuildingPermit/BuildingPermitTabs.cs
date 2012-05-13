@@ -17,7 +17,13 @@ namespace BuildingPermit
         
         Building building = new Building();
         Contact contact = new Contact();
-        Contractor contractor = new Contractor();
+        Contractor GC = new Contractor();
+        Contractor HVACsub = new Contractor();
+        Contractor ELETRICALsub = new Contractor();
+        Contractor MECHsub = new Contractor();
+        Contractor PLUMBINGsub = new Contractor();
+        Contractor GASsub = new Contractor();
+        Contractor IRRIGATIONsub = new Contractor();
         Utilities utilities = new Utilities();
         Parcel parcel = new Parcel();
 
@@ -1003,10 +1009,58 @@ namespace BuildingPermit
             
             this.building.save(conStr);
 
+            this.contact.companyName = txtOwner.Text;
+            this.contact.firstPhone = txtOwnerPhone.Text;
+            this.contact.secondPhone = txtCell.Text;
+
 
             this.contact.save(conStr);
+
+            this.utilities.buildingID = this.building.buildingID;
+
+            if (cboxGasLine.Checked)
+            {
+                this.utilities.gasLine = true; 
+            }
+            else
+            {
+                this.utilities.gasLine = false; 
+            }
+
+            this.utilities.numAmps = cmboNumAmps.SelectedText;
+            this.utilities.numBathrooms = txtNumBathrooms.Text;
+            this.utilities.numClothesWasher = txtNumClothesWashers.Text;
+            this.utilities.numDishWasher = txtNumDishwashers.Text;
+            this.utilities.numFixtures = txtNumFixtures.Text;
+            this.utilities.numShowers = txtNumShowers.Text;
+            this.utilities.numSinks = txtNumSinks.Text;
+            this.utilities.numSpa = txtNumSpas.Text;
+            this.utilities.numTub = txtNumTubs.Text;
+            this.utilities.numWaterClosets = txtNumWaterClosets.Text;
+            this.utilities.numWaterHeater = txtNumWaterHeaters.Text;
+            this.utilities.numWetBar = txtNumWetBars.Text;
+            this.utilities.systemType = cmboSystemType.SelectedText;
+
+            if (cboxTempPole.Checked)
+            {
+                this.utilities.tempPole = true; 
+            }
+            else
+            {
+                this.utilities.tempPole = false; 
+            }
+
+            this.utilities.tons = txtSystemTons.Text;
+            
             this.utilities.save(conStr);
-            this.contractor.save(conStr);
+
+
+            this.GC.save(conStr);
+            this.ELETRICALsub.save(conStr);
+            this.PLUMBINGsub.save(conStr);
+            this.MECHsub.save(conStr);
+            this.GASsub.save(conStr);
+            this.IRRIGATIONsub.save(conStr);
             this.parcel.save(conStr);
 
         }

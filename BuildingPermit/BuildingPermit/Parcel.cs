@@ -230,6 +230,7 @@ namespace BuildingPermit
                 {
                     MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
         }
         /// <summary>
         /// load data from databse to parcel class
@@ -238,7 +239,7 @@ namespace BuildingPermit
         public void load(string conStr)
         {
             
-            }
+            
            
         }
     }

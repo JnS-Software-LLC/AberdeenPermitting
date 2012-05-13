@@ -537,6 +537,7 @@ public class Building
 
                     spCmd.Prepare();
                     spCmd.Parameters["@in_BuildingID"].Value = (this.lrk + "B" + (buildingCount + 1).ToString());
+                    this.buildingID = (this.lrk + "B" + (buildingCount + 1).ToString());
                     spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
                     spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
                     spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
