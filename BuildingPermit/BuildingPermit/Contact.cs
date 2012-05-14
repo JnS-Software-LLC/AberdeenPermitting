@@ -178,7 +178,7 @@ public class Contact
             try
             {
 
-                query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
+                query = String.Format("SELECT count(*) FROM contact WHERE CompName = '" + this.companyName.ToString() + "';");
 
                 con.Open();
 

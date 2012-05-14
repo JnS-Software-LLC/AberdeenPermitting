@@ -114,6 +114,7 @@ namespace BuildingPermit
                     SqlDataReader RDR = spCmd.ExecuteReader();
 
                     RDR.Close();
+                    con.Close();
                 }
                 catch (Exception ex)
                 {
