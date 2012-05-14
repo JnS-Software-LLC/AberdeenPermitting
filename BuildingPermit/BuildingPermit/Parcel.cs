@@ -26,7 +26,7 @@ namespace BuildingPermit
         private string myZip;
         private string myDeedBook;
         private string myDeedPage;
-        private int myLotNum;
+        private string myLotNum;
         private string mySize;
         private decimal myValue;
         private string myZoningDist;
@@ -102,7 +102,7 @@ namespace BuildingPermit
         /// <summary>
         /// Lot Number
         /// </summary>
-        public int lotNum
+        public string lotNum
         {
             get { return myLotNum; }
             set { myLotNum = value; }

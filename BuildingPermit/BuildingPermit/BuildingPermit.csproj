@@ -110,6 +110,7 @@
       <DependentUpon>ContractorLookup.cs</DependentUpon>
     </Compile>
     <Compile Include="Parcel.cs" />
+    <Compile Include="Permit.cs" />
     <Compile Include="PropertyAdd.cs">
       <SubType>Form</SubType>
     </Compile>

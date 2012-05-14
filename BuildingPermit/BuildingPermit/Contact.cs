@@ -23,6 +23,14 @@ public class Contact
 
     private Boolean myPropOwner;
     private DateTime myLicenseExpDate;
+    private string myPermitID;
+
+    public string permitID
+    {
+        get { return myPermitID; }
+        set { myPermitID = value; }
+    }
+    
    
 
     public DateTime licenseExpDate

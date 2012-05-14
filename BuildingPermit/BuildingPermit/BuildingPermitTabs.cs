@@ -17,6 +17,8 @@ namespace BuildingPermit
         
         Building building = new Building();
         Contact contact = new Contact();
+        Contact applicant = new Contact();
+        Contact GCContact = new Contact();
         Contractor GC = new Contractor();
         Contractor HVACsub = new Contractor();
         Contractor ELETRICALsub = new Contractor();
@@ -26,6 +28,7 @@ namespace BuildingPermit
         Contractor IRRIGATIONsub = new Contractor();
         Utilities utilities = new Utilities();
         Parcel parcel = new Parcel();
+        Permit permit = new Permit();
 
 
 
@@ -1002,7 +1005,7 @@ namespace BuildingPermit
             this.building.heatedSF = txtHeatedSF.Text;
             this.building.lrk = txtLRKNumber.Text;
             this.building.numStories = txtNumStories.Text;
-            this.building.permitId = Convert.ToInt16(txtPermitNumber.Text);
+            this.building.permitId = txtPermitNumber.Text;
             this.building.porchSF = txtPorchSF.Text;
             this.building.proposedUse = cmboProposedUse.Text;
             this.building.totalSF = txtSquareFeet.Text;
@@ -1012,7 +1015,8 @@ namespace BuildingPermit
             this.contact.companyName = txtOwner.Text;
             this.contact.firstPhone = txtOwnerPhone.Text;
             this.contact.secondPhone = txtCell.Text;
-
+            this.contact.property = true;
+            this.contact.permitID = txtPermitNumber.Text;
 
             this.contact.save(conStr);
 
@@ -1054,14 +1058,79 @@ namespace BuildingPermit
             
             this.utilities.save(conStr);
 
+            this.GC.companyName = txtContractorName.Text;
+            this.GC.firstPhone = txtContractorPhone.Text;
+            this.GC.license = txtContractorLiscence.Text;
+            this.GC.permitID = txtPermitNumber.Text;
+            this.GC.property = false;
 
             this.GC.save(conStr);
+
+            this.GCContact.companyName = txtSiteManagerName.Text;
+            this.GCContact.firstPhone = txtSiteManagerPhone.Text;
+            this.GCContact.email = txtContractorEmail.Text;
+            this.GCContact.permitID = txtPermitNumber.Text;
+            this.GCContact.property = false;
+
+            this.GCContact.save(conStr);
+
+            this.ELETRICALsub.companyName = txtElectricalName.Text;
+            this.ELETRICALsub.firstPhone = txtElectricalPhone.Text;
+            this.ELETRICALsub.license = txtElectricalLisenceNumber.Text;
+            this.ELETRICALsub.property = false;
+
             this.ELETRICALsub.save(conStr);
+
+            this.PLUMBINGsub.companyName = txtPlumbingName.Text;
+            this.PLUMBINGsub.firstPhone = txtPlumbingPhone.Text;
+            this.PLUMBINGsub.license = txtPlumbingLisenceNumber.Text;
+            this.PLUMBINGsub.property = false;
+
             this.PLUMBINGsub.save(conStr);
+
+            this.MECHsub.companyName = txtMechanicalName.Text;
+            this.MECHsub.firstPhone = txtMechanicalPhone.Text;
+            this.MECHsub.license = txtMechanicalLisenceNumber.Text;
+            this.MECHsub.property = false;
+
             this.MECHsub.save(conStr);
+
+            this.GASsub.companyName = txtGasName.Text;
+            this.GASsub.firstPhone = txtGasPhone.Text;
+            this.GASsub.license = txtGasLisenceNumber.Text;
+            this.GASsub.property = false;
+
             this.GASsub.save(conStr);
+
+            this.IRRIGATIONsub.companyName = txtIrrigationName.Text;
+            this.IRRIGATIONsub.firstPhone = txtIrrigationPhone.Text;
+            this.IRRIGATIONsub.license = txtIrrigationLisenceNumber.Text;
+            this.IRRIGATIONsub.property = false;
+
             this.IRRIGATIONsub.save(conStr);
+            
+            this.applicant.companyName = txtApplicant.Text;
+            this.applicant.firstPhone = txtApplicant.Text;
+            this.applicant.secondPhone = txtCell.Text;
+            this.applicant.property = false;
+            
+
+            this.applicant.save(conStr);
+
+            this.parcel.address = txtProperty.Text;
+            this.parcel.lotNum = txtLotNumber.Text;
+            this.parcel.lrk = txtLRKNumber.Text;
+            this.parcel.zoningDist = txtZoningDistrict.Text;
+          
             this.parcel.save(conStr);
+
+            this.permit.buildingID = this.building.buildingID;
+            this.permit.feeTotal = txtBalance.Text;
+            this.permit.notes = txtNotes.Text;
+            this.permit.parcelID = this.parcel.parcelID;
+            this.permit.permitDate = dtIssueDate.Value;
+
+            this.permit.save(conStr);
 
         }
 

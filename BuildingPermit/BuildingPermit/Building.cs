@@ -27,7 +27,7 @@ public class Building
     private string myGarageSF;
     private string myBasementSF;
     private string myDimensions;
-    private int myPermitID;
+    private string myPermitID;
     private Boolean myBasementBool;
     private string myBuildingID;
     private string myPorpsedUse;
@@ -130,7 +130,7 @@ public class Building
     /// <summary>
     /// Permit ID as set by User
     /// </summary>
-    public int permitId
+    public string permitId
     {
         get { return myPermitID; }
         set { myPermitID = value; }
