@@ -501,25 +501,25 @@ public class Building
                     spCmd.Parameters.Add("@in_BasementSF", SqlDbType.VarChar);
 
                     spCmd.Prepare();
-                    spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
-                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
-                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
+                    spCmd.Parameters["@in_BuildingID"].Value = this.buildingID.ToString();
+                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType.ToString();
+                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse.ToString();
                     spCmd.Parameters["@in_Dimensions"].Value = null;
-                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
-                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
-                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
+                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF.ToString();
+                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories.ToString();
+                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF.ToString();
                     spCmd.Parameters["@in_Basement"].Value = this.basementExist;
-                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
-                    spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
+                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF.ToString();
+                    spCmd.Parameters["@in-DeckSF"].Value = this.deckSF.ToString();
                     spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
-                    spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
+                    spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost.ToString();
                     spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
                     spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
                     spCmd.Parameters["@in_townWater"].Value = this.townWater;
                     spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
-                    spCmd.Parameters["@in_PermitID"].Value = this.permitId;
-                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
-                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+                    spCmd.Parameters["@in_PermitID"].Value = this.permitId.ToString();
+                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF.ToString();
+                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF.ToString();
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
 
@@ -554,24 +554,24 @@ public class Building
                     spCmd.Prepare();
                     spCmd.Parameters["@in_BuildingID"].Value = (this.lrk + "B" + (buildingCount + 1).ToString());
                     this.buildingID = (this.lrk + "B" + (buildingCount + 1).ToString());
-                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
-                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
-                    spCmd.Parameters["@in_Dimensions"].Value = null;
-                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
-                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
-                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
+                    spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType.ToString();
+                    spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse.ToString();
+                    spCmd.Parameters["@in_Dimensions"].Value = "20X20";
+                    spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF.ToString();
+                    spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories.ToString();
+                    spCmd.Parameters["@in_GarageSF"].Value = this.garageSF.ToString();
                     spCmd.Parameters["@in_Basement"].Value = this.basementExist;
-                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
-                    spCmd.Parameters["@in_DeckSF"].Value = this.deckSF;
+                    spCmd.Parameters["@in_PorchSF"].Value = this.porchSF.ToString();
+                    spCmd.Parameters["@in_DeckSF"].Value = this.deckSF.ToString();
                     spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
                     spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
                     spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
                     spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
                     spCmd.Parameters["@in_townWater"].Value = this.townWater;
                     spCmd.Parameters["@in_SeptImprovePermit"].Value = this.septImprovement;
-                    spCmd.Parameters["@in_PermitID"].Value = this.permitId;
-                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
-                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
+                    spCmd.Parameters["@in_PermitID"].Value = this.permitId.ToString();
+                    spCmd.Parameters["@in_TotalSF"].Value = this.totalSF.ToString();
+                    spCmd.Parameters["@in_BasementSF"].Value = this.basementSF.ToString();
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
 

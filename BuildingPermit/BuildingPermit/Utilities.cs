@@ -322,6 +322,7 @@ public class Utilities
 
                 SqlDataReader RDR = spCmd.ExecuteReader();
                 RDR.Close();
+                con.Close();
 
                 con.Open();
                 spCmd = new SqlCommand("AU_Mechanical", con);
@@ -343,9 +344,10 @@ public class Utilities
 
                 RDR = spCmd.ExecuteReader();
                 RDR.Close();
+                con.Close();
 
                 con.Open();
-               spCmd = new SqlCommand("AU_Plumbing", con);
+                spCmd = new SqlCommand("AU_Plumbing", con);
                 spCmd.CommandType = CommandType.StoredProcedure;
                 spCmd.Parameters.Add("@in_TotNumFixtures", SqlDbType.Text);
                 spCmd.Parameters.Add("@in_TotNumBathrooms", SqlDbType.Text);
@@ -380,6 +382,7 @@ public class Utilities
 
                 RDR = spCmd.ExecuteReader();
                 RDR.Close();
+                con.Close();
             }
             catch (Exception ex)
             {

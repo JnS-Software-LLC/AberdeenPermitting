@@ -152,6 +152,7 @@ public class Contact
             SqlCommand com = new SqlCommand(query, con);
             con.Open();
             SqlDataReader sqlReader = com.ExecuteReader();
+
             try
             {
                 while (sqlReader.Read())
@@ -171,13 +172,20 @@ public class Contact
                 sqlReader.Close();
             }
 
-            query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
+            con.Close();
 
-            com = new SqlCommand(query, con);
-            con.Open();
-            sqlReader = com.ExecuteReader();
+           
             try
             {
+
+                query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
+
+                con.Open();
+
+                com = new SqlCommand(query, con);
+                
+                sqlReader = com.ExecuteReader();
+
                 if (sqlReader.HasRows)
                 {
                     exist = true;
@@ -195,6 +203,8 @@ public class Contact
             {
                 sqlReader.Close();
             }
+
+            con.Close();
 
             if (exist)
             {
@@ -222,20 +232,23 @@ public class Contact
                     spCmd.Prepare();
 
 
-                    spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
-                    spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                    spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
-                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
-                    spCmd.Parameters["@in_Address"].Value = this.streetNumber + " " + this.streetName + " " + this.streetName2;
-                    spCmd.Parameters["@in_City"].Value = this.city;
-                    spCmd.Parameters["@in_State"].Value = this.state;
-                    spCmd.Parameters["@in_Zip"].Value = this.zip;
-                    spCmd.Parameters["@in_Email"].Value = this.email;
-                    spCmd.Parameters["@in_PropOwner"].Value = this.property;
+                    spCmd.Parameters["@in_CompName"].Value = this.companyName.ToString();
+                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2.ToString();
+                    spCmd.Parameters["@in_Fname"].Value = this.firstName.ToString();
+                    spCmd.Parameters["@in_Lname"].Value = this.lastName.ToString();
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone.ToString();
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone.ToString();
+                    spCmd.Parameters["@in_Address"].Value = this.streetNumber.ToString() + " " + this.streetName.ToString() + " " + this.streetName2.ToString();
+                    spCmd.Parameters["@in_City"].Value = this.city.ToString();
+                    spCmd.Parameters["@in_State"].Value = this.state.ToString();
+                    spCmd.Parameters["@in_Zip"].Value = this.zip.ToString();
+                    spCmd.Parameters["@in_Email"].Value = this.email.ToString();
+                    spCmd.Parameters["@in_PropOwner"].Value = this.property.ToString();
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close();
+                    con.Close();
                 }
                 catch (Exception ex)
                 {
@@ -268,22 +281,23 @@ public class Contact
                     spCmd.Prepare();
 
                     spCmd.Parameters["@in_ContactID"].Value = (contactCount + 1);
-                    spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2;
-                    spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                    spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
-                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
-                    spCmd.Parameters["@in_Address"].Value = this.streetNumber + " " + this.streetName + " " + this.streetName2;
-                    spCmd.Parameters["@in_City"].Value = this.city;
-                    spCmd.Parameters["@in_State"].Value = this.state;
-                    spCmd.Parameters["@in_Zip"].Value = this.zip;
-                    spCmd.Parameters["@in_Email"].Value = this.email;
-                    spCmd.Parameters["@in_PropOwner"].Value = this.property;
+                    spCmd.Parameters["@in_CompName"].Value = this.companyName.ToString();
+                    spCmd.Parameters["@in_CompName2"].Value = this.companyName2.ToString();
+                    spCmd.Parameters["@in_Fname"].Value = this.firstName.ToString();
+                    spCmd.Parameters["@in_Lname"].Value = this.lastName.ToString();
+                    spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone.ToString();
+                    spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone.ToString();
+                    spCmd.Parameters["@in_Address"].Value = this.streetNumber.ToString() + " " + this.streetName.ToString() + " " + this.streetName2.ToString();
+                    spCmd.Parameters["@in_City"].Value = this.city.ToString();
+                    spCmd.Parameters["@in_State"].Value = this.state.ToString();
+                    spCmd.Parameters["@in_Zip"].Value = this.zip.ToString();
+                    spCmd.Parameters["@in_Email"].Value = this.email.ToString();
+                    spCmd.Parameters["@in_PropOwner"].Value = this.property.ToString();
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
 
                     RDR.Close();
+                    con.Close();
                 }
                 catch (Exception ex)
                 {

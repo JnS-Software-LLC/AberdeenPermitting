@@ -75,26 +75,36 @@ namespace BuildingPermit
                 SqlCommand com = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader sqlReader = com.ExecuteReader();
+
                 try
                 {
-                    contactCount = (int)sqlReader["contactCount"];
+                    while (sqlReader.Read())
+                    {
+                        if (sqlReader.HasRows)
+                        {
+                            contactCount = (int)sqlReader["contactCount"];
+                        } 
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    sqlReader.Close();
-                }
+                
+                sqlReader.Close();
+              
+
+                con.Close();
 
                 query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
 
                 com = new SqlCommand(query, con);
                 con.Open();
                 sqlReader = com.ExecuteReader();
+               
                 try
                 {
+
                     if (sqlReader.HasRows)
                     {
                         exist = true;
@@ -141,23 +151,26 @@ namespace BuildingPermit
                         spCmd.Prepare();
 
 
-                        spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                        spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                        spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                        spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
-                        spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
-                        spCmd.Parameters["@in_Address"].Value = this.streetNumber + " " + this.streetName + " " + this.streetName2;
-                        spCmd.Parameters["@in_City"].Value = this.city;
-                        spCmd.Parameters["@in_State"].Value = this.state;
-                        spCmd.Parameters["@in_Zip"].Value = this.zip;
-                        spCmd.Parameters["@in_Email"].Value = this.email;
-                        spCmd.Parameters["@in_AberdeenLC"].Value = this.aberdeenLC;
-                        spCmd.Parameters["@in_LicenseExpDate"].Value = this.licenseExpDate;
-                        spCmd.Parameters["@in_Type"].Value = this.type;
-                        spCmd.Parameters["@in_LicenseNumber"].Value = this.licenseNumber;
+                        spCmd.Parameters["@in_CompName"].Value = this.companyName.ToString();
+                        spCmd.Parameters["@in_Fname"].Value = this.firstName.ToString();
+                        spCmd.Parameters["@in_Lname"].Value = this.lastName.ToString();
+                        spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone.ToString();
+                        spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone.ToString();
+                        spCmd.Parameters["@in_Address"].Value = this.streetNumber.ToString() + " " + this.streetName.ToString() + " " + this.streetName2.ToString();
+                        spCmd.Parameters["@in_City"].Value = this.city.ToString();
+                        spCmd.Parameters["@in_State"].Value = this.state.ToString();
+                        spCmd.Parameters["@in_Zip"].Value = this.zip.ToString();
+                        spCmd.Parameters["@in_Email"].Value = this.email.ToString();
+                        spCmd.Parameters["@in_AberdeenLC"].Value = this.aberdeenLC.ToString();
+                        spCmd.Parameters["@in_LicenseExpDate"].Value = this.licenseExpDate.ToString();
+                        spCmd.Parameters["@in_Type"].Value = this.type.ToString();
+                        spCmd.Parameters["@in_LicenseNumber"].Value = this.licenseNumber.ToString();
 
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
+
+                        RDR.Close();
+                        con.Close();
                     }
                     catch (Exception ex)
                     {
@@ -192,25 +205,26 @@ namespace BuildingPermit
                         spCmd.Prepare();
 
 
-                        spCmd.Parameters["@in_ContractorID"].Value = this.companyName;
-                        spCmd.Parameters["@in_CompName"].Value = this.companyName;
-                        spCmd.Parameters["@in_Fname"].Value = this.firstName;
-                        spCmd.Parameters["@in_Lname"].Value = this.lastName;
-                        spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone;
-                        spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone;
-                        spCmd.Parameters["@in_Address"].Value = this.streetNumber + " " + this.streetName + " " + this.streetName2;
-                        spCmd.Parameters["@in_City"].Value = this.city;
-                        spCmd.Parameters["@in_State"].Value = this.state;
-                        spCmd.Parameters["@in_Zip"].Value = this.zip;
-                        spCmd.Parameters["@in_Email"].Value = this.email;
-                        spCmd.Parameters["@in_AberdeenLC"].Value = this.aberdeenLC;
-                        spCmd.Parameters["@in_LicenseExpDate"].Value = this.licenseExpDate;
-                        spCmd.Parameters["@in_Type"].Value = this.type;
-                        spCmd.Parameters["@in_LicenseNumber"].Value = this.licenseNumber;
+                        spCmd.Parameters["@in_ContractorID"].Value = this.companyName.ToString();
+                        spCmd.Parameters["@in_CompName"].Value = this.companyName.ToString();
+                        spCmd.Parameters["@in_Fname"].Value = this.firstName.ToString();
+                        spCmd.Parameters["@in_Lname"].Value = this.lastName.ToString();
+                        spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone.ToString();
+                        spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone.ToString();
+                        spCmd.Parameters["@in_Address"].Value = this.streetNumber.ToString() + " " + this.streetName.ToString() + " " + this.streetName2.ToString();
+                        spCmd.Parameters["@in_City"].Value = this.city.ToString();
+                        spCmd.Parameters["@in_State"].Value = this.state.ToString();
+                        spCmd.Parameters["@in_Zip"].Value = this.zip.ToString();
+                        spCmd.Parameters["@in_Email"].Value = this.email.ToString();
+                        spCmd.Parameters["@in_AberdeenLC"].Value = this.aberdeenLC.ToString();
+                        spCmd.Parameters["@in_LicenseExpDate"].Value = this.licenseExpDate.ToString();
+                        spCmd.Parameters["@in_Type"].Value = this.type.ToString();
+                        spCmd.Parameters["@in_LicenseNumber"].Value = this.licenseNumber.ToString();
 
                         SqlDataReader RDR = spCmd.ExecuteReader();
 
                         RDR.Close();
+                        con.Close();
                     }
                     catch (Exception ex)
                     {

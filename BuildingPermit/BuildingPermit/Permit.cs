@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
+using System.Data;
+using System.Windows.Forms;
 
 namespace BuildingPermit
 {
@@ -74,7 +77,49 @@ namespace BuildingPermit
         
         public void save(string conStr)
         {
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand spCmd;
+                    spCmd = new SqlCommand("AU_Permit", con);
+                    spCmd.CommandType = CommandType.StoredProcedure;
 
+                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_PermitDate", SqlDbType.DateTime);
+                    spCmd.Parameters.Add("@in_InspectorID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_ParcelID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_FeeTotal", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_ContactID", SqlDbType.Int);
+                    spCmd.Parameters.Add("@in_BuildingID", SqlDbType.VarChar);
+                    spCmd.Parameters.Add("@in_Notes", SqlDbType.VarChar);
+
+                  
+
+                    spCmd.Prepare();
+
+                    spCmd.Parameters["@in_PermitID"].Value = this.permitID.ToString();
+                    spCmd.Parameters["@in_PermitDate"].Value = this.permitDate.ToString();
+                    spCmd.Parameters["@in_InspectorID"].Value = this.inspectorID.ToString();
+                    spCmd.Parameters["@in_ParcelID"].Value = this.parcelID.ToString();
+                    spCmd.Parameters["@in_FeeTotal"].Value = this.feeTotal.ToString();
+                    spCmd.Parameters["@in_ContactID"].Value = this.contactID;
+                    spCmd.Parameters["@in_BuildingID"].Value = this.buildingID.ToString();
+                    spCmd.Parameters["@in_Notes"].Value = this.notes.ToString();
+                   
+
+
+
+                    SqlDataReader RDR = spCmd.ExecuteReader();
+
+                    RDR.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         public void load(string conStr)
         {
