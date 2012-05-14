@@ -154,7 +154,13 @@ public class Contact
             SqlDataReader sqlReader = com.ExecuteReader();
             try
             {
-                contactCount = (int)sqlReader["contactCount"];
+                while (sqlReader.Read())
+                {
+                    if (sqlReader.HasRows)
+                    {
+                        contactCount = (int)sqlReader["contactCount"];
+                    } 
+                }
             }
             catch (Exception ex)
             {
@@ -165,7 +171,7 @@ public class Contact
                 sqlReader.Close();
             }
 
-            query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + companyName + ";");
+            query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
 
             com = new SqlCommand(query, con);
             con.Open();

@@ -88,7 +88,7 @@ namespace BuildingPermit
                     sqlReader.Close();
                 }
 
-                query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + companyName + ";");
+                query = String.Format("SELECT count(*) FROM contact WHERE CompName = " + this.companyName.ToString() + ";");
 
                 com = new SqlCommand(query, con);
                 con.Open();

@@ -278,7 +278,7 @@
             this.groupBox19.Location = new System.Drawing.Point(535, 38);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Size = new System.Drawing.Size(202, 212);
-            this.groupBox19.TabIndex = 203;
+            this.groupBox19.TabIndex = 3;
             this.groupBox19.TabStop = false;
             // 
             // btnSearchPermitNum
@@ -400,7 +400,7 @@
             this.groupBox18.Location = new System.Drawing.Point(535, 256);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(202, 65);
-            this.groupBox18.TabIndex = 202;
+            this.groupBox18.TabIndex = 4;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Balance";
             // 
@@ -409,7 +409,7 @@
             this.txtBalance.Location = new System.Drawing.Point(51, 26);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(94, 20);
-            this.txtBalance.TabIndex = 201;
+            this.txtBalance.TabIndex = 0;
             // 
             // btnFees
             // 
@@ -432,7 +432,7 @@
             this.groupBox14.Location = new System.Drawing.Point(20, 340);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(493, 100);
-            this.groupBox14.TabIndex = 199;
+            this.groupBox14.TabIndex = 2;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Owner Information";
             // 
@@ -442,7 +442,7 @@
             this.txtOwnerCell.Mask = "(999) 000-0000";
             this.txtOwnerCell.Name = "txtOwnerCell";
             this.txtOwnerCell.Size = new System.Drawing.Size(100, 20);
-            this.txtOwnerCell.TabIndex = 198;
+            this.txtOwnerCell.TabIndex = 2;
             // 
             // label1
             // 
@@ -459,7 +459,7 @@
             this.txtOwnerPhone.Mask = "(999) 000-0000";
             this.txtOwnerPhone.Name = "txtOwnerPhone";
             this.txtOwnerPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtOwnerPhone.TabIndex = 196;
+            this.txtOwnerPhone.TabIndex = 1;
             // 
             // label12
             // 
@@ -475,7 +475,7 @@
             this.txtOwner.Location = new System.Drawing.Point(70, 19);
             this.txtOwner.Name = "txtOwner";
             this.txtOwner.Size = new System.Drawing.Size(378, 20);
-            this.txtOwner.TabIndex = 177;
+            this.txtOwner.TabIndex = 0;
             // 
             // label13
             // 
@@ -498,7 +498,7 @@
             this.groupBox13.Location = new System.Drawing.Point(20, 38);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(493, 100);
-            this.groupBox13.TabIndex = 192;
+            this.groupBox13.TabIndex = 0;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Applicant Information";
             // 
@@ -508,7 +508,7 @@
             this.txtCell.Mask = "(999) 000-0000";
             this.txtCell.Name = "txtCell";
             this.txtCell.Size = new System.Drawing.Size(100, 20);
-            this.txtCell.TabIndex = 198;
+            this.txtCell.TabIndex = 3;
             // 
             // label11
             // 
@@ -525,7 +525,7 @@
             this.txtApplicantPhone.Mask = "(999) 000-0000";
             this.txtApplicantPhone.Name = "txtApplicantPhone";
             this.txtApplicantPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtApplicantPhone.TabIndex = 196;
+            this.txtApplicantPhone.TabIndex = 2;
             // 
             // label10
             // 
@@ -533,7 +533,7 @@
             this.label10.Location = new System.Drawing.Point(8, 60);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 13);
-            this.label10.TabIndex = 195;
+            this.label10.TabIndex = 1;
             this.label10.Text = "Primary Phone #";
             // 
             // txtApplicant
@@ -541,7 +541,7 @@
             this.txtApplicant.Location = new System.Drawing.Point(70, 19);
             this.txtApplicant.Name = "txtApplicant";
             this.txtApplicant.Size = new System.Drawing.Size(378, 20);
-            this.txtApplicant.TabIndex = 177;
+            this.txtApplicant.TabIndex = 0;
             // 
             // label2
             // 
@@ -577,7 +577,7 @@
             this.groupBox12.Location = new System.Drawing.Point(20, 147);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(493, 177);
-            this.groupBox12.TabIndex = 191;
+            this.groupBox12.TabIndex = 1;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Property Information";
             // 
@@ -611,7 +611,7 @@
             this.cmboProposedUse.Location = new System.Drawing.Point(339, 137);
             this.cmboProposedUse.Name = "cmboProposedUse";
             this.cmboProposedUse.Size = new System.Drawing.Size(121, 21);
-            this.cmboProposedUse.TabIndex = 210;
+            this.cmboProposedUse.TabIndex = 9;
             this.cmboProposedUse.Text = "Proposed Use";
             // 
             // cmboCurrentUse
@@ -620,7 +620,7 @@
             this.cmboCurrentUse.Location = new System.Drawing.Point(180, 137);
             this.cmboCurrentUse.Name = "cmboCurrentUse";
             this.cmboCurrentUse.Size = new System.Drawing.Size(121, 21);
-            this.cmboCurrentUse.TabIndex = 209;
+            this.cmboCurrentUse.TabIndex = 8;
             this.cmboCurrentUse.Text = "Current Use";
             // 
             // cmboOccupancyType
@@ -629,7 +629,7 @@
             this.cmboOccupancyType.Location = new System.Drawing.Point(20, 137);
             this.cmboOccupancyType.Name = "cmboOccupancyType";
             this.cmboOccupancyType.Size = new System.Drawing.Size(121, 21);
-            this.cmboOccupancyType.TabIndex = 208;
+            this.cmboOccupancyType.TabIndex = 7;
             this.cmboOccupancyType.Text = "Occupancy Type";
             // 
             // txtSideSetback
@@ -637,7 +637,7 @@
             this.txtSideSetback.Location = new System.Drawing.Point(333, 107);
             this.txtSideSetback.Name = "txtSideSetback";
             this.txtSideSetback.Size = new System.Drawing.Size(95, 20);
-            this.txtSideSetback.TabIndex = 205;
+            this.txtSideSetback.TabIndex = 6;
             // 
             // label8
             // 
@@ -654,7 +654,7 @@
             this.txtReatSetback.Location = new System.Drawing.Point(333, 78);
             this.txtReatSetback.Name = "txtReatSetback";
             this.txtReatSetback.Size = new System.Drawing.Size(95, 20);
-            this.txtReatSetback.TabIndex = 203;
+            this.txtReatSetback.TabIndex = 4;
             // 
             // label7
             // 
@@ -671,7 +671,7 @@
             this.txtFrontSetback.Location = new System.Drawing.Point(107, 104);
             this.txtFrontSetback.Name = "txtFrontSetback";
             this.txtFrontSetback.Size = new System.Drawing.Size(95, 20);
-            this.txtFrontSetback.TabIndex = 201;
+            this.txtFrontSetback.TabIndex = 5;
             // 
             // label6
             // 
@@ -688,7 +688,7 @@
             this.txtZoningDistrict.Location = new System.Drawing.Point(107, 78);
             this.txtZoningDistrict.Name = "txtZoningDistrict";
             this.txtZoningDistrict.Size = new System.Drawing.Size(95, 20);
-            this.txtZoningDistrict.TabIndex = 199;
+            this.txtZoningDistrict.TabIndex = 3;
             // 
             // label5
             // 
@@ -705,7 +705,7 @@
             this.txtLRKNumber.Location = new System.Drawing.Point(251, 49);
             this.txtLRKNumber.Name = "txtLRKNumber";
             this.txtLRKNumber.Size = new System.Drawing.Size(95, 20);
-            this.txtLRKNumber.TabIndex = 197;
+            this.txtLRKNumber.TabIndex = 2;
             // 
             // label4
             // 
@@ -722,7 +722,7 @@
             this.txtLotNumber.Location = new System.Drawing.Point(70, 49);
             this.txtLotNumber.Name = "txtLotNumber";
             this.txtLotNumber.Size = new System.Drawing.Size(95, 20);
-            this.txtLotNumber.TabIndex = 195;
+            this.txtLotNumber.TabIndex = 1;
             // 
             // label3
             // 
@@ -789,7 +789,7 @@
             this.groupBox17.Location = new System.Drawing.Point(35, 159);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(583, 96);
-            this.groupBox17.TabIndex = 223;
+            this.groupBox17.TabIndex = 2;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Heating/Air Conditioning/Mechanical";
             // 
@@ -798,7 +798,7 @@
             this.txtSystemTons.Location = new System.Drawing.Point(113, 58);
             this.txtSystemTons.Name = "txtSystemTons";
             this.txtSystemTons.Size = new System.Drawing.Size(78, 20);
-            this.txtSystemTons.TabIndex = 192;
+            this.txtSystemTons.TabIndex = 2;
             // 
             // label17
             // 
@@ -818,7 +818,7 @@
             this.cmboSystemType.Location = new System.Drawing.Point(220, 61);
             this.cmboSystemType.Name = "cmboSystemType";
             this.cmboSystemType.Size = new System.Drawing.Size(195, 21);
-            this.cmboSystemType.TabIndex = 191;
+            this.cmboSystemType.TabIndex = 3;
             this.cmboSystemType.Text = "System Type";
             // 
             // groupBox16
@@ -901,7 +901,7 @@
             this.groupBox6.Location = new System.Drawing.Point(39, 399);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(581, 62);
-            this.groupBox6.TabIndex = 222;
+            this.groupBox6.TabIndex = 4;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Electrical";
             // 
@@ -984,7 +984,7 @@
             this.groupBox8.Location = new System.Drawing.Point(39, 261);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(581, 132);
-            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Plumbing";
             // 
@@ -993,7 +993,7 @@
             this.txtNumWaterHeaters.Location = new System.Drawing.Point(119, 95);
             this.txtNumWaterHeaters.Name = "txtNumWaterHeaters";
             this.txtNumWaterHeaters.Size = new System.Drawing.Size(27, 20);
-            this.txtNumWaterHeaters.TabIndex = 8;
+            this.txtNumWaterHeaters.TabIndex = 9;
             this.txtNumWaterHeaters.Leave += new System.EventHandler(this.txtNumWaterHeaters_Leave);
             // 
             // label56
@@ -1010,7 +1010,7 @@
             this.txtNumSpas.Location = new System.Drawing.Point(502, 74);
             this.txtNumSpas.Name = "txtNumSpas";
             this.txtNumSpas.Size = new System.Drawing.Size(27, 20);
-            this.txtNumSpas.TabIndex = 7;
+            this.txtNumSpas.TabIndex = 8;
             this.txtNumSpas.Leave += new System.EventHandler(this.txtNumSpas_Leave);
             // 
             // label57
@@ -1027,7 +1027,7 @@
             this.txtNumWetBars.Location = new System.Drawing.Point(299, 95);
             this.txtNumWetBars.Name = "txtNumWetBars";
             this.txtNumWetBars.Size = new System.Drawing.Size(28, 20);
-            this.txtNumWetBars.TabIndex = 9;
+            this.txtNumWetBars.TabIndex = 10;
             this.txtNumWetBars.Leave += new System.EventHandler(this.txtNumWetBars_Leave);
             // 
             // label58
@@ -1044,7 +1044,7 @@
             this.txtNumDishwashers.Location = new System.Drawing.Point(119, 69);
             this.txtNumDishwashers.Name = "txtNumDishwashers";
             this.txtNumDishwashers.Size = new System.Drawing.Size(27, 20);
-            this.txtNumDishwashers.TabIndex = 5;
+            this.txtNumDishwashers.TabIndex = 6;
             this.txtNumDishwashers.Leave += new System.EventHandler(this.txtNumDishwashers_Leave);
             // 
             // label59
@@ -1061,7 +1061,7 @@
             this.txtNumClothesWashers.Location = new System.Drawing.Point(501, 48);
             this.txtNumClothesWashers.Name = "txtNumClothesWashers";
             this.txtNumClothesWashers.Size = new System.Drawing.Size(27, 20);
-            this.txtNumClothesWashers.TabIndex = 4;
+            this.txtNumClothesWashers.TabIndex = 5;
             this.txtNumClothesWashers.Leave += new System.EventHandler(this.txtNumClothesWashers_Leave);
             // 
             // label60
@@ -1078,7 +1078,7 @@
             this.txtNumTubs.Location = new System.Drawing.Point(299, 69);
             this.txtNumTubs.Name = "txtNumTubs";
             this.txtNumTubs.Size = new System.Drawing.Size(27, 20);
-            this.txtNumTubs.TabIndex = 6;
+            this.txtNumTubs.TabIndex = 7;
             this.txtNumTubs.Leave += new System.EventHandler(this.txtNumTubs_Leave);
             // 
             // label61
@@ -1095,7 +1095,7 @@
             this.txtNumShowers.Location = new System.Drawing.Point(299, 45);
             this.txtNumShowers.Name = "txtNumShowers";
             this.txtNumShowers.Size = new System.Drawing.Size(28, 20);
-            this.txtNumShowers.TabIndex = 3;
+            this.txtNumShowers.TabIndex = 4;
             this.txtNumShowers.Leave += new System.EventHandler(this.txtNumShowers_Leave);
             // 
             // label62
@@ -1185,7 +1185,7 @@
             this.groupBox10.Location = new System.Drawing.Point(35, 6);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(703, 47);
-            this.groupBox10.TabIndex = 219;
+            this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "General";
             // 
@@ -1255,7 +1255,7 @@
             this.groupBox15.Location = new System.Drawing.Point(35, 70);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(703, 80);
-            this.groupBox15.TabIndex = 218;
+            this.groupBox15.TabIndex = 1;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Building";
             // 
@@ -1392,7 +1392,7 @@
             this.groupBox11.Location = new System.Drawing.Point(20, 338);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(713, 41);
-            this.groupBox11.TabIndex = 195;
+            this.groupBox11.TabIndex = 5;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Irrigation Sub";
             // 
@@ -1426,7 +1426,7 @@
             this.txtIrrigationPhone.Mask = "(999) 000-0000";
             this.txtIrrigationPhone.Name = "txtIrrigationPhone";
             this.txtIrrigationPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtIrrigationPhone.TabIndex = 194;
+            this.txtIrrigationPhone.TabIndex = 2;
             // 
             // label37
             // 
@@ -1442,7 +1442,7 @@
             this.txtIrrigationLisenceNumber.Location = new System.Drawing.Point(353, 14);
             this.txtIrrigationLisenceNumber.Name = "txtIrrigationLisenceNumber";
             this.txtIrrigationLisenceNumber.Size = new System.Drawing.Size(89, 20);
-            this.txtIrrigationLisenceNumber.TabIndex = 191;
+            this.txtIrrigationLisenceNumber.TabIndex = 1;
             // 
             // label38
             // 
@@ -1458,7 +1458,7 @@
             this.txtIrrigationName.Location = new System.Drawing.Point(49, 15);
             this.txtIrrigationName.Name = "txtIrrigationName";
             this.txtIrrigationName.Size = new System.Drawing.Size(227, 20);
-            this.txtIrrigationName.TabIndex = 190;
+            this.txtIrrigationName.TabIndex = 0;
             // 
             // groupBox5
             // 
@@ -1472,7 +1472,7 @@
             this.groupBox5.Location = new System.Drawing.Point(20, 291);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(713, 41);
-            this.groupBox5.TabIndex = 193;
+            this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Gas Line Sub";
             // 
@@ -1506,7 +1506,7 @@
             this.txtGasPhone.Mask = "(999) 000-0000";
             this.txtGasPhone.Name = "txtGasPhone";
             this.txtGasPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtGasPhone.TabIndex = 194;
+            this.txtGasPhone.TabIndex = 2;
             // 
             // label35
             // 
@@ -1522,7 +1522,7 @@
             this.txtGasLisenceNumber.Location = new System.Drawing.Point(353, 14);
             this.txtGasLisenceNumber.Name = "txtGasLisenceNumber";
             this.txtGasLisenceNumber.Size = new System.Drawing.Size(89, 20);
-            this.txtGasLisenceNumber.TabIndex = 191;
+            this.txtGasLisenceNumber.TabIndex = 1;
             // 
             // label36
             // 
@@ -1538,7 +1538,7 @@
             this.txtGasName.Location = new System.Drawing.Point(49, 15);
             this.txtGasName.Name = "txtGasName";
             this.txtGasName.Size = new System.Drawing.Size(227, 20);
-            this.txtGasName.TabIndex = 190;
+            this.txtGasName.TabIndex = 0;
             // 
             // groupBox4
             // 
@@ -1552,7 +1552,7 @@
             this.groupBox4.Location = new System.Drawing.Point(20, 244);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(713, 41);
-            this.groupBox4.TabIndex = 192;
+            this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Mechanical Sub";
             // 
@@ -1586,7 +1586,7 @@
             this.txtMechanicalPhone.Mask = "(999) 000-0000";
             this.txtMechanicalPhone.Name = "txtMechanicalPhone";
             this.txtMechanicalPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtMechanicalPhone.TabIndex = 194;
+            this.txtMechanicalPhone.TabIndex = 2;
             // 
             // label33
             // 
@@ -1602,7 +1602,7 @@
             this.txtMechanicalLisenceNumber.Location = new System.Drawing.Point(353, 14);
             this.txtMechanicalLisenceNumber.Name = "txtMechanicalLisenceNumber";
             this.txtMechanicalLisenceNumber.Size = new System.Drawing.Size(89, 20);
-            this.txtMechanicalLisenceNumber.TabIndex = 191;
+            this.txtMechanicalLisenceNumber.TabIndex = 1;
             // 
             // label34
             // 
@@ -1618,7 +1618,7 @@
             this.txtMechanicalName.Location = new System.Drawing.Point(49, 15);
             this.txtMechanicalName.Name = "txtMechanicalName";
             this.txtMechanicalName.Size = new System.Drawing.Size(227, 20);
-            this.txtMechanicalName.TabIndex = 190;
+            this.txtMechanicalName.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -1632,7 +1632,7 @@
             this.groupBox3.Location = new System.Drawing.Point(20, 197);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(713, 41);
-            this.groupBox3.TabIndex = 191;
+            this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plumbing Sub";
             // 
@@ -1666,7 +1666,7 @@
             this.txtPlumbingPhone.Mask = "(999) 000-0000";
             this.txtPlumbingPhone.Name = "txtPlumbingPhone";
             this.txtPlumbingPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtPlumbingPhone.TabIndex = 194;
+            this.txtPlumbingPhone.TabIndex = 2;
             // 
             // label31
             // 
@@ -1682,7 +1682,7 @@
             this.txtPlumbingLisenceNumber.Location = new System.Drawing.Point(353, 14);
             this.txtPlumbingLisenceNumber.Name = "txtPlumbingLisenceNumber";
             this.txtPlumbingLisenceNumber.Size = new System.Drawing.Size(89, 20);
-            this.txtPlumbingLisenceNumber.TabIndex = 191;
+            this.txtPlumbingLisenceNumber.TabIndex = 1;
             // 
             // label32
             // 
@@ -1698,7 +1698,7 @@
             this.txtPlumbingName.Location = new System.Drawing.Point(49, 15);
             this.txtPlumbingName.Name = "txtPlumbingName";
             this.txtPlumbingName.Size = new System.Drawing.Size(227, 20);
-            this.txtPlumbingName.TabIndex = 190;
+            this.txtPlumbingName.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -1719,7 +1719,7 @@
             this.groupBox2.Location = new System.Drawing.Point(20, 24);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(713, 109);
-            this.groupBox2.TabIndex = 190;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "General Contractor";
             // 
@@ -1752,7 +1752,7 @@
             this.txtContractorEmail.Location = new System.Drawing.Point(561, 47);
             this.txtContractorEmail.Name = "txtContractorEmail";
             this.txtContractorEmail.Size = new System.Drawing.Size(114, 20);
-            this.txtContractorEmail.TabIndex = 201;
+            this.txtContractorEmail.TabIndex = 5;
             // 
             // label30
             // 
@@ -1769,7 +1769,7 @@
             this.txtSiteManagerPhone.Mask = "(999) 000-0000";
             this.txtSiteManagerPhone.Name = "txtSiteManagerPhone";
             this.txtSiteManagerPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtSiteManagerPhone.TabIndex = 199;
+            this.txtSiteManagerPhone.TabIndex = 4;
             // 
             // label29
             // 
@@ -1795,7 +1795,7 @@
             this.txtContractorPhone.Mask = "(999) 000-0000";
             this.txtContractorPhone.Name = "txtContractorPhone";
             this.txtContractorPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtContractorPhone.TabIndex = 196;
+            this.txtContractorPhone.TabIndex = 2;
             // 
             // label27
             // 
@@ -1811,7 +1811,7 @@
             this.txtSiteManagerName.Location = new System.Drawing.Point(89, 47);
             this.txtSiteManagerName.Name = "txtSiteManagerName";
             this.txtSiteManagerName.Size = new System.Drawing.Size(191, 20);
-            this.txtSiteManagerName.TabIndex = 162;
+            this.txtSiteManagerName.TabIndex = 3;
             // 
             // label105
             // 
@@ -1827,7 +1827,7 @@
             this.txtContractorLiscence.Location = new System.Drawing.Point(395, 21);
             this.txtContractorLiscence.Name = "txtContractorLiscence";
             this.txtContractorLiscence.Size = new System.Drawing.Size(92, 20);
-            this.txtContractorLiscence.TabIndex = 161;
+            this.txtContractorLiscence.TabIndex = 1;
             // 
             // label106
             // 
@@ -1843,7 +1843,7 @@
             this.txtContractorName.Location = new System.Drawing.Point(70, 22);
             this.txtContractorName.Name = "txtContractorName";
             this.txtContractorName.Size = new System.Drawing.Size(228, 20);
-            this.txtContractorName.TabIndex = 160;
+            this.txtContractorName.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -1857,7 +1857,7 @@
             this.groupBox1.Location = new System.Drawing.Point(20, 150);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(713, 41);
-            this.groupBox1.TabIndex = 189;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Electrical Sub";
             // 
@@ -1891,7 +1891,7 @@
             this.txtElectricalPhone.Mask = "(999) 000-0000";
             this.txtElectricalPhone.Name = "txtElectricalPhone";
             this.txtElectricalPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtElectricalPhone.TabIndex = 194;
+            this.txtElectricalPhone.TabIndex = 2;
             // 
             // label26
             // 
@@ -1907,7 +1907,7 @@
             this.txtElectricalLisenceNumber.Location = new System.Drawing.Point(353, 14);
             this.txtElectricalLisenceNumber.Name = "txtElectricalLisenceNumber";
             this.txtElectricalLisenceNumber.Size = new System.Drawing.Size(89, 20);
-            this.txtElectricalLisenceNumber.TabIndex = 191;
+            this.txtElectricalLisenceNumber.TabIndex = 1;
             // 
             // label95
             // 
@@ -1923,7 +1923,7 @@
             this.txtElectricalName.Location = new System.Drawing.Point(49, 15);
             this.txtElectricalName.Name = "txtElectricalName";
             this.txtElectricalName.Size = new System.Drawing.Size(227, 20);
-            this.txtElectricalName.TabIndex = 190;
+            this.txtElectricalName.TabIndex = 0;
             // 
             // tabPage2
             // 

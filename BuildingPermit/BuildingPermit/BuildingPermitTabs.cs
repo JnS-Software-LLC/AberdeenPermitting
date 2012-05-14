@@ -1009,6 +1009,7 @@ namespace BuildingPermit
             this.building.porchSF = txtPorchSF.Text;
             this.building.proposedUse = cmboProposedUse.Text;
             this.building.totalSF = txtSquareFeet.Text;
+            this.building.permitId = txtPermitNumber.Text;
             
             this.building.save(conStr);
 

@@ -43,7 +43,7 @@ public class Building
         get { return myLRK; }
         set { myLRK = value; }
     }
-    
+
 
     /// <summary>
     /// Septic boolean
@@ -418,42 +418,58 @@ public class Building
             SqlCommand com = new SqlCommand(query, con);
             con.Open();
             SqlDataReader sqlReader = com.ExecuteReader();
-            try
-            {
-                buildingCount = (int)sqlReader["buildingCount"];
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                sqlReader.Close();
-            }
 
-            query = String.Format("SELECT count(*) FROM building WHERE BuildingID = " + buildingID + ";");
-
-            com = new SqlCommand(query, con);
-            con.Open();
-            sqlReader = com.ExecuteReader();
             try
             {
                 if (sqlReader.HasRows)
                 {
-                    exist = true;
+                    while (sqlReader.Read())
+                    {
+                        buildingCount = Convert.ToInt16(sqlReader["buildingCount"].ToString());
+                    }
                 }
-                else
-                {
-                    exist = false;
-                }
+
+                con.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
+
+
+
+            if (this.buildingID != null)
             {
-                sqlReader.Close();
+                try
+                {
+                    con.Open();
+
+                    query = String.Format("SELECT count(*) FROM Building WHERE Building.BuildingID = " + this.buildingID.ToString() + " AND  Permit.BuildingID = " + this.buildingID.ToString() + "AND  Permit.PermitID = " + this.permitId.ToString() + ";");
+                    com = new SqlCommand(query, con);
+                    sqlReader = com.ExecuteReader();
+
+
+                    if (sqlReader.HasRows)
+                    {
+                        exist = true;
+                    }
+                    else
+                    {
+                        exist = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    sqlReader.Close();
+                } 
+            }
+            else
+            {
+                exist = false;
             }
 
             try
@@ -488,7 +504,7 @@ public class Building
                     spCmd.Parameters["@in_BuildingID"].Value = this.buildingID;
                     spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
                     spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
-                    spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
+                    spCmd.Parameters["@in_Dimensions"].Value = null;
                     spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
                     spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
                     spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
@@ -507,7 +523,7 @@ public class Building
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
 
-                    RDR.Close(); 
+                    RDR.Close();
                 }
                 else
                 {
@@ -540,26 +556,26 @@ public class Building
                     this.buildingID = (this.lrk + "B" + (buildingCount + 1).ToString());
                     spCmd.Parameters["@in_TypeOFConst"].Value = this.buildingType;
                     spCmd.Parameters["@in_ProposedUse"].Value = this.proposedUse;
-                    spCmd.Parameters["@in_Dimensions"].Value = this.dimensions;
+                    spCmd.Parameters["@in_Dimensions"].Value = null;
                     spCmd.Parameters["@in_HeatedSF"].Value = this.heatedSF;
                     spCmd.Parameters["@in_NumberOfStories"].Value = this.numStories;
                     spCmd.Parameters["@in_GarageSF"].Value = this.garageSF;
                     spCmd.Parameters["@in_Basement"].Value = this.basementExist;
                     spCmd.Parameters["@in_PorchSF"].Value = this.porchSF;
-                    spCmd.Parameters["@in-DeckSF"].Value = this.deckSF;
+                    spCmd.Parameters["@in_DeckSF"].Value = this.deckSF;
                     spCmd.Parameters["@in_InstallINsulation"].Value = this.installInstalation;
                     spCmd.Parameters["@in_EstCostOfConst"].Value = this.estimatedCost;
                     spCmd.Parameters["@in_privateWell"].Value = this.privateWell;
                     spCmd.Parameters["@in_TownSewer"].Value = this.townSewer;
                     spCmd.Parameters["@in_townWater"].Value = this.townWater;
-                    spCmd.Parameters["@in_SepImproveMentPermit"].Value = this.septImprovement;
+                    spCmd.Parameters["@in_SeptImprovePermit"].Value = this.septImprovement;
                     spCmd.Parameters["@in_PermitID"].Value = this.permitId;
                     spCmd.Parameters["@in_TotalSF"].Value = this.totalSF;
                     spCmd.Parameters["@in_BasementSF"].Value = this.basementSF;
 
                     SqlDataReader RDR = spCmd.ExecuteReader();
 
-                    RDR.Close(); 
+                    RDR.Close();
                 }
             }
             catch (Exception ex)
