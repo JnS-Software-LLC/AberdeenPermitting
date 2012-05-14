@@ -36,7 +36,6 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtStreetName2 = new System.Windows.Forms.TextBox();
-            this.txtType = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtStreetName = new System.Windows.Forms.TextBox();
@@ -63,10 +62,9 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
-            this.cmbContractorType = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dtLicenseexpiration = new System.Windows.Forms.DateTimePicker();
+            this.combContractorsType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtBuildingLicense
@@ -74,7 +72,7 @@
             this.txtBuildingLicense.Location = new System.Drawing.Point(305, 144);
             this.txtBuildingLicense.Name = "txtBuildingLicense";
             this.txtBuildingLicense.Size = new System.Drawing.Size(98, 20);
-            this.txtBuildingLicense.TabIndex = 248;
+            this.txtBuildingLicense.TabIndex = 15;
             // 
             // label94
             // 
@@ -90,7 +88,7 @@
             this.txtLicense.Location = new System.Drawing.Point(67, 144);
             this.txtLicense.Name = "txtLicense";
             this.txtLicense.Size = new System.Drawing.Size(141, 20);
-            this.txtLicense.TabIndex = 246;
+            this.txtLicense.TabIndex = 4;
             // 
             // label95
             // 
@@ -106,18 +104,20 @@
             this.btnCancel.Location = new System.Drawing.Point(385, 314);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 244;
+            this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSubmit
             // 
             this.btnSubmit.Location = new System.Drawing.Point(280, 314);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 243;
+            this.btnSubmit.TabIndex = 17;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // label10
             // 
@@ -133,19 +133,12 @@
             this.txtStreetName2.Location = new System.Drawing.Point(57, 247);
             this.txtStreetName2.Name = "txtStreetName2";
             this.txtStreetName2.Size = new System.Drawing.Size(403, 20);
-            this.txtStreetName2.TabIndex = 241;
-            // 
-            // txtType
-            // 
-            this.txtType.Location = new System.Drawing.Point(417, 221);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(43, 20);
-            this.txtType.TabIndex = 240;
+            this.txtStreetName2.TabIndex = 8;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(379, 225);
+            this.label23.Location = new System.Drawing.Point(220, 180);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(31, 13);
             this.label23.TabIndex = 239;
@@ -165,7 +158,7 @@
             this.txtStreetName.Location = new System.Drawing.Point(184, 221);
             this.txtStreetName.Name = "txtStreetName";
             this.txtStreetName.Size = new System.Drawing.Size(179, 20);
-            this.txtStreetName.TabIndex = 237;
+            this.txtStreetName.TabIndex = 7;
             // 
             // label21
             // 
@@ -181,7 +174,7 @@
             this.txtLName.Location = new System.Drawing.Point(67, 118);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(141, 20);
-            this.txtLName.TabIndex = 235;
+            this.txtLName.TabIndex = 3;
             // 
             // label20
             // 
@@ -197,7 +190,7 @@
             this.txtMName.Location = new System.Drawing.Point(67, 92);
             this.txtMName.Name = "txtMName";
             this.txtMName.Size = new System.Drawing.Size(141, 20);
-            this.txtMName.TabIndex = 233;
+            this.txtMName.TabIndex = 2;
             // 
             // label19
             // 
@@ -213,7 +206,7 @@
             this.txtCompany.Location = new System.Drawing.Point(97, 12);
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(360, 20);
-            this.txtCompany.TabIndex = 231;
+            this.txtCompany.TabIndex = 0;
             // 
             // label9
             // 
@@ -229,7 +222,7 @@
             this.txtFName.Location = new System.Drawing.Point(67, 66);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(141, 20);
-            this.txtFName.TabIndex = 229;
+            this.txtFName.TabIndex = 1;
             // 
             // txtCell
             // 
@@ -237,7 +230,7 @@
             this.txtCell.Mask = "(999) 000-0000";
             this.txtCell.Name = "txtCell";
             this.txtCell.Size = new System.Drawing.Size(100, 20);
-            this.txtCell.TabIndex = 228;
+            this.txtCell.TabIndex = 13;
             // 
             // txtPhone
             // 
@@ -245,7 +238,7 @@
             this.txtPhone.Mask = "(999) 000-0000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
-            this.txtPhone.TabIndex = 227;
+            this.txtPhone.TabIndex = 12;
             // 
             // Label8
             // 
@@ -261,7 +254,7 @@
             this.txtEmail.Location = new System.Drawing.Point(303, 114);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(159, 20);
-            this.txtEmail.TabIndex = 222;
+            this.txtEmail.TabIndex = 14;
             // 
             // Label7
             // 
@@ -277,7 +270,7 @@
             this.txtZip.Location = new System.Drawing.Point(390, 278);
             this.txtZip.Name = "txtZip";
             this.txtZip.Size = new System.Drawing.Size(70, 20);
-            this.txtZip.TabIndex = 224;
+            this.txtZip.TabIndex = 11;
             // 
             // Label6
             // 
@@ -293,7 +286,7 @@
             this.txtState.Location = new System.Drawing.Point(300, 277);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(43, 20);
-            this.txtState.TabIndex = 226;
+            this.txtState.TabIndex = 10;
             // 
             // Label5
             // 
@@ -309,7 +302,7 @@
             this.txtCity.Location = new System.Drawing.Point(57, 277);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(182, 20);
-            this.txtCity.TabIndex = 223;
+            this.txtCity.TabIndex = 9;
             // 
             // Label4
             // 
@@ -325,7 +318,7 @@
             this.txtStreetNumber.Location = new System.Drawing.Point(57, 221);
             this.txtStreetNumber.Name = "txtStreetNumber";
             this.txtStreetNumber.Size = new System.Drawing.Size(80, 20);
-            this.txtStreetNumber.TabIndex = 225;
+            this.txtStreetNumber.TabIndex = 6;
             // 
             // Label3
             // 
@@ -354,25 +347,6 @@
             this.Label1.TabIndex = 216;
             this.Label1.Text = "First Name";
             // 
-            // cmbContractorType
-            // 
-            this.cmbContractorType.FormattingEnabled = true;
-            this.cmbContractorType.Items.AddRange(new object[] {
-            "*pull from query"});
-            this.cmbContractorType.Location = new System.Drawing.Point(333, 38);
-            this.cmbContractorType.Name = "cmbContractorType";
-            this.cmbContractorType.Size = new System.Drawing.Size(124, 21);
-            this.cmbContractorType.TabIndex = 249;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(240, 41);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 13);
-            this.label11.TabIndex = 250;
-            this.label11.Text = "Contractor Type";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -388,17 +362,36 @@
             this.dtLicenseexpiration.Location = new System.Drawing.Point(99, 170);
             this.dtLicenseexpiration.Name = "dtLicenseexpiration";
             this.dtLicenseexpiration.Size = new System.Drawing.Size(84, 20);
-            this.dtLicenseexpiration.TabIndex = 251;
+            this.dtLicenseexpiration.TabIndex = 5;
+            // 
+            // combContractorsType
+            // 
+            this.combContractorsType.FormattingEnabled = true;
+            this.combContractorsType.Items.AddRange(new object[] {
+            "--Choose Contractors Type--",
+            "General Contractor",
+            "HVAC",
+            "Electrical",
+            "Mechanical",
+            "Plumbing",
+            "GAS",
+            "Irrigation",
+            "Fire Sprinkler",
+            "Refrigeration",
+            "Sign Contractor"});
+            this.combContractorsType.Location = new System.Drawing.Point(260, 177);
+            this.combContractorsType.Name = "combContractorsType";
+            this.combContractorsType.Size = new System.Drawing.Size(202, 21);
+            this.combContractorsType.TabIndex = 16;
             // 
             // ContractorAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 351);
+            this.Controls.Add(this.combContractorsType);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.dtLicenseexpiration);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cmbContractorType);
             this.Controls.Add(this.txtBuildingLicense);
             this.Controls.Add(this.label94);
             this.Controls.Add(this.txtLicense);
@@ -407,7 +400,6 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtStreetName2);
-            this.Controls.Add(this.txtType);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.txtStreetName);
@@ -451,7 +443,6 @@
         private System.Windows.Forms.Button btnSubmit;
         internal System.Windows.Forms.Label label10;
         internal System.Windows.Forms.TextBox txtStreetName2;
-        internal System.Windows.Forms.TextBox txtType;
         internal System.Windows.Forms.Label label23;
         internal System.Windows.Forms.Label label22;
         internal System.Windows.Forms.TextBox txtStreetName;
@@ -478,9 +469,8 @@
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.ComboBox cmbContractorType;
-        internal System.Windows.Forms.Label label11;
         internal System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dtLicenseexpiration;
+        private System.Windows.Forms.ComboBox combContractorsType;
     }
 }

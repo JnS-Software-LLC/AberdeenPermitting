@@ -413,6 +413,7 @@ namespace BuildingPermit
         private void btnContractorAdd_Click(object sender, EventArgs e)
         {
             Form frmContractorAdd = new ContractorAdd();
+            cmboConstructionType.SelectedIndex = 0;
             frmContractorAdd.Show();
         }
 
@@ -978,6 +979,11 @@ namespace BuildingPermit
         public string _txtOwnerPhone { set { txtOwnerPhone.Text = value; } }
         public string _txtOwnerCell { set { txtOwnerCell.Text = value; } }
         public string _txtProperty { set { txtProperty.Text = value; } }
+        
+      
+
+
+
 
         private void btnCancelNotes_Click(object sender, EventArgs e)
         {
