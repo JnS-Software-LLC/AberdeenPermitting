@@ -73,6 +73,44 @@ namespace BuildingPermit
 
                         RDR.Close();
                         con.Close();
+
+                        if (combContractorsType.Text == "General Contractor")
+                        {
+                            pf._txtContractorName = txtCompany.Text;
+                            pf._txtContractorLiscence = txtBuildingLicense.Text;
+                            pf._txtContractorPhone = txtPhone.Text;
+                            pf._txtContractorEmail = txtEmail.Text;
+                        }
+                        else if (combContractorsType.Text == "Electrical")
+                        {
+                            pf._txtElectricalName = txtCompany.Text;
+                            pf._txtElectricalLisenceNumber = txtBuildingLicense.Text;
+                            pf._txtElectricalPhone = txtPhone.Text;
+                        }
+                        else if (combContractorsType.Text == "Plumbing")
+                        {
+                            pf._txtPlumbingName = txtCompany.Text;
+                            pf._txtPlumbingLisenceNumber = txtBuildingLicense.Text;
+                            pf._txtPlumbingPhone = txtPhone.Text;
+                        }
+                        else if (combContractorsType.Text == "HVAC")
+                        {
+                            pf._txtMechanicalName = txtCompany.Text;
+                            pf._txtMechanicalLisenceNumber = txtBuildingLicense.Text;
+                            pf._txtMechanicalPhone = txtPhone.Text;
+                        }
+                        else if (combContractorsType.Text == "GAS")
+                        {
+                            pf._txtGasName = txtCompany.Text;
+                            pf._txtGasLisenceNumber = txtBuildingLicense.Text;
+                            pf._txtGasPhone = txtPhone.Text;
+                        }
+                        else if (combContractorsType.Text == "Irrigation")
+                        {
+                            pf._txtIrrigationName = txtCompany.Text;
+                            pf._txtIrrigationLisenceNumber = txtBuildingLicense.Text;
+                            pf._txtIrrigationPhone = txtPhone.Text;
+                        }
                     }
                     catch (Exception ex)
                     {

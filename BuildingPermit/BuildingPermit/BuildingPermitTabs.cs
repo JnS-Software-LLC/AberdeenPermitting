@@ -969,6 +969,10 @@ namespace BuildingPermit
 
         }
 
+
+        /// <summary>
+        /// access point for search and add forms
+        /// </summary>
         public string _txtOwner { set { txtOwner.Text = value; } }
         public string _txtLotNumber { set { txtLotNumber.Text = value; } }
         public string _txtLRKNumber { set { txtLRKNumber.Text = value; } }
@@ -979,6 +983,27 @@ namespace BuildingPermit
         public string _txtOwnerPhone { set { txtOwnerPhone.Text = value; } }
         public string _txtOwnerCell { set { txtOwnerCell.Text = value; } }
         public string _txtProperty { set { txtProperty.Text = value; } }
+        public string _txtContractorName { set { txtContractorName.Text=value;} }
+        public string _txtContractorLiscence { set { txtContractorLiscence.Text = value; } }
+        public string _txtContractorPhone { set { txtContractorPhone.Text = value; } }
+        public string _txtContractorEmail { set { txtContractorEmail.Text = value; } }
+        public string _txtElectricalName { set { txtElectricalName.Text = value; } }
+        public string _txtElectricalLisenceNumber { set { txtElectricalLisenceNumber.Text = value; } }
+        public string _txtElectricalPhone { set { txtElectricalPhone.Text = value; } }
+        public string _txtPlumbingName { set { txtPlumbingName.Text = value; } }
+        public string _txtPlumbingLisenceNumber { set { txtPlumbingLisenceNumber.Text = value; } }
+        public string _txtPlumbingPhone { set { txtPlumbingPhone.Text = value; } }
+        public string _txtMechanicalName { set { txtMechanicalName.Text = value; } }
+        public string _txtMechanicalLisenceNumber { set { txtMechanicalLisenceNumber.Text = value; } }
+        public string _txtMechanicalPhone { set { txtMechanicalPhone.Text = value; } }
+        public string _txtGasName { set { txtGasName.Text = value; } }
+        public string _txtGasLisenceNumber { set { txtGasLisenceNumber.Text = value; } }
+        public string _txtGasPhone { set { txtGasPhone.Text = value; } }
+        public string _txtIrrigationName { set { txtIrrigationName.Text = value; } }
+        public string _txtIrrigationLisenceNumber { set { txtIrrigationLisenceNumber.Text = value; } }
+        public string _txtIrrigationPhone { set { txtIrrigationPhone.Text = value; } }
+
+
         
       
 
