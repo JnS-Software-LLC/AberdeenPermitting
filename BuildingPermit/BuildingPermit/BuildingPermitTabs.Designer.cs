@@ -146,32 +146,24 @@
             this.label115 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.btnIrriSubSearch = new System.Windows.Forms.Button();
-            this.btnIrriSubAdd = new System.Windows.Forms.Button();
             this.txtIrrigationPhone = new System.Windows.Forms.MaskedTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.txtIrrigationLisenceNumber = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.txtIrrigationName = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnGasSubSearch = new System.Windows.Forms.Button();
-            this.btnGasSubAdd = new System.Windows.Forms.Button();
             this.txtGasPhone = new System.Windows.Forms.MaskedTextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtGasLisenceNumber = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.txtGasName = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnMecSubSearch = new System.Windows.Forms.Button();
-            this.btnMecSubAdd = new System.Windows.Forms.Button();
             this.txtMechanicalPhone = new System.Windows.Forms.MaskedTextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.txtMechanicalLisenceNumber = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.txtMechanicalName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnPlumSubSearch = new System.Windows.Forms.Button();
-            this.btnPlumSubAdd = new System.Windows.Forms.Button();
             this.txtPlumbingPhone = new System.Windows.Forms.MaskedTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtPlumbingLisenceNumber = new System.Windows.Forms.TextBox();
@@ -193,8 +185,6 @@
             this.label106 = new System.Windows.Forms.Label();
             this.txtContractorName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnElecSubSearch = new System.Windows.Forms.Button();
-            this.btnElecSubAdd = new System.Windows.Forms.Button();
             this.txtElectricalPhone = new System.Windows.Forms.MaskedTextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtElectricalLisenceNumber = new System.Windows.Forms.TextBox();
@@ -813,8 +803,11 @@
             // 
             this.cmboSystemType.FormattingEnabled = true;
             this.cmboSystemType.Items.AddRange(new object[] {
-            "Residential",
-            "Commercial"});
+            "Air Conditioner",
+            "Heat Pump",
+            "Indoor Air Quality System",
+            "Furnace",
+            "Packaged Unit"});
             this.cmboSystemType.Location = new System.Drawing.Point(220, 61);
             this.cmboSystemType.Name = "cmboSystemType";
             this.cmboSystemType.Size = new System.Drawing.Size(195, 21);
@@ -1382,8 +1375,6 @@
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.btnIrriSubSearch);
-            this.groupBox11.Controls.Add(this.btnIrriSubAdd);
             this.groupBox11.Controls.Add(this.txtIrrigationPhone);
             this.groupBox11.Controls.Add(this.label37);
             this.groupBox11.Controls.Add(this.txtIrrigationLisenceNumber);
@@ -1395,30 +1386,6 @@
             this.groupBox11.TabIndex = 5;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Irrigation Sub";
-            // 
-            // btnIrriSubSearch
-            // 
-            this.btnIrriSubSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnIrriSubSearch.BackgroundImage")));
-            this.btnIrriSubSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIrriSubSearch.Location = new System.Drawing.Point(641, 10);
-            this.btnIrriSubSearch.Name = "btnIrriSubSearch";
-            this.btnIrriSubSearch.Size = new System.Drawing.Size(27, 28);
-            this.btnIrriSubSearch.TabIndex = 206;
-            this.btnIrriSubSearch.Text = "...";
-            this.btnIrriSubSearch.UseVisualStyleBackColor = true;
-            this.btnIrriSubSearch.Click += new System.EventHandler(this.btnIrriSubSearch_Click);
-            // 
-            // btnIrriSubAdd
-            // 
-            this.btnIrriSubAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnIrriSubAdd.BackgroundImage")));
-            this.btnIrriSubAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIrriSubAdd.Location = new System.Drawing.Point(674, 10);
-            this.btnIrriSubAdd.Name = "btnIrriSubAdd";
-            this.btnIrriSubAdd.Size = new System.Drawing.Size(27, 28);
-            this.btnIrriSubAdd.TabIndex = 205;
-            this.btnIrriSubAdd.Text = "...";
-            this.btnIrriSubAdd.UseVisualStyleBackColor = true;
-            this.btnIrriSubAdd.Click += new System.EventHandler(this.btnIrriSubAdd_Click);
             // 
             // txtIrrigationPhone
             // 
@@ -1462,8 +1429,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.btnGasSubSearch);
-            this.groupBox5.Controls.Add(this.btnGasSubAdd);
             this.groupBox5.Controls.Add(this.txtGasPhone);
             this.groupBox5.Controls.Add(this.label35);
             this.groupBox5.Controls.Add(this.txtGasLisenceNumber);
@@ -1475,30 +1440,6 @@
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Gas Line Sub";
-            // 
-            // btnGasSubSearch
-            // 
-            this.btnGasSubSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGasSubSearch.BackgroundImage")));
-            this.btnGasSubSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGasSubSearch.Location = new System.Drawing.Point(641, 10);
-            this.btnGasSubSearch.Name = "btnGasSubSearch";
-            this.btnGasSubSearch.Size = new System.Drawing.Size(27, 28);
-            this.btnGasSubSearch.TabIndex = 206;
-            this.btnGasSubSearch.Text = "...";
-            this.btnGasSubSearch.UseVisualStyleBackColor = true;
-            this.btnGasSubSearch.Click += new System.EventHandler(this.btnGasSubSearch_Click);
-            // 
-            // btnGasSubAdd
-            // 
-            this.btnGasSubAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGasSubAdd.BackgroundImage")));
-            this.btnGasSubAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGasSubAdd.Location = new System.Drawing.Point(674, 10);
-            this.btnGasSubAdd.Name = "btnGasSubAdd";
-            this.btnGasSubAdd.Size = new System.Drawing.Size(27, 28);
-            this.btnGasSubAdd.TabIndex = 205;
-            this.btnGasSubAdd.Text = "...";
-            this.btnGasSubAdd.UseVisualStyleBackColor = true;
-            this.btnGasSubAdd.Click += new System.EventHandler(this.btnGasSubAdd_Click);
             // 
             // txtGasPhone
             // 
@@ -1542,8 +1483,6 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btnMecSubSearch);
-            this.groupBox4.Controls.Add(this.btnMecSubAdd);
             this.groupBox4.Controls.Add(this.txtMechanicalPhone);
             this.groupBox4.Controls.Add(this.label33);
             this.groupBox4.Controls.Add(this.txtMechanicalLisenceNumber);
@@ -1555,30 +1494,6 @@
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Mechanical Sub";
-            // 
-            // btnMecSubSearch
-            // 
-            this.btnMecSubSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMecSubSearch.BackgroundImage")));
-            this.btnMecSubSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMecSubSearch.Location = new System.Drawing.Point(641, 10);
-            this.btnMecSubSearch.Name = "btnMecSubSearch";
-            this.btnMecSubSearch.Size = new System.Drawing.Size(27, 28);
-            this.btnMecSubSearch.TabIndex = 206;
-            this.btnMecSubSearch.Text = "...";
-            this.btnMecSubSearch.UseVisualStyleBackColor = true;
-            this.btnMecSubSearch.Click += new System.EventHandler(this.btnMecSubSearch_Click);
-            // 
-            // btnMecSubAdd
-            // 
-            this.btnMecSubAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMecSubAdd.BackgroundImage")));
-            this.btnMecSubAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMecSubAdd.Location = new System.Drawing.Point(674, 10);
-            this.btnMecSubAdd.Name = "btnMecSubAdd";
-            this.btnMecSubAdd.Size = new System.Drawing.Size(27, 28);
-            this.btnMecSubAdd.TabIndex = 205;
-            this.btnMecSubAdd.Text = "...";
-            this.btnMecSubAdd.UseVisualStyleBackColor = true;
-            this.btnMecSubAdd.Click += new System.EventHandler(this.btnMecSubAdd_Click);
             // 
             // txtMechanicalPhone
             // 
@@ -1622,8 +1537,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnPlumSubSearch);
-            this.groupBox3.Controls.Add(this.btnPlumSubAdd);
             this.groupBox3.Controls.Add(this.txtPlumbingPhone);
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.txtPlumbingLisenceNumber);
@@ -1635,30 +1548,6 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plumbing Sub";
-            // 
-            // btnPlumSubSearch
-            // 
-            this.btnPlumSubSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlumSubSearch.BackgroundImage")));
-            this.btnPlumSubSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPlumSubSearch.Location = new System.Drawing.Point(641, 9);
-            this.btnPlumSubSearch.Name = "btnPlumSubSearch";
-            this.btnPlumSubSearch.Size = new System.Drawing.Size(27, 28);
-            this.btnPlumSubSearch.TabIndex = 206;
-            this.btnPlumSubSearch.Text = "...";
-            this.btnPlumSubSearch.UseVisualStyleBackColor = true;
-            this.btnPlumSubSearch.Click += new System.EventHandler(this.btnPlumSubSearch_Click);
-            // 
-            // btnPlumSubAdd
-            // 
-            this.btnPlumSubAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlumSubAdd.BackgroundImage")));
-            this.btnPlumSubAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPlumSubAdd.Location = new System.Drawing.Point(674, 9);
-            this.btnPlumSubAdd.Name = "btnPlumSubAdd";
-            this.btnPlumSubAdd.Size = new System.Drawing.Size(27, 28);
-            this.btnPlumSubAdd.TabIndex = 205;
-            this.btnPlumSubAdd.Text = "...";
-            this.btnPlumSubAdd.UseVisualStyleBackColor = true;
-            this.btnPlumSubAdd.Click += new System.EventHandler(this.btnPlumSubAdd_Click);
             // 
             // txtPlumbingPhone
             // 
@@ -1847,8 +1736,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnElecSubSearch);
-            this.groupBox1.Controls.Add(this.btnElecSubAdd);
             this.groupBox1.Controls.Add(this.txtElectricalPhone);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txtElectricalLisenceNumber);
@@ -1860,30 +1747,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Electrical Sub";
-            // 
-            // btnElecSubSearch
-            // 
-            this.btnElecSubSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnElecSubSearch.BackgroundImage")));
-            this.btnElecSubSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnElecSubSearch.Location = new System.Drawing.Point(641, 9);
-            this.btnElecSubSearch.Name = "btnElecSubSearch";
-            this.btnElecSubSearch.Size = new System.Drawing.Size(27, 28);
-            this.btnElecSubSearch.TabIndex = 206;
-            this.btnElecSubSearch.Text = "...";
-            this.btnElecSubSearch.UseVisualStyleBackColor = true;
-            this.btnElecSubSearch.Click += new System.EventHandler(this.btnElecSubSearch_Click);
-            // 
-            // btnElecSubAdd
-            // 
-            this.btnElecSubAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnElecSubAdd.BackgroundImage")));
-            this.btnElecSubAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnElecSubAdd.Location = new System.Drawing.Point(674, 9);
-            this.btnElecSubAdd.Name = "btnElecSubAdd";
-            this.btnElecSubAdd.Size = new System.Drawing.Size(27, 28);
-            this.btnElecSubAdd.TabIndex = 205;
-            this.btnElecSubAdd.Text = "...";
-            this.btnElecSubAdd.UseVisualStyleBackColor = true;
-            this.btnElecSubAdd.Click += new System.EventHandler(this.btnElecSubAdd_Click);
             // 
             // txtElectricalPhone
             // 
@@ -2197,18 +2060,8 @@
         private System.Windows.Forms.Button btnSearchPermitNum;
         private System.Windows.Forms.Button btnSearchProperty;
         private System.Windows.Forms.Button btnAddProperty;
-        private System.Windows.Forms.Button btnIrriSubSearch;
-        private System.Windows.Forms.Button btnIrriSubAdd;
-        private System.Windows.Forms.Button btnGasSubSearch;
-        private System.Windows.Forms.Button btnGasSubAdd;
-        private System.Windows.Forms.Button btnMecSubSearch;
-        private System.Windows.Forms.Button btnMecSubAdd;
-        private System.Windows.Forms.Button btnPlumSubSearch;
-        private System.Windows.Forms.Button btnPlumSubAdd;
         private System.Windows.Forms.Button btnContractorSearch;
         private System.Windows.Forms.Button btnContractorAdd;
-        private System.Windows.Forms.Button btnElecSubSearch;
-        private System.Windows.Forms.Button btnElecSubAdd;
         private System.Windows.Forms.GroupBox groupBox17;
         internal System.Windows.Forms.TextBox txtSystemTons;
         internal System.Windows.Forms.Label label17;

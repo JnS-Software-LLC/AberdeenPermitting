@@ -236,29 +236,131 @@ namespace BuildingPermit
                                     if (RDR.GetName(i) == "CompName")
                                     {
                                         pf._txtOwner = (string)RDR["CompName"];
+                                        pf._setcontactCompanyName = (string)RDR["CompName"];
+
+                                    }
+                                    if (RDR.GetName(i) == "CompName2")
+                                    {
+
+                                        pf._setcontactCompanyName2 = (string)RDR["CompName2"];
+
+                                    }
+                                    if (RDR.GetName(i) == "Fname" && !RDR["FName"].Equals(System.DBNull.Value))
+                                    {
+
+                                        pf._setcontactFName = (string)RDR["FName"];
+
+                                    }
+                                    if (RDR.GetName(i) == "LName" && !RDR["LName"].Equals(System.DBNull.Value))
+                                    {
+
+                                        pf._setcontactLName = (string)RDR["LName"];
 
                                     }
                                     if (RDR.GetName(i) == "FirstPhone")
                                     {
                                         pf._txtOwnerPhone = (string)RDR["FirstPhone"];
+                                        pf._setcontactFPhone = (string)RDR["FirstPhone"];
 
                                     }
                                     if (RDR.GetName(i) == "SecondPhone")
                                     {
                                         pf._txtOwnerCell = (string)RDR["SecondPhone"];
+                                        pf._setcontactsecondPhone = (string)RDR["SecondPhone"];
 
                                     }
                                     if (RDR.GetName(i) == "Address")
                                     {
                                         pf._txtProperty = (string)RDR["Address"];
+                                        pf._setPropAddress = (string)RDR["Address"];
+                                    }
+                                    if (RDR.GetName(i) == "City")
+                                    {
+
+                                        if (!RDR["City"].Equals(System.DBNull.Value))
+                                        {
+                                            pf._setPropcity = (string)RDR["City"]; 
+                                        }
+                                    }
+                                    if (RDR.GetName(i) == "State")
+                                    {
+
+                                        if (!RDR["State"].Equals(System.DBNull.Value))
+                                        {
+                                            pf._setPropstate = (string)RDR["State"]; 
+                                        }
+                                    }
+                                    if (RDR.GetName(i) == "Zip")
+                                    {
+
+                                        if (!RDR["Zip"].Equals(System.DBNull.Value))
+                                        {
+                                            pf._setPropzip = (string)RDR["Zip"]; 
+                                        }
+                                    }
+                                    if (RDR.GetName(i) == "Email")
+                                    {
+                                        pf._setcontactemail = (string)RDR["Email"];
+                                    }
+                                    if (RDR.GetName(i) == "PropOwner")
+                                    {
+
+                                        pf._setcontactproperty = (bool)RDR["PropOwner"];
                                     }
                                     if (RDR.GetName(i) == "LotNum")
                                     {
                                         pf._txtLotNumber = (string)RDR["LotNum"];
+                                        pf._setProplotNum = (string)RDR["LotNum"];
                                     }
                                     if (RDR.GetName(i) == "LRK")
                                     {
                                         pf._txtLRKNumber = (string)RDR["LRK"];
+                                        pf._setProplrk = (string)RDR["LRK"];
+                                    }
+                                    if (RDR.GetName(i) == "LRK")
+                                    {
+                                        pf._txtLRKNumber = (string)RDR["LRK"];
+                                        pf._setProplrk = (string)RDR["LRK"];
+                                    }
+                                    if (RDR.GetName(i) == "ParcelID")
+                                    {
+                                       
+                                        pf._setPropparcelID = (string)RDR["ParcelID"];
+                                    }
+                                    if (RDR.GetName(i) == "DeedBook")
+                                    {
+
+                                        pf._setPropdeedBook = (string)RDR["DeedBook"];
+                                    }
+                                    if (RDR.GetName(i) == "DeedPage")
+                                    {
+
+                                        pf._setPropdeedPage = (string)RDR["DeedPage"];
+                                    }
+                                    if (RDR.GetName(i) == "Value")
+                                    {
+
+                                        pf._setPropvalue = (Decimal)RDR["Value"];
+                                    }
+                                    if (RDR.GetName(i) == "ZoningDist")
+                                    {
+
+                                        pf._setPropzoningDist = (String)RDR["ZoningDist"];
+                                    }
+                                    if (RDR.GetName(i) == "TaxAcre")
+                                    {
+
+                                        pf._setProptaxAcre = RDR["TaxAcre"].ToString();
+                                    }
+                                    if (RDR.GetName(i) == "DeedAcre")
+                                    {
+
+                                        pf._setPropdeedAcre = (string)RDR["DeedAcre"];
+                                    }
+                                    if (RDR.GetName(i) == "ContactID")
+                                    {
+
+                                        pf._setPropcontactID = (int)RDR["ContactID"];
                                     }
 
                                 }

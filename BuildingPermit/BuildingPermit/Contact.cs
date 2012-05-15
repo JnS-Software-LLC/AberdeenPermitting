@@ -234,7 +234,7 @@ public class Contact
 
                     spCmd.Parameters["@in_CompName"].Value = this.companyName.ToString();
                     spCmd.Parameters["@in_CompName2"].Value = null;
-                    spCmd.Parameters["@in_Fname"].Value = this.firstName.ToString();
+                    spCmd.Parameters["@in_Fname"].Value = null;
                     spCmd.Parameters["@in_Lname"].Value = this.lastName.ToString();
                     spCmd.Parameters["@in_FirstPhone"].Value = this.firstPhone.ToString();
                     spCmd.Parameters["@in_SecondPhone"].Value = this.secondPhone.ToString();

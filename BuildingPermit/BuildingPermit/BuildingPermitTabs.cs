@@ -20,12 +20,12 @@ namespace BuildingPermit
         Contact applicant = new Contact();
         Contact GCContact = new Contact();
         Contractor GC = new Contractor();
-        Contractor HVACsub = new Contractor();
-        Contractor ELETRICALsub = new Contractor();
-        Contractor MECHsub = new Contractor();
-        Contractor PLUMBINGsub = new Contractor();
-        Contractor GASsub = new Contractor();
-        Contractor IRRIGATIONsub = new Contractor();
+        Contractor HVAC = new Contractor();
+        Contractor Elet = new Contractor();
+        Contractor MECH = new Contractor();
+        Contractor PLUM = new Contractor();
+        Contractor GAS = new Contractor();
+        Contractor IRR = new Contractor();
         Utilities utilities = new Utilities();
         Parcel parcel = new Parcel();
         Permit permit = new Permit();
@@ -1003,12 +1003,234 @@ namespace BuildingPermit
         public string _txtIrrigationLisenceNumber { set { txtIrrigationLisenceNumber.Text = value; } }
         public string _txtIrrigationPhone { set { txtIrrigationPhone.Text = value; } }
 
+        /// <summary>
+        /// Parcel access
+        /// </summary>
+        public string _setPropAddress { set { parcel.address = value; }}
+        public string _setPropcity { set { parcel.city = value; } }
+        public int _setPropcontactID { set { parcel.contactID = value; } }
+        public string _setPropdeedAcre { set { parcel.deedAcre = value; } }
+        public string _setPropdeedBook { set { parcel.deedBook = value; } }
+        public string _setPropdeedPage { set { parcel.deedPage = value; } }
+        public string _setProplotNum { set { parcel.lotNum = value; } }
+        public string _setProplrk { set { parcel.lrk = value; } }
+        public string _setPropparcelID { set { parcel.parcelID = value; } }
+        public string _setPropsize { set { parcel.size = value; } }
+        public string _setPropstate { set { parcel.state = value; } }
+        public string _setProptaxAcre { set { parcel.taxAcre = value; } }
+        public decimal _setPropvalue { set { parcel.value = value; } }
+        public string _setPropzip { set { parcel.zip = value; } }
+        public string _setPropzoningDist { set { parcel.zoningDist = value; } }
 
-        
-      
+
+        /// <summary>
+        /// contact access point 
+        /// </summary>
+        public string _setcontactCompanyName { set { contact.companyName = value; } }
+        public string _setcontactCompanyName2 { set { contact.companyName2 = value; } }
+        public string _setcontactbuildingLicense { set { contact.buildingLicense = value; } }
+        public string _setcontactcity { set { contact.city = value; } }
+        public string _setcontactemail { set { contact.email = value; } }
+        public string _setcontactFName { set { contact.firstName = value; } }
+        public string _setcontactFPhone { set { contact.firstPhone = value; } }
+        public string _setcontactLName { set { contact.lastName = value; } }
+        public string _setcontactlicense { set { contact.license = value; } }
+        public DateTime _setcontactlicenseExpDate { set { contact.licenseExpDate = value; } }
+        public string _setcontactmiddleName { set { contact.middleName = value; } }
+        public string _setcontactpermitID { set { contact.permitID = value; } }
+        public bool _setcontactproperty { set { contact.property = value; } }
+        public string _setcontactsecondPhone { set { contact.secondPhone = value; } }
+        public string _setcontactstate { set { contact.state = value; } }
+        public string _setcontactstreetName { set { contact.streetName = value; } }
+        public string _setcontactstreetName2 { set { contact.streetName2 = value; } }
+        public string _setcontactstreetNumber { set { contact.streetNumber = value; } }
+        public string _setcontacttype { set { contact.type = value; } }
+        public string _setcontactzip { set { contact.zip = value; } }
 
 
+        /// <summary>
+        /// GC access point 
+        /// </summary>
+        public string _setGCCompanyName { set { GC.companyName = value; } }
+        public string _setGCCompanyName2 { set { GC.companyName2 = value; } }
+        public string _setGCaberdeenLC { set { GC.aberdeenLC = value; } }
+        public string _setGCbuildingLicense { set { GC.buildingLicense = value; } }
+        public string _setGCcity { set { GC.city = value; } }
+        public string _setGCemail { set { GC.email = value; } }
+        public string _setGCfirstName { set { GC.firstName = value; } }
+        public string _setGCfirstPhone { set { GC.firstPhone = value; } }
+        public string _setGClastName { set { GC.lastName = value; } }
+        public string _setGClicense { set { GC.license = value; } }
+        public DateTime _setGClicenseExpDate { set { GC.licenseExpDate = value; } }
+        public string _setGClicenseNumber { set { GC.licenseNumber = value; } }
+        public string _setGCmiddleName { set { GC.middleName = value; } }
+        public string _setGCpermitID { set { GC.permitID = value; } }
+        public bool _setGCproperty { set { GC.property = value; } }
+        public string _setGCsecondPhone { set { GC.secondPhone = value; } }
+        public string _setGCstate { set { GC.state = value; } }
+        public string _setGCstreetName { set { GC.streetName = value; } }
+        public string _setGCstreetName2 { set { GC.streetName2 = value; } }
+        public string _setGCstreetNumber { set { GC.streetNumber = value; } }
+        public string _setGCtype { set { GC.type = value; } }
+        public string _setGCzip { set { GC.zip = value; } }
 
+
+        /// <summary>
+        /// ELET access point 
+        /// </summary>
+        public string _setEletCompanyName { set { Elet.companyName = value; } }
+        public string _setEletCompanyName2 { set { Elet.companyName2 = value; } }
+        public string _setEletaberdeenLC { set { Elet.aberdeenLC = value; } }
+        public string _setEletbuildingLicense { set { Elet.buildingLicense = value; } }
+        public string _setEletcity { set { Elet.city = value; } }
+        public string _setEletemail { set { Elet.email = value; } }
+        public string _setEletfirstName { set { Elet.firstName = value; } }
+        public string _setEletfirstPhone { set { Elet.firstPhone = value; } }
+        public string _setEletlastName { set { Elet.lastName = value; } }
+        public string _setEletlicense { set { Elet.license = value; } }
+        public DateTime _setEletlicenseExpDate { set { Elet.licenseExpDate = value; } }
+        public string _setEletlicenseNumber { set { Elet.licenseNumber = value; } }
+        public string _setEletmiddleName { set { Elet.middleName = value; } }
+        public string _setEletpermitID { set { Elet.permitID = value; } }
+        public bool _setEletproperty { set { Elet.property = value; } }
+        public string _setEletsecondPhone { set { Elet.secondPhone = value; } }
+        public string _setEletstate { set { Elet.state = value; } }
+        public string _setEletstreetName { set { Elet.streetName = value; } }
+        public string _setEletstreetName2 { set { Elet.streetName2 = value; } }
+        public string _setEletstreetNumber { set { Elet.streetNumber = value; } }
+        public string _setElettype { set { Elet.type = value; } }
+        public string _setEletzip { set { Elet.zip = value; } }
+
+
+        /// <summary>
+        /// HVAC access point 
+        /// </summary>
+        public string _setHVACCompanyName { set { HVAC.companyName = value; } }
+        public string _setHVACCompanyName2 { set { HVAC.companyName2 = value; } }
+        public string _setHVACaberdeenLC { set { HVAC.aberdeenLC = value; } }
+        public string _setHVACbuildingLicense { set { HVAC.buildingLicense = value; } }
+        public string _setHVACcity { set { HVAC.city = value; } }
+        public string _setHVACemail { set { HVAC.email = value; } }
+        public string _setHVACfirstName { set { HVAC.firstName = value; } }
+        public string _setHVACfirstPhone { set { HVAC.firstPhone = value; } }
+        public string _setHVAClastName { set { HVAC.lastName = value; } }
+        public string _setHVAClicense { set { HVAC.license = value; } }
+        public DateTime _setHVAClicenseExpDate { set { HVAC.licenseExpDate = value; } }
+        public string _setHVAClicenseNumber { set { HVAC.licenseNumber = value; } }
+        public string _setHVACmiddleName { set { HVAC.middleName = value; } }
+        public string _setHVACpermitID { set { HVAC.permitID = value; } }
+        public bool _setHVACproperty { set { HVAC.property = value; } }
+        public string _setHVACsecondPhone { set { HVAC.secondPhone = value; } }
+        public string _setHVACstate { set { HVAC.state = value; } }
+        public string _setHVACstreetName { set { HVAC.streetName = value; } }
+        public string _setHVACstreetName2 { set { HVAC.streetName2 = value; } }
+        public string _setHVACstreetNumber { set { HVAC.streetNumber = value; } }
+        public string _setHVACtype { set { HVAC.type = value; } }
+        public string _setHVACzip { set { HVAC.zip = value; } }
+
+        /// <summary>
+        /// MECH access point 
+        /// </summary>
+        public string _setMECHCompanyName { set { MECH.companyName = value; } }
+        public string _setMECHCompanyName2 { set { MECH.companyName2 = value; } }
+        public string _setMECHaberdeenLC { set { MECH.aberdeenLC = value; } }
+        public string _setMECHbuildingLicense { set { MECH.buildingLicense = value; } }
+        public string _setMECHcity { set { MECH.city = value; } }
+        public string _setMECHemail { set { MECH.email = value; } }
+        public string _setMECHfirstName { set { MECH.firstName = value; } }
+        public string _setMECHfirstPhone { set { MECH.firstPhone = value; } }
+        public string _setMECHlastName { set { MECH.lastName = value; } }
+        public string _setMECHlicense { set { MECH.license = value; } }
+        public DateTime _setMECHlicenseExpDate { set { MECH.licenseExpDate = value; } }
+        public string _setMECHlicenseNumber { set { MECH.licenseNumber = value; } }
+        public string _setMECHmiddleName { set { MECH.middleName = value; } }
+        public string _setMECHpermitID { set { MECH.permitID = value; } }
+        public bool _setMECHproperty { set { MECH.property = value; } }
+        public string _setMECHsecondPhone { set { MECH.secondPhone = value; } }
+        public string _setMECHstate { set { MECH.state = value; } }
+        public string _setMECHstreetName { set { MECH.streetName = value; } }
+        public string _setMECHstreetName2 { set { MECH.streetName2 = value; } }
+        public string _setMECHstreetNumber { set { MECH.streetNumber = value; } }
+        public string _setMECHtype { set { MECH.type = value; } }
+        public string _setMECHzip { set { MECH.zip = value; } }
+
+        /// <summary>
+        /// PLUM access point 
+        /// </summary>
+        public string _setPLUMCompanyName { set { PLUM.companyName = value; } }
+        public string _setPLUMCompanyName2 { set { PLUM.companyName2 = value; } }
+        public string _setPLUMaberdeenLC { set { PLUM.aberdeenLC = value; } }
+        public string _setPLUMbuildingLicense { set { PLUM.buildingLicense = value; } }
+        public string _setPLUMcity { set { PLUM.city = value; } }
+        public string _setPLUMemail { set { PLUM.email = value; } }
+        public string _setPLUMfirstName { set { PLUM.firstName = value; } }
+        public string _setPLUMfirstPhone { set { PLUM.firstPhone = value; } }
+        public string _setPLUMlastName { set { PLUM.lastName = value; } }
+        public string _setPLUMlicense { set { PLUM.license = value; } }
+        public DateTime _setPLUMlicenseExpDate { set { PLUM.licenseExpDate = value; } }
+        public string _setPLUMlicenseNumber { set { PLUM.licenseNumber = value; } }
+        public string _setPLUMmiddleName { set { PLUM.middleName = value; } }
+        public string _setPLUMpermitID { set { PLUM.permitID = value; } }
+        public bool _setPLUMproperty { set { PLUM.property = value; } }
+        public string _setPLUMsecondPhone { set { PLUM.secondPhone = value; } }
+        public string _setPLUMstate { set { PLUM.state = value; } }
+        public string _setPLUMstreetName { set { PLUM.streetName = value; } }
+        public string _setPLUMstreetName2 { set { PLUM.streetName2 = value; } }
+        public string _setPLUMstreetNumber { set { PLUM.streetNumber = value; } }
+        public string _setPLUMtype { set { PLUM.type = value; } }
+        public string _setPLUMzip { set { PLUM.zip = value; } }
+
+        /// <summary>
+        /// GAS access point 
+        /// </summary>
+        public string _setGASCompanyName { set { GAS.companyName = value; } }
+        public string _setGASCompanyName2 { set { GAS.companyName2 = value; } }
+        public string _setGASaberdeenLC { set { GAS.aberdeenLC = value; } }
+        public string _setGASbuildingLicense { set { GAS.buildingLicense = value; } }
+        public string _setGAScity { set { GAS.city = value; } }
+        public string _setGASemail { set { GAS.email = value; } }
+        public string _setGASfirstName { set { GAS.firstName = value; } }
+        public string _setGASfirstPhone { set { GAS.firstPhone = value; } }
+        public string _setGASlastName { set { GAS.lastName = value; } }
+        public string _setGASlicense { set { GAS.license = value; } }
+        public DateTime _setGASlicenseExpDate { set { GAS.licenseExpDate = value; } }
+        public string _setGASlicenseNumber { set { GAS.licenseNumber = value; } }
+        public string _setGASmiddleName { set { GAS.middleName = value; } }
+        public string _setGASpermitID { set { GAS.permitID = value; } }
+        public bool _setGASproperty { set { GAS.property = value; } }
+        public string _setGASsecondPhone { set { GAS.secondPhone = value; } }
+        public string _setGASstate { set { GAS.state = value; } }
+        public string _setGASstreetName { set { GAS.streetName = value; } }
+        public string _setGASstreetName2 { set { GAS.streetName2 = value; } }
+        public string _setGASstreetNumber { set { GAS.streetNumber = value; } }
+        public string _setGAStype { set { GAS.type = value; } }
+        public string _setGASzip { set { GAS.zip = value; } }
+
+        /// <summary>
+        /// IRR access point 
+        /// </summary>
+        public string _setIRRCompanyName { set { IRR.companyName = value; } }
+        public string _setIRRCompanyName2 { set { IRR.companyName2 = value; } }
+        public string _setIRRaberdeenLC { set { IRR.aberdeenLC = value; } }
+        public string _setIRRbuildingLicense { set { IRR.buildingLicense = value; } }
+        public string _setIRRcity { set { IRR.city = value; } }
+        public string _setIRRemail { set { IRR.email = value; } }
+        public string _setIRRfirstName { set { IRR.firstName = value; } }
+        public string _setIRRfirstPhone { set { IRR.firstPhone = value; } }
+        public string _setIRRlastName { set { IRR.lastName = value; } }
+        public string _setIRRlicense { set { IRR.license = value; } }
+        public DateTime _setIRRlicenseExpDate { set { IRR.licenseExpDate = value; } }
+        public string _setIRRlicenseNumber { set { IRR.licenseNumber = value; } }
+        public string _setIRRmiddleName { set { IRR.middleName = value; } }
+        public string _setIRRpermitID { set { IRR.permitID = value; } }
+        public bool _setIRRproperty { set { IRR.property = value; } }
+        public string _setIRRsecondPhone { set { IRR.secondPhone = value; } }
+        public string _setIRRstate { set { IRR.state = value; } }
+        public string _setIRRstreetName { set { IRR.streetName = value; } }
+        public string _setIRRstreetName2 { set { IRR.streetName2 = value; } }
+        public string _setIRRstreetNumber { set { IRR.streetNumber = value; } }
+        public string _setIRRtype { set { IRR.type = value; } }
+        public string _setIRRzip { set { IRR.zip = value; } }
 
         private void btnCancelNotes_Click(object sender, EventArgs e)
         {
@@ -1106,40 +1328,40 @@ namespace BuildingPermit
 
             this.GCContact.save(conStr);
 
-            this.ELETRICALsub.companyName = txtElectricalName.Text;
-            this.ELETRICALsub.firstPhone = txtElectricalPhone.Text;
-            this.ELETRICALsub.license = txtElectricalLisenceNumber.Text;
-            this.ELETRICALsub.property = false;
+            this.Elet.companyName = txtElectricalName.Text;
+            this.Elet.firstPhone = txtElectricalPhone.Text;
+            this.Elet.license = txtElectricalLisenceNumber.Text;
+            this.Elet.property = false;
 
-            this.ELETRICALsub.save(conStr);
+            this.Elet.save(conStr);
 
-            this.PLUMBINGsub.companyName = txtPlumbingName.Text;
-            this.PLUMBINGsub.firstPhone = txtPlumbingPhone.Text;
-            this.PLUMBINGsub.license = txtPlumbingLisenceNumber.Text;
-            this.PLUMBINGsub.property = false;
+            this.PLUM.companyName = txtPlumbingName.Text;
+            this.PLUM.firstPhone = txtPlumbingPhone.Text;
+            this.PLUM.license = txtPlumbingLisenceNumber.Text;
+            this.PLUM.property = false;
 
-            this.PLUMBINGsub.save(conStr);
+            this.PLUM.save(conStr);
 
-            this.MECHsub.companyName = txtMechanicalName.Text;
-            this.MECHsub.firstPhone = txtMechanicalPhone.Text;
-            this.MECHsub.license = txtMechanicalLisenceNumber.Text;
-            this.MECHsub.property = false;
+            this.MECH.companyName = txtMechanicalName.Text;
+            this.MECH.firstPhone = txtMechanicalPhone.Text;
+            this.MECH.license = txtMechanicalLisenceNumber.Text;
+            this.MECH.property = false;
 
-            this.MECHsub.save(conStr);
+            this.MECH.save(conStr);
 
-            this.GASsub.companyName = txtGasName.Text;
-            this.GASsub.firstPhone = txtGasPhone.Text;
-            this.GASsub.license = txtGasLisenceNumber.Text;
-            this.GASsub.property = false;
+            this.GAS.companyName = txtGasName.Text;
+            this.GAS.firstPhone = txtGasPhone.Text;
+            this.GAS.license = txtGasLisenceNumber.Text;
+            this.GAS.property = false;
 
-            this.GASsub.save(conStr);
+            this.GAS.save(conStr);
 
-            this.IRRIGATIONsub.companyName = txtIrrigationName.Text;
-            this.IRRIGATIONsub.firstPhone = txtIrrigationPhone.Text;
-            this.IRRIGATIONsub.license = txtIrrigationLisenceNumber.Text;
-            this.IRRIGATIONsub.property = false;
+            this.IRR.companyName = txtIrrigationName.Text;
+            this.IRR.firstPhone = txtIrrigationPhone.Text;
+            this.IRR.license = txtIrrigationLisenceNumber.Text;
+            this.IRR.property = false;
 
-            this.IRRIGATIONsub.save(conStr);
+            this.IRR.save(conStr);
             
             this.applicant.companyName = txtApplicant.Text;
             this.applicant.firstPhone = txtApplicant.Text;
