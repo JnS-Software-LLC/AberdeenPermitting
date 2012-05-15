@@ -42,8 +42,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtLName = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtMName = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtFName = new System.Windows.Forms.TextBox();
@@ -138,7 +136,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(220, 180);
+            this.label23.Location = new System.Drawing.Point(6, 41);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(31, 13);
             this.label23.TabIndex = 239;
@@ -184,22 +182,6 @@
             this.label20.Size = new System.Drawing.Size(58, 13);
             this.label20.TabIndex = 234;
             this.label20.Text = "Last Name";
-            // 
-            // txtMName
-            // 
-            this.txtMName.Location = new System.Drawing.Point(67, 92);
-            this.txtMName.Name = "txtMName";
-            this.txtMName.Size = new System.Drawing.Size(141, 20);
-            this.txtMName.TabIndex = 2;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(10, 95);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(38, 13);
-            this.label19.TabIndex = 232;
-            this.label19.Text = "Middle";
             // 
             // txtCompany
             // 
@@ -379,9 +361,9 @@
             "Fire Sprinkler",
             "Refrigeration",
             "Sign Contractor"});
-            this.combContractorsType.Location = new System.Drawing.Point(260, 177);
+            this.combContractorsType.Location = new System.Drawing.Point(99, 38);
             this.combContractorsType.Name = "combContractorsType";
-            this.combContractorsType.Size = new System.Drawing.Size(202, 21);
+            this.combContractorsType.Size = new System.Drawing.Size(360, 21);
             this.combContractorsType.TabIndex = 16;
             // 
             // ContractorAdd
@@ -406,8 +388,6 @@
             this.Controls.Add(this.label21);
             this.Controls.Add(this.txtLName);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.txtMName);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.txtCompany);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtFName);
@@ -449,8 +429,6 @@
         internal System.Windows.Forms.Label label21;
         internal System.Windows.Forms.TextBox txtLName;
         internal System.Windows.Forms.Label label20;
-        internal System.Windows.Forms.TextBox txtMName;
-        internal System.Windows.Forms.Label label19;
         internal System.Windows.Forms.TextBox txtCompany;
         internal System.Windows.Forms.Label label9;
         internal System.Windows.Forms.TextBox txtFName;

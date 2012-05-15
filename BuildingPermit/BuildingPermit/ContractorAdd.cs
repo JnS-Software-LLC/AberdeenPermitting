@@ -20,7 +20,7 @@ namespace BuildingPermit
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             BuildingPermitTabs pf = (BuildingPermitTabs)Application.OpenForms[1];
-            Contractor GC = new Contractor();
+           
 
                 using(SqlConnection con = new SqlConnection(pf.conStr))
 	        {
