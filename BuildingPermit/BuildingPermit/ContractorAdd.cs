@@ -33,7 +33,7 @@ namespace BuildingPermit
                         spCmd.CommandType = CommandType.StoredProcedure;
 
                 
-                        spCmd.Parameters.Add("@in_ContractorID", SqlDbType.VarChar);
+                        spCmd.Parameters.Add("@in_ContractorID", SqlDbType.Int);
                         spCmd.Parameters.Add("@in_CompName", SqlDbType.VarChar);
                         spCmd.Parameters.Add("@in_Fname", SqlDbType.VarChar);
                         spCmd.Parameters.Add("@in_Lname", SqlDbType.VarChar);
@@ -53,7 +53,7 @@ namespace BuildingPermit
 
 
                 
-                        spCmd.Parameters["@in_ContractorID"].Value = this.txtBuildingLicense.Text;
+                        spCmd.Parameters["@in_ContractorID"].Value = Convert.ToInt16(this.txtBuildingLicense.Text);
                         spCmd.Parameters["@in_CompName"].Value = this.txtCompany.Text;
                         spCmd.Parameters["@in_Fname"].Value = this.txtFName.Text;
                         spCmd.Parameters["@in_Lname"].Value = this.txtLName.Text;

@@ -14,7 +14,7 @@ namespace BuildingPermit
     public partial class BuildingPermitTabs : Form
     {
         public string conStr;
-        
+
         Building building = new Building();
         Contact contact = new Contact();
         Contact applicant = new Contact();
@@ -475,15 +475,16 @@ namespace BuildingPermit
                                     if (RDR.GetName(i) == "PermitDate")
                                     {
                                         dtIssueDate.Text = RDR["PermitDate"].ToString();
+                                        permit.permitDate = (DateTime)RDR["PermitDate"];
                                     }
                                     if (RDR.GetName(i) == "Notes")
                                     {
-                                        txtNotes.Text = (string)RDR["Notes"];
+                                        permit.notes = txtNotes.Text = (string)RDR["Notes"];
                                     }
                                 }
 
 
-                            } 
+                            }
                         }
                         else
                         {
@@ -512,45 +513,46 @@ namespace BuildingPermit
                                 {
                                     if (RDR.GetName(i) == "TypeOfConst")
                                     {
-                                        cmboConstructionType.Text = (string)RDR["TypeOfConst"];
+                                        building.buildingType = cmboConstructionType.Text = (string)RDR["TypeOfConst"];
+
                                     }
                                     if (RDR.GetName(i) == "ProposedUse")
                                     {
-                                        cmboProposedUse.Text = (string)RDR["ProposedUse"];
+                                        building.proposedUse = cmboProposedUse.Text = (string)RDR["ProposedUse"];
                                     }
                                     if (RDR.GetName(i) == "HeatedSF")
                                     {
-                                        txtHeatedSF.Text = (string)RDR["HeatedSF"];
+                                        building.heatedSF = txtHeatedSF.Text = (string)RDR["HeatedSF"];
                                     }
                                     if (RDR.GetName(i) == "NumberOfStories")
                                     {
-                                        txtNumStories.Text = (string)RDR["NumberOfStories"];
+                                        building.numStories = txtNumStories.Text = (string)RDR["NumberOfStories"];
                                     }
                                     if (RDR.GetName(i) == "GarageSF")
                                     {
-                                        txtGarageSF.Text = (string)RDR["GarageSF"];
+                                        building.garageSF = txtGarageSF.Text = (string)RDR["GarageSF"];
                                     }
                                     if (RDR.GetName(i) == "PorchSF")
                                     {
-                                        txtPorchSF.Text = (string)RDR["PorchSF"];
+                                        building.porchSF = txtPorchSF.Text = (string)RDR["PorchSF"];
                                     }
 
                                     if (RDR.GetName(i) == "DeckSF")
                                     {
-                                        txtDeck.Text = (string)RDR["DeckSF"];
+                                        building.deckSF = txtDeck.Text = (string)RDR["DeckSF"];
                                     }
 
                                     if (RDR.GetName(i) == "BasementSF")
                                     {
-                                        txtBasement.Text = (string)RDR["BasementSF"];
+                                        building.basementSF = txtBasement.Text = (string)RDR["BasementSF"];
                                     }
                                     if (RDR.GetName(i) == "EstCostOfConst")
                                     {
-                                        txtEstimatedCost.Text = (string)RDR["EstCostOfConst"];
+                                        building.estimatedCost = txtEstimatedCost.Text = (string)RDR["EstCostOfConst"];
                                     }
                                     if (RDR.GetName(i) == "ProposedUse")
                                     {
-                                        cmboProposedUse.Text = (string)RDR["ProposedUse"];
+                                        building.proposedUse = cmboProposedUse.Text = (string)RDR["ProposedUse"];
                                     }
                                     if (RDR.GetName(i) == "InstallInsulation")
                                     {
@@ -558,9 +560,9 @@ namespace BuildingPermit
                                     }
                                     if (RDR.GetName(i) == "TotalSF")
                                     {
-                                        txtSquareFeet.Text = (string)RDR["TotalSF"];
+                                        building.totalSF = txtSquareFeet.Text = (string)RDR["TotalSF"];
                                     }
-                                       
+
                                 }
 
 
@@ -575,7 +577,7 @@ namespace BuildingPermit
 
                     RDR.Close();
 
-              
+
 
                     spCmd = new SqlCommand("getContact", con);
                     spCmd.CommandType = CommandType.StoredProcedure;
@@ -595,22 +597,22 @@ namespace BuildingPermit
                                 {
                                     if (RDR.GetName(i) == "CompName")
                                     {
-                                        txtOwner.Text = (string)RDR["CompName"];
-                                        txtApplicant.Text = txtOwner.Text;
+                                        contact.companyName = txtOwner.Text = (string)RDR["CompName"];
+
                                     }
                                     if (RDR.GetName(i) == "FirstPhone")
                                     {
-                                        txtOwnerPhone.Text = (string)RDR["FirstPhone"];
-                                        txtApplicantPhone.Text = txtOwnerPhone.Text;
+                                        contact.firstPhone = txtOwnerPhone.Text = (string)RDR["FirstPhone"];
+
                                     }
                                     if (RDR.GetName(i) == "SecondPhone")
                                     {
-                                        txtOwnerCell.Text = (string)RDR["SecondPhone"];
-                                        txtCell.Text = txtOwnerCell.Text;
+                                        contact.secondPhone = txtOwnerCell.Text = (string)RDR["SecondPhone"];
+
                                     }
                                     if (RDR.GetName(i) == "Address")
                                     {
-                                        txtProperty.Text = (string)RDR["Address"];
+                                        parcel.address = txtProperty.Text = (string)RDR["Address"];
                                     }
                                 }
 
@@ -643,48 +645,45 @@ namespace BuildingPermit
                                 if (!RDR.IsDBNull(i))
                                 {
                                     if (RDR.GetName(i) == "Type")
-                                        {
-                                            if ((string)RDR["Type"] == "HVAC")
-                                            {
-                                                txtMechanicalName.Text = (string)RDR["CompName"];
-                                                txtMechanicalPhone.Text = (string)RDR["FirstPhone"];
-                                                txtMechanicalLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "General Contractor")
-                                            {
-                                                txtContractorName.Text = (string)RDR["CompName"];
-                                                txtContractorPhone.Text = (string)RDR["FirstPhone"];
-                                                txtContractorLiscence.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Electrical")
-                                            {
-                                                txtElectricalName.Text = (string)RDR["CompName"];
-                                                txtElectricalPhone.Text = (string)RDR["FirstPhone"];
-                                                txtElectricalLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Plumbing")
-                                            {
-                                                txtPlumbingName.Text = (string)RDR["CompName"];
-                                                txtPlumbingPhone.Text = (string)RDR["FirstPhone"];
-                                                txtPlumbingLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "GAS")
-                                            {
-                                                txtGasName.Text = (string)RDR["CompName"];
-                                                txtGasPhone.Text = (string)RDR["FirstPhone"];
-                                                txtGasLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                            if ((string)RDR["Type"] == "Irrigation")
-                                            {
-                                                txtIrrigationName.Text = (string)RDR["CompName"];
-                                                txtIrrigationPhone.Text = (string)RDR["FirstPhone"];
-                                                txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
-                                            }
-                                        }
-                                    if (RDR.GetName(i) == "AberdeenLC")
                                     {
-                                        txtApplicationNumber.Text = (string)RDR["AberdeenLC"];
+                                        if ((string)RDR["Type"] == "HVAC")
+                                        {
+                                            MECH.companyName = txtMechanicalName.Text = (string)RDR["CompName"];
+                                            MECH.firstPhone = txtMechanicalPhone.Text = (string)RDR["FirstPhone"];
+                                            MECH.buildingLicense = txtMechanicalLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                        }
+                                        if ((string)RDR["Type"] == "General Contractor")
+                                        {
+                                            GC.companyName = txtContractorName.Text = (string)RDR["CompName"];
+                                            GC.firstPhone = txtContractorPhone.Text = (string)RDR["FirstPhone"];
+                                            GC.buildingLicense = txtContractorLiscence.Text = (string)RDR["LicenseNumber"];
+                                        }
+                                        if ((string)RDR["Type"] == "Electrical")
+                                        {
+                                            Elet.companyName = txtElectricalName.Text = (string)RDR["CompName"];
+                                            Elet.firstPhone = txtElectricalPhone.Text = (string)RDR["FirstPhone"];
+                                            Elet.buildingLicense = txtElectricalLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                        }
+                                        if ((string)RDR["Type"] == "Plumbing")
+                                        {
+                                            PLUM.companyName = txtPlumbingName.Text = (string)RDR["CompName"];
+                                            PLUM.firstPhone = txtPlumbingPhone.Text = (string)RDR["FirstPhone"];
+                                            PLUM.buildingLicense = txtPlumbingLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                        }
+                                        if ((string)RDR["Type"] == "GAS")
+                                        {
+                                            GAS.companyName = txtGasName.Text = (string)RDR["CompName"];
+                                            GAS.firstPhone = txtGasPhone.Text = (string)RDR["FirstPhone"];
+                                            GAS.buildingLicense = txtGasLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                        }
+                                        if ((string)RDR["Type"] == "Irrigation")
+                                        {
+                                            IRR.companyName = txtIrrigationName.Text = (string)RDR["CompName"];
+                                            IRR.firstPhone = txtIrrigationPhone.Text = (string)RDR["FirstPhone"];
+                                            IRR.buildingLicense = txtIrrigationLisenceNumber.Text = (string)RDR["LicenseNumber"];
+                                        }
                                     }
+
                                 }
 
 
@@ -715,62 +714,19 @@ namespace BuildingPermit
                             {
                                 if (!RDR.IsDBNull(i))
                                 {
-                                    
-                                        if (RDR.GetName(i) == "NumAmps")
-                                        {
-                                            cmboNumAmps.Items.Clear();
-                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
-                                            
 
-                                        }
-                                        if (RDR.GetName(i) == "TempPole")
-                                        {
-                                            cboxTempPole.Checked = (bool)RDR["TempPole"];
-                                        }
-                                   
-                                }
-
-
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("No Rows found");
-                        }
-
-                    }
-
-                    RDR.Close();
-
-                    spCmd = new SqlCommand("getElectrical", con);
-                    spCmd.CommandType = CommandType.StoredProcedure;
-                    spCmd.Parameters.Add("@in_PermitID", SqlDbType.VarChar);
-                    spCmd.Prepare();
-                    spCmd.Parameters["@in_PermitID"].Value = txtPermitNumber.Text;
-
-                    RDR = spCmd.ExecuteReader();
-
-                    while (RDR.Read())
-                    {
-                        if (RDR.HasRows)
-                        {
-                            for (int i = 0; i < RDR.FieldCount; i++)
-                            {
-                                if (!RDR.IsDBNull(i))
-                                {
-                                    if (RDR.GetName(i) == "Type")
+                                    if (RDR.GetName(i) == "NumAmps")
                                     {
-                                        if (RDR.GetName(i) == "NumAmps")
-                                        {
-                                            cmboNumAmps.Items.Clear();
-                                            cmboNumAmps.Text = (string)RDR["NumAmps"];
+                                        cmboNumAmps.Items.Clear();
+                                        utilities.numAmps = cmboNumAmps.Text = (string)RDR["NumAmps"];
 
-                                        }
-                                        if (RDR.GetName(i) == "TempPole")
-                                        {
-                                            cboxTempPole.Checked = (bool)RDR["TempPole"];
-                                        }
+
                                     }
+                                    if (RDR.GetName(i) == "TempPole")
+                                    {
+                                        utilities.tempPole = cboxTempPole.Checked = (bool)RDR["TempPole"];
+                                    }
+
                                 }
 
 
@@ -804,19 +760,19 @@ namespace BuildingPermit
 
                                     if (RDR.GetName(i) == "NumSystems")
                                     {
-                                        txtNumSystems.Text = (string)RDR["NumSystems"];
+                                       utilities.setNumSys = txtNumSystems.Text = (string)RDR["NumSystems"];
                                     }
                                     if (RDR.GetName(i) == "SystemType")
                                     {
-                                        cmboSystemType.Text = (string)RDR["SystemType"];
+                                       utilities.systemType =  cmboSystemType.Text = (string)RDR["SystemType"];
                                     }
                                     if (RDR.GetName(i) == "Tons")
                                     {
-                                        txtSystemTons.Text = (string)RDR["Tons"];
+                                       utilities.tons = txtSystemTons.Text = (string)RDR["Tons"];
                                     }
                                     if (RDR.GetName(i) == "GasLine")
                                     {
-                                        cboxGasLine.Checked = (bool)RDR["GasLIne"];
+                                       utilities.gasLine = cboxGasLine.Checked = (bool)RDR["GasLIne"];
                                     }
 
                                 }
@@ -852,19 +808,19 @@ namespace BuildingPermit
 
                                     if (RDR.GetName(i) == "Address")
                                     {
-                                        txtProperty.Text = (string)RDR["Address"];
+                                       parcel.address = txtProperty.Text = (string)RDR["Address"];
                                     }
                                     if (RDR.GetName(i) == "LotNum")
                                     {
-                                        txtLotNumber.Text = (string)RDR["LotNum"];
+                                      parcel.lotNum =  txtLotNumber.Text = (string)RDR["LotNum"];
                                     }
                                     if (RDR.GetName(i) == "LRK")
                                     {
-                                        txtLRKNumber.Text = (string)RDR["LRK"];
+                                       parcel.lrk = txtLRKNumber.Text = (string)RDR["LRK"];
                                     }
                                     if (RDR.GetName(i) == "ZoningDist")
                                     {
-                                        txtZoningDistrict.Text = (string)RDR["ZoningDist"];
+                                       parcel.zoningDist = txtZoningDistrict.Text = (string)RDR["ZoningDist"];
                                     }
 
 
@@ -900,49 +856,49 @@ namespace BuildingPermit
                                 {
                                     if (RDR.GetName(i) == "TotNumFixtures")
                                     {
-                                        txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
+                                       utilities.numFixtures = txtNumFixtures.Text = (string)RDR["TotNumFixtures"];
                                     }
                                     if (RDR.GetName(i) == "TotNumBathrooms")
                                     {
-                                        txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
+                                       utilities.numBathrooms = txtNumBathrooms.Text = (string)RDR["TotNumBathrooms"];
                                     }
                                     if (RDR.GetName(i) == "NumSinks")
                                     {
-                                        txtNumSinks.Text = (string)RDR["NumSinks"];
+                                       utilities.numSinks =  txtNumSinks.Text = (string)RDR["NumSinks"];
                                     }
                                     if (RDR.GetName(i) == "NumWaterCloset")
                                     {
-                                        txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
+                                       utilities.numWaterClosets = txtNumWaterClosets.Text = (string)RDR["NumWaterCloset"];
                                     }
                                     if (RDR.GetName(i) == "NumShowers")
                                     {
-                                        txtNumShowers.Text = (string)RDR["NumShowers"];
+                                       utilities.numShowers = txtNumShowers.Text = (string)RDR["NumShowers"];
                                     }
                                     if (RDR.GetName(i) == "NumTubs")
                                     {
-                                        txtNumTubs.Text = (string)RDR["NumTubs"];
+                                       utilities.numTub = txtNumTubs.Text = (string)RDR["NumTubs"];
                                     }
                                     if (RDR.GetName(i) == "NumClothesWashers")
                                     {
-                                        txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
+                                       utilities.numClothesWasher = txtNumClothesWashers.Text = (string)RDR["NumClothesWashers"];
                                     }
                                     if (RDR.GetName(i) == "NumWetBars")
                                     {
-                                        txtNumWetBars.Text = (string)RDR["NumWetBars"];
+                                       utilities.numWetBar = txtNumWetBars.Text = (string)RDR["NumWetBars"];
                                     }
                                     if (RDR.GetName(i) == "NumSpas")
                                     {
-                                        txtNumSpas.Text = (string)RDR["NumSpas"];
+                                       utilities.numSpa = txtNumSpas.Text = (string)RDR["NumSpas"];
                                     }
                                     if (RDR.GetName(i) == "NumWaterHeater")
                                     {
-                                        txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
+                                       utilities.numWaterHeater = txtNumWaterHeaters.Text = (string)RDR["NumWaterHeater"];
                                     }
                                     if (RDR.GetName(i) == "NumDishWashers")
                                     {
-                                        txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
+                                       utilities.numDishWasher = txtNumDishwashers.Text = (string)RDR["NumDishWashers"];
                                     }
-                                   
+
 
 
                                 }
@@ -965,7 +921,7 @@ namespace BuildingPermit
                 }
             }
 
-           
+
 
         }
 
@@ -983,7 +939,7 @@ namespace BuildingPermit
         public string _txtOwnerPhone { set { txtOwnerPhone.Text = value; } }
         public string _txtOwnerCell { set { txtOwnerCell.Text = value; } }
         public string _txtProperty { set { txtProperty.Text = value; } }
-        public string _txtContractorName { set { txtContractorName.Text=value;} }
+        public string _txtContractorName { set { txtContractorName.Text = value; } }
         public string _txtContractorLiscence { set { txtContractorLiscence.Text = value; } }
         public string _txtContractorPhone { set { txtContractorPhone.Text = value; } }
         public string _txtContractorEmail { set { txtContractorEmail.Text = value; } }
@@ -1006,7 +962,7 @@ namespace BuildingPermit
         /// <summary>
         /// Parcel access
         /// </summary>
-        public string _setPropAddress { set { parcel.address = value; }}
+        public string _setPropAddress { set { parcel.address = value; } }
         public string _setPropcity { set { parcel.city = value; } }
         public int _setPropcontactID { set { parcel.contactID = value; } }
         public string _setPropdeedAcre { set { parcel.deedAcre = value; } }
@@ -1263,7 +1219,7 @@ namespace BuildingPermit
             this.building.proposedUse = cmboProposedUse.Text;
             this.building.totalSF = txtSquareFeet.Text;
             this.building.permitId = txtPermitNumber.Text;
-            
+
             this.building.save(conStr);
 
             this.contact.companyName = txtOwner.Text;
@@ -1278,11 +1234,11 @@ namespace BuildingPermit
 
             if (cboxGasLine.Checked)
             {
-                this.utilities.gasLine = true; 
+                this.utilities.gasLine = true;
             }
             else
             {
-                this.utilities.gasLine = false; 
+                this.utilities.gasLine = false;
             }
 
             this.utilities.numAmps = cmboNumAmps.SelectedText;
@@ -1301,17 +1257,18 @@ namespace BuildingPermit
 
             if (cboxTempPole.Checked)
             {
-                this.utilities.tempPole = true; 
+                this.utilities.tempPole = true;
             }
             else
             {
-                this.utilities.tempPole = false; 
+                this.utilities.tempPole = false;
             }
 
             this.utilities.tons = txtSystemTons.Text;
-            
+
             this.utilities.save(conStr);
 
+           
             this.GC.companyName = txtContractorName.Text;
             this.GC.firstPhone = txtContractorPhone.Text;
             this.GC.license = txtContractorLiscence.Text;
@@ -1362,12 +1319,12 @@ namespace BuildingPermit
             this.IRR.property = false;
 
             this.IRR.save(conStr);
-            
+
             this.applicant.companyName = txtApplicant.Text;
             this.applicant.firstPhone = txtApplicant.Text;
             this.applicant.secondPhone = txtCell.Text;
             this.applicant.property = false;
-            
+
 
             this.applicant.save(conStr);
 
@@ -1375,7 +1332,7 @@ namespace BuildingPermit
             this.parcel.lotNum = txtLotNumber.Text;
             this.parcel.lrk = txtLRKNumber.Text;
             this.parcel.zoningDist = txtZoningDistrict.Text;
-          
+
             this.parcel.save(conStr);
 
             this.permit.buildingID = this.building.buildingID;
